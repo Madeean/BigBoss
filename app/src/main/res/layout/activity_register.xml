@@ -7,8 +7,14 @@
     android:orientation="vertical"
     tools:context=".RegisterActivity">
 
-    <com.google.android.material.tabs.TabLayout
+    <include
 
+        android:id="@+id/my_toolbar"
+        layout="@layout/mytoolbar" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:background="@color/abuabumuda"
+        android:layout_marginTop="55dp"
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -27,6 +33,7 @@
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager2.widget.ViewPager2
+        android:background="@color/abuabumuda"
         android:id="@+id/view_pager2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

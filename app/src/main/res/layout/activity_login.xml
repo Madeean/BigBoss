@@ -51,7 +51,7 @@
             android:background="@drawable/radius_btn_login"
             android:backgroundTint="@color/hijau"
             android:text="Register"
-            android:textColor="@color/abuabumuda"
+            android:textColor="@color/hitam"
             android:textAllCaps="false" />
 
     </LinearLayout>
