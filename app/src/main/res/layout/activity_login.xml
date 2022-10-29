@@ -1,9 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/gradient_drawable"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="324dp"
+        android:layout_height="326dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginTop="202dp"
+        android:background="@drawable/radiuslogin"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/poppins"
+            android:hint="Email"
+            android:layout_width="278dp"
+            android:layout_height="48dp"/>
+
+        <EditText
+            android:inputType="textPassword"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/poppins"
+
+            android:hint="Password"
+            android:layout_width="278dp"
+            android:layout_height="48dp"/>
+
+        <Button
+            android:layout_marginTop="28dp"
+            android:layout_width="183dp"
+            android:layout_height="44dp"
+            android:fontFamily="@font/poppins"
+            android:background="@drawable/radius_btn_login"
+            android:text="Login"
+            android:textColor="@color/abuabumuda"
+            android:textAllCaps="false" />
+
+        <Button
+            android:layout_marginTop="28dp"
+            android:layout_width="183dp"
+            android:layout_height="44dp"
+            android:fontFamily="@font/poppins"
+            android:background="@drawable/radius_btn_login"
+            android:backgroundTint="@color/hijau"
+            android:text="Register"
+            android:textColor="@color/abuabumuda"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

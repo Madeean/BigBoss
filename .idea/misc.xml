@@ -4,6 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/drawable/gradient_drawable.xml" value="0.15" />
+        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/drawable/radius_btn_login.xml" value="0.15" />
+        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/drawable/radiuslogin.xml" value="0.15" />
+        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/font/poppins_medium.xml" value="0.2777777777777778" />
+        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/font/poppins_thin.xml" value="0.2777777777777778" />
+        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_main.xml" value="0.223731884057971" />
       </map>
     </option>

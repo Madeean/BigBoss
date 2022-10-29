@@ -7,4 +7,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+<!--    warna dari figma-->
+
+    <color name="biru">#5066CE</color>
+    <color name="abuabutua">#D9D9D9</color>
+    <color name="abuabumuda">#E6E6E6</color>
+    <color name="hitam">#353535</color>
+    <color name="hijau">#50CE8A</color>
+    <color name="ungu">#AE7EFD</color>
+    <color name="merah">#F55C5C</color>
+
 </resources>
