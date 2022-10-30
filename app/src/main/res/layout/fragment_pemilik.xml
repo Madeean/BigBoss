@@ -4,13 +4,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/abuabumuda"
+    android:orientation="vertical"
     tools:context=".fragmentregister.PemilikFragment">
 
-    <TextView
-        android:layout_centerInParent="true"
-        android:text="pemilik"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/edit_text_nama_pemilik"
+        android:layout_marginTop="28dp"
+        android:layout_centerHorizontal="true"
+        android:hint="Nama"
+        android:layout_width="295dp"
+        android:layout_height="48dp"/>
+
+    <EditText
+        android:id="@+id/edit_text_email_pemilik"
+        android:layout_width="295dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/edit_text_nama_pemilik"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:hint="Email" />
+
+    <EditText
+        android:layout_centerHorizontal="true"
+        android:id="@+id/edit_text_nama_kontrakan_pemilik"
+        android:layout_width="295dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/edit_text_email_pemilik"
+        android:hint="Nama Kontrakan" />
+
+    <EditText
+        android:inputType="number"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/edit_text_ruangan_pemilik"
+        android:layout_width="295dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/edit_text_nama_kontrakan_pemilik"
+        android:hint="Ruangan yang dipunya" />
+
+    <EditText
+        android:inputType="textPassword"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/edit_text_password_pemilik"
+        android:layout_width="295dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/edit_text_ruangan_pemilik"
+        android:hint="Password" />
+
+    <Button
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/edit_text_password_pemilik"
+        android:id="@+id/btn_register"
+        android:layout_marginTop="28dp"
+        android:layout_width="183dp"
+        android:layout_height="44dp"
+        android:fontFamily="@font/poppins"
+        android:background="@drawable/radius_btn_login"
+        android:backgroundTint="@color/hijau"
+        android:text="Register"
+        android:textColor="@color/hitam"
+        android:textAllCaps="false" />
+
+
 
 
 </RelativeLayout>
