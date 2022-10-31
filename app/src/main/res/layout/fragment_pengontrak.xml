@@ -1,16 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@color/abuabumuda"
-    tools:context=".fragmentregister.PengontrakFragment">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_centerInParent="true"
-        android:text="pengontrak"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/abuabumuda"
+        android:orientation="vertical"
+        tools:context=".fragmentregister.PengontrakFragment">
 
 
-</RelativeLayout>
+
+        <Spinner
+            android:layout_marginTop="28dp"
+            android:tooltipText="Pilih Nama Kontrakan"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/spinner1"
+            android:layout_width="298dp"
+            android:layout_height="48dp"
+            android:spinnerMode="dropdown"/>
+
+        <EditText
+            android:id="@+id/edit_text_nama_pengontrak"
+            android:layout_width="295dp"
+            android:layout_height="48dp"
+            android:layout_below="@+id/spinner1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="28dp"
+            android:hint="Nama" />
+
+        <EditText
+            android:id="@+id/edit_text_email_pengontrak"
+            android:layout_width="295dp"
+            android:layout_height="48dp"
+            android:layout_below="@+id/edit_text_nama_pengontrak"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="28dp"
+            android:hint="Email" />
+
+        <EditText
+            android:inputType="number"
+            android:id="@+id/edit_text_umur_pengontrak"
+            android:layout_width="295dp"
+            android:layout_height="48dp"
+            android:layout_below="@+id/edit_text_email_pengontrak"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="28dp"
+            android:hint="Umur" />
+
+        <EditText
+            android:id="@+id/edit_text_alamat_sesuai_ktp_pengontrak"
+            android:layout_width="295dp"
+            android:layout_height="48dp"
+            android:layout_below="@+id/edit_text_umur_pengontrak"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="28dp"
+            android:hint="Alamat sesuai ktp" />
+
+        <EditText
+            android:id="@+id/edit_text_alamat_kontrakan_sekarang_pengontrak"
+            android:layout_width="295dp"
+            android:layout_height="48dp"
+            android:layout_below="@+id/edit_text_alamat_sesuai_ktp_pengontrak"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="28dp"
+            android:hint="Alamat kontrakan sekarang" />
+
+        <EditText
+            android:id="@+id/edit_text_harga_perbulan_pengontrak"
+            android:layout_width="295dp"
+            android:layout_height="48dp"
+            android:layout_below="@+id/edit_text_alamat_kontrakan_sekarang_pengontrak"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="28dp"
+            android:hint="Alamat kontrakan sekarang" />
+
+        <ImageView
+            android:id="@+id/image_input_pengontrak"
+            android:layout_below="@+id/edit_text_harga_perbulan_pengontrak"
+            android:src="@drawable/image_input"
+            android:layout_marginTop="28dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="173dp"
+            android:layout_height="109dp"/>
+
+
+        <Button
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="31dp"
+            android:id="@+id/btn_camera_pengontrak"
+            android:layout_width="131dp"
+            android:layout_height="34dp"
+            android:layout_below="@+id/image_input_pengontrak"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/radius_btn_login"
+            android:fontFamily="@font/poppins"
+            android:text="Camera"
+            android:textAllCaps="false"
+            android:textColor="@color/abuabumuda" />
+
+        <Button
+            android:id="@+id/btn_gallery_pengontrak"
+            android:layout_width="131dp"
+            android:layout_height="34dp"
+            android:layout_below="@+id/image_input_pengontrak"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="31dp"
+            android:backgroundTint="@color/ungu"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/radius_btn_login"
+            android:fontFamily="@font/poppins"
+            android:text="Gallery"
+
+            android:textAllCaps="false"
+            android:textColor="@color/abuabumuda" />
+
+        <Button
+            android:layout_marginBottom="50dp"
+            android:id="@+id/btn_register_pengontrak"
+            android:layout_width="131dp"
+            android:layout_height="34dp"
+            android:layout_below="@+id/btn_gallery_pengontrak"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/hijau"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/radius_btn_login"
+            android:fontFamily="@font/poppins"
+            android:text="Register"
+            android:textAllCaps="false"
+            android:textColor="@color/hitam" />
+
+
+
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+</ScrollView>
+
