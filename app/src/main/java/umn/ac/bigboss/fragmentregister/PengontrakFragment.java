@@ -1,5 +1,6 @@
 package umn.ac.bigboss.fragmentregister;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,12 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import umn.ac.bigboss.R;
+import umn.ac.bigboss.pemilik.PemilikHomeActivity;
+import umn.ac.bigboss.pengontrak.PengontrakHomeActivity;
 
 
 public class PengontrakFragment extends Fragment {
@@ -56,6 +60,13 @@ public class PengontrakFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> arg0) {
 
             }
+        });
+
+        Button btn_register_pengontrak = view.findViewById(R.id.btn_register_pengontrak);
+        btn_register_pengontrak.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), PengontrakHomeActivity.class);
+            startActivity(intent);
+
         });
 
         return view;
