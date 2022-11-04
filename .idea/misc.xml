@@ -3,26 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/drawable/gradient_drawable.xml" value="0.15" />
-        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/drawable/ic_launcher_background.xml" value="0.15" />
-        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/drawable/radius_btn_login.xml" value="0.15" />
-        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/drawable/radiuslogin.xml" value="0.15" />
-        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/font/poppins_medium.xml" value="0.2777777777777778" />
-        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/font/poppins_thin.xml" value="0.2777777777777778" />
-        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_main.xml" value="0.223731884057971" />
-        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_pemilik_home.xml" value="0.223731884057971" />
-        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_pengontrak.xml" value="0.223731884057971" />
-        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_pengontrak_home.xml" value="0.223731884057971" />
-        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_register.xml" value="0.25416666666666665" />
-        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
-        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/fragment_movie.xml" value="0.253125" />
-        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/fragment_pemilik.xml" value="0.264" />
-        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/fragment_pengontrak.xml" value="0.264" />
-        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/fragment_sport.xml" value="0.253125" />
-        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/mytoolbar.xml" value="0.253125" />
-        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/menu/bottom_nav_pengontrak.xml" value="0.253125" />
-        <entry key="..\:/Users/Ntosama/Documents/College/Semester 5/Mobile Application Programming/UAS/BigBoss/app/src/main/res/layout/activity_pemilik_home.xml" value="0.3651041666666667" />
       </map>
     </option>
   </component>
