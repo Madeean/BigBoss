@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:title="Dashbord"
-        android:id="@+id/dashbord"
-        android:icon="@drawable/dashbord"/>
+
+        android:id="@+id/globe"
+        android:icon="@drawable/globe"
+        android:title="globe" />
     <item
-        android:title="Users"
-        android:id="@+id/users"
-        android:icon="@drawable/users"/>
+        android:title="add"
+        android:id="@+id/add"
+        android:icon="@drawable/add"/>
     <item
-        android:title="Profile"
-        android:id="@+id/profile"
-        android:icon="@drawable/profile"/>
+        android:title="list"
+        android:id="@+id/list"
+        android:icon="@drawable/list"/>
+    <item
+        android:title="setting"
+        android:id="@+id/setting"
+        android:icon="@drawable/ic_baseline_settings_24"/>
 </menu>
