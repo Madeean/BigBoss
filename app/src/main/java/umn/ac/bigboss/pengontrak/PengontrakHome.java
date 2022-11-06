@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,13 +18,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import umn.ac.bigboss.R;
+import umn.ac.bigboss.pengontrak.adapter.adapter_data_history_pembayaran_pengontrak;
 
 
 public class PengontrakHome extends Fragment {
 
+    RecyclerView recyclerView;
+    LinearLayoutManager linearLayoutManager;
+    adapter_data_history_pembayaran_pengontrak adapterData;
+    List<String> listData;
 
     Toolbar start_toolbar_pengontrak_home;
     TextView start_toolbar, start_toolbar_tanggal;
@@ -86,6 +95,20 @@ public class PengontrakHome extends Fragment {
                 Toast.makeText( getActivity(), s.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        recyclerView = view.findViewById(R.id.rv_history_pembayaran_pengontrak);
+        listData = new ArrayList<>();
+
+        for(int i = 1; i < 10; i++){
+            listData.add("madee - " + i);
+        }
+
+        linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        adapterData = new adapter_data_history_pembayaran_pengontrak(getActivity(), listData);
+        recyclerView.setAdapter(adapterData);
+        adapterData.notifyDataSetChanged();
 
         return view;
     }

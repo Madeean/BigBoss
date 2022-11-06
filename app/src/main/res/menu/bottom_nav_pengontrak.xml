@@ -4,17 +4,17 @@
 
         android:id="@+id/globe"
         android:icon="@drawable/globe"
-        android:title="globe" />
+        android:title="Home" />
     <item
-        android:title="add"
+        android:title="Add"
         android:id="@+id/add"
         android:icon="@drawable/add"/>
     <item
-        android:title="list"
+        android:title="List"
         android:id="@+id/list"
         android:icon="@drawable/list"/>
     <item
-        android:title="setting"
+        android:title="Setting"
         android:id="@+id/setting"
         android:icon="@drawable/ic_baseline_settings_24"/>
 </menu>

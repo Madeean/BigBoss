@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/list_data_history_pembayaran"
+        android:layout_width="310dp" android:orientation="vertical"
+        android:background="@drawable/bg_history_pembayaran_pengontrak"
+        android:elevation="5dp"
+        android:layout_height="177dp">
+
+        <TextView
+            android:id="@+id/nama_pengontrak_card"
+            android:paddingTop="17dp"
+            android:paddingLeft="19dp"
+            android:fontFamily="@font/poppins"
+            android:text="Madee"
+            android:textSize="14sp"
+            android:textColor="@color/hitam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_below="@+id/nama_pengontrak_card"
+            android:id="@+id/alamat_pengontrak_card"
+            android:paddingLeft="19dp"
+            android:fontFamily="@font/poppins_light"
+            android:text="Kampung dadap no.5"
+            android:textSize="14sp"
+            android:textColor="@color/hitam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_below="@+id/alamat_pengontrak_card"
+            android:id="@+id/bayar_pengontrak_card"
+            android:paddingLeft="19dp"
+            android:paddingTop="16dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Rp. 100.000"
+            android:textSize="16sp"
+            android:textColor="@color/hitam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/status_lunas_pengontrak_card"
+            android:layout_alignParentRight="true"
+            android:paddingTop="17dp"
+            android:paddingRight="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="LUNAS"
+            android:textSize="14sp"
+            android:textColor="@color/biru"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_below="@id/status_lunas_pengontrak_card"
+            android:id="@+id/tanggal_bayar_pengontrak_card"
+            android:layout_alignParentRight="true"
+            android:paddingTop="40dp"
+            android:paddingRight="16dp"
+            android:fontFamily="@font/poppins"
+            android:text="24-10-2022"
+            android:textSize="14sp"
+            android:textColor="@color/hitam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/btn_detail_transaksi"
+            android:layout_centerHorizontal="true"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:fontFamily="@font/poppins"
+            android:background="@drawable/radius_btn_login"
+            android:backgroundTint="@color/hijau"
+            android:text="Detail Transaksi"
+            android:textColor="@color/hitam"
+            android:textAllCaps="false" />
+
+    </RelativeLayout>
+
+
