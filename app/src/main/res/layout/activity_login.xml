@@ -8,10 +8,10 @@
     tools:context=".LoginActivity">
 
     <LinearLayout
+        android:layout_centerInParent="true"
         android:layout_width="324dp"
         android:layout_height="326dp"
-        android:layout_marginLeft="43dp"
-        android:layout_marginTop="202dp"
+
         android:background="@drawable/radiuslogin"
         android:gravity="center_horizontal"
         android:orientation="vertical">
