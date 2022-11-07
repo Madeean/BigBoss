@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/radius_btn_login"
+    android:backgroundTint="@color/abuabumuda"
+    android:id="@+id/data_pengontrak_request_pembayaran"
+    android:layout_width="345dp"
+    android:elevation="5dp"
+    android:layout_marginBottom="15dp"
+    android:layout_height="132dp">
+
+    <TextView
+        android:id="@+id/text_name_request_pengontrak"
+        android:paddingLeft="23dp"
+        android:paddingTop="23dp"
+        android:text="Madee"
+        android:textSize="16sp"
+        android:textColor="@color/hitam"
+        android:fontFamily="@font/poppins_medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/text_bulan_request_pengontrak"
+        android:textSize="14sp"
+        android:textColor="@color/hitam"
+        android:fontFamily="@font/poppins"
+        android:layout_alignParentRight="true"
+        android:paddingTop="23dp"
+        android:paddingRight="13dp"
+        android:text="Bulan ke - 9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/text_status_konfirmasi_request_pengontrak"
+        android:paddingBottom="37dp"
+        android:textColor="@color/hitam"
+        android:fontFamily="@font/poppins_light"
+        android:textSize="16sp"
+        android:text="Menunggu Konfirmasi"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

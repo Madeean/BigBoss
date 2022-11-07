@@ -10,5 +10,15 @@
         layout="@layout/mytoolbar"
         />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:background="@color/abuabumuda"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="25dp"
+        android:id="@+id/rv_request_pembayaran_pengontrak"
+        android:layout_below="@id/my_toolbar_list_requerst_pengontrak"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"/>
+
 
 </RelativeLayout>
