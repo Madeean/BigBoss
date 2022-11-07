@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".pemilik.PemilikHome">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+   <include
+         android:id="@+id/my_toolbar_home_pemilik"
+            layout="@layout/start_toolbar"
+       />
 
-</FrameLayout>
+   <EditText
+       android:id="@+id/search_input"
+       android:drawableLeft="@drawable/ic_baseline_search_24"
+       android:textColorHint="@color/hitam"
+       android:hint="Search Pembayaran"
+       android:padding="16dp"
+       android:background="@drawable/search_input_radius"
+       android:layout_marginTop="14dp"
+       android:layout_centerHorizontal="true"
+       android:layout_below="@id/my_toolbar_home_pemilik"
+       android:layout_width="310dp"
+       android:layout_height="58dp"/>
+
+   <androidx.recyclerview.widget.RecyclerView
+       android:background="@color/abuabumuda"
+       android:layout_centerHorizontal="true"
+       android:layout_marginTop="24dp"
+       android:layout_marginHorizontal="25dp"
+       android:id="@+id/rv_history_pembayaran_pemilik"
+       android:layout_below="@id/search_input"
+       android:layout_width="wrap_content"
+       android:layout_height="match_parent"/>
+
+
+</RelativeLayout>

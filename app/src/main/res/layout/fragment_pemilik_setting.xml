@@ -1,14 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".pemilik.PemilikSetting">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <include
+        android:id="@+id/my_toolbar_setting_pemilik"
+        layout="@layout/mytoolbar" />
 
-</FrameLayout>
+    <TextView
+        android:layout_marginTop="35dp"
+        android:textSize="20dp"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/hitam"
+        android:text="Madee"
+        android:id="@+id/name_setting_pemilik"
+        android:layout_below="@+id/my_toolbar_setting_pemilik"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:fontFamily="@font/poppins_light"
+        android:textSize="20dp"
+        android:text="Madee@gamil.com"
+        android:layout_marginTop="23dp"
+        android:id="@+id/email_setting_pemilik"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/name_setting_pemilik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_edit_profile_setting_pemilik"
+        android:paddingRight="10dp"
+        android:paddingLeft="39dp"
+        android:layout_marginTop="23dp"
+        android:text="Edit Profile"
+        android:gravity="left|center_vertical"
+        android:drawableRight="@drawable/arrow_right"
+        android:textColor="@color/hitam"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/abuabumuda"
+        android:background="@drawable/radius_btn_login"
+        android:layout_below="@id/email_setting_pemilik"
+        android:layout_centerHorizontal="true"
+        android:layout_width="345dp"
+        android:layout_height="59dp"/>
+
+    <Button
+        android:id="@+id/btn_logout_setting_pemilik"
+        android:paddingLeft="39dp"
+        android:paddingRight="10dp"
+        android:layout_marginTop="14dp"
+        android:text="Logout"
+        android:gravity="left|center_vertical"
+        android:drawableRight="@drawable/arrow_right"
+        android:textColor="@color/hitam"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/abuabumuda"
+        android:background="@drawable/radius_btn_login"
+        android:layout_below="@id/btn_edit_profile_setting_pemilik"
+        android:layout_centerHorizontal="true"
+        android:layout_width="345dp"
+        android:layout_height="59dp"/>
+</RelativeLayout>

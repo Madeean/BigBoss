@@ -3,11 +3,104 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pengontrak.PengontrakAddPembayaran">
+    tools:context=".pengontrak.PengontrakAddPembayaran"
+    >
 
     <!-- TODO: Update blank fragment layout -->
     <include
         android:id="@+id/my_toolbar_add_pembayaran_pengontrak"
         layout="@layout/mytoolbar" />
+
+    <TextView
+        android:id="@+id/text_tanggal_bayar_add_pembayaran_pengontrak"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="31dp"
+        android:textSize="16sp"
+        android:textColor="@color/hitam"
+        android:fontFamily="@font/poppins"
+        android:text="Tanggal Bayar"
+        android:layout_below="@id/my_toolbar_add_pembayaran_pengontrak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_choose_date_add_pembayaran_pengontrak"
+        android:layout_marginTop="14dp"
+        android:textSize="16dp"
+        android:fontFamily="@font/poppins"
+        android:textAllCaps="false"
+        android:layout_width="298dp"
+        android:layout_height="37dp"
+        android:layout_below="@id/text_tanggal_bayar_add_pembayaran_pengontrak"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/radius_btn_login"
+        android:text="Choose Date"
+        android:textColor="@color/abuabumuda" />
+
+    <EditText
+        android:id="@+id/edit_text_jumlah_bayar_add_pembayaran_pengontrak"
+        android:inputType="number"
+        android:fontFamily="@font/poppins"
+        android:textColorHint="@color/hitam"
+        android:hint="Jumlah Bayar"
+        android:layout_marginTop="28dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btn_choose_date_add_pembayaran_pengontrak"
+        android:layout_width="298dp"
+        android:layout_height="48dp"/>
+
+    <ImageView
+        android:id="@+id/image_input_add_pembayaran_pengontrak"
+        android:layout_width="173dp"
+        android:layout_height="109dp"
+        android:layout_below="@+id/edit_text_jumlah_bayar_add_pembayaran_pengontrak"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/image_input" />
+
+    <Button
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="31dp"
+        android:id="@+id/btn_camera_tambah_pembayaran_pengontrak"
+        android:layout_width="131dp"
+        android:layout_height="34dp"
+        android:layout_below="@+id/image_input_add_pembayaran_pengontrak"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/radius_btn_login"
+        android:fontFamily="@font/poppins"
+        android:text="Camera"
+        android:textAllCaps="false"
+        android:textColor="@color/abuabumuda" />
+
+    <Button
+        android:id="@+id/btn_gallery_tambah_pembayaran_pengontrak"
+        android:layout_width="131dp"
+        android:layout_height="34dp"
+        android:layout_below="@+id/image_input_add_pembayaran_pengontrak"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="31dp"
+        android:backgroundTint="@color/ungu"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/radius_btn_login"
+        android:fontFamily="@font/poppins"
+        android:text="Gallery"
+
+        android:textAllCaps="false"
+        android:textColor="@color/abuabumuda" />
+
+    <Button
+        android:layout_marginBottom="50dp"
+        android:id="@+id/btn_tambah_pembayaran_pengontrak"
+        android:layout_width="183dp"
+        android:layout_height="44dp"
+        android:layout_below="@+id/btn_gallery_tambah_pembayaran_pengontrak"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/hijau"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/radius_btn_login"
+        android:fontFamily="@font/poppins"
+        android:text="Tambah Pembayaran"
+        android:textAllCaps="false"
+        android:textColor="@color/hitam" />
 
 </RelativeLayout>

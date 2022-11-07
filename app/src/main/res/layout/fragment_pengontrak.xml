@@ -82,12 +82,12 @@
 
         <ImageView
             android:id="@+id/image_input_pengontrak"
-            android:layout_below="@+id/edit_text_harga_perbulan_pengontrak"
-            android:src="@drawable/image_input"
-            android:layout_marginTop="28dp"
-            android:layout_centerHorizontal="true"
             android:layout_width="173dp"
-            android:layout_height="109dp"/>
+            android:layout_height="109dp"
+            android:layout_below="@+id/edit_text_harga_perbulan_pengontrak"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="28dp"
+            android:src="@drawable/image_input" />
 
 
         <Button

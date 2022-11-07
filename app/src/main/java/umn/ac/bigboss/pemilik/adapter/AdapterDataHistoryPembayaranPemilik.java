@@ -1,32 +1,28 @@
-package umn.ac.bigboss.pengontrak.adapter;
+package umn.ac.bigboss.pemilik.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-
 import java.util.List;
 
 import umn.ac.bigboss.R;
 import umn.ac.bigboss.pengontrak.PengontrakDetailPembayaran;
+import umn.ac.bigboss.pengontrak.adapter.adapter_data_history_pembayaran_pengontrak;
 
-public class adapter_data_history_pembayaran_pengontrak extends RecyclerView.Adapter<adapter_data_history_pembayaran_pengontrak.HolderData>{
+public class AdapterDataHistoryPembayaranPemilik extends RecyclerView.Adapter<AdapterDataHistoryPembayaranPemilik.HolderData>{
     List<String> listData;
     LayoutInflater layoutInflater;
 
 
-    public adapter_data_history_pembayaran_pengontrak(Context context, List<String> listData) {
+    public AdapterDataHistoryPembayaranPemilik(Context context, List<String> listData) {
         this.listData = listData;
         this.layoutInflater = LayoutInflater.from(context);
 
@@ -34,21 +30,21 @@ public class adapter_data_history_pembayaran_pengontrak extends RecyclerView.Ada
 
     @NonNull
     @Override
-    public adapter_data_history_pembayaran_pengontrak.HolderData onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.from(parent.getContext()).inflate(R.layout.data_pengontrak_history_pembayaran, parent, false);
-        return new HolderData(view);
+    public AdapterDataHistoryPembayaranPemilik.HolderData onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = layoutInflater.from(parent.getContext()).inflate(R.layout.data_pemilik_history_pembayaran, parent, false);
+        return new AdapterDataHistoryPembayaranPemilik.HolderData(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull adapter_data_history_pembayaran_pengontrak.HolderData holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterDataHistoryPembayaranPemilik.HolderData holder, int position) {
         holder.nama_pengontrak.setText(listData.get(position));
-        holder.btn_detail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), PengontrakDetailPembayaran.class);
-                v.getContext().startActivity(intent);
-            }
-        });
+//        holder.btn_detail.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(v.getContext(), PengontrakDetailPembayaran.class);
+//                v.getContext().startActivity(intent);
+//            }
+//        });
 
     }
 

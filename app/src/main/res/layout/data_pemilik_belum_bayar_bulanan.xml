@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/radius_btn_login"
+    android:backgroundTint="@color/abuabumuda"
+    android:id="@+id/data_pemilik_belum_bayar_bulanan"
+    android:layout_width="345dp"
+    android:elevation="5dp"
+    android:layout_marginBottom="15dp"
+    android:layout_height="59dp">
+
+    <ImageView
+        android:id="@+id/image_view_pemilik_belum_bayar_bulanan"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="9dp"
+        android:src="@drawable/kucing_topi"
+        android:layout_width="37dp"
+        android:layout_height="33dp"/>
+
+
+    <TextView
+        android:id="@+id/text_name_pemilik_belum_bayar_bulanan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="4dp"
+        android:layout_toRightOf="@id/image_view_pemilik_belum_bayar_bulanan"
+        android:fontFamily="@font/poppins_medium"
+
+        android:text="Madee"
+        android:textColor="@color/hitam"
+        android:textSize="14sp" />
+
+
+    <TextView
+        android:layout_toRightOf="@id/image_view_pemilik_belum_bayar_bulanan"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@id/text_name_pemilik_belum_bayar_bulanan"
+        android:id="@+id/text_bulan_pemilik_belum_bayar_bulanan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_light"
+        android:text="Bulan ke - 9"
+        android:textColor="@color/hitam"
+        android:textSize="14sp" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/text_bulan_request_pengontrak"-->
+<!--        android:textSize="14sp"-->
+<!--        android:textColor="@color/hitam"-->
+<!--        android:fontFamily="@font/poppins"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:paddingTop="23dp"-->
+<!--        android:paddingRight="13dp"-->
+<!--        android:text="Bulan ke - 9"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+
+
+</RelativeLayout>
