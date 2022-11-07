@@ -35,9 +35,8 @@ public class PengontrakEditProfile extends AppCompatActivity {
         my_toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent inten = new Intent(PengontrakEditProfile.this, PengontrakHome.class);
-
-                startActivity(inten);
+                Intent intent = new Intent(PengontrakEditProfile.this, PengontrakHomeActivity.class);
+                startActivity(intent);
             }
         });
     }

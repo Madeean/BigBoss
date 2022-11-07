@@ -6,12 +6,12 @@
             android:icon="@drawable/globe"
             android:title="Home" />
         <item
-            android:id="@+id/list_pemilik"
+            android:id="@+id/search_pemilik"
             android:icon="@drawable/ic_baseline_search_24"
-            android:title="Profile" />
+            android:title="search" />
         <item
             android:id="@+id/setting_pemilik"
             android:icon="@drawable/ic_baseline_settings_24"
-            android:title="Logout" />
+            android:title="setting" />
     </group>
 </menu>

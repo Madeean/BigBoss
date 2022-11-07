@@ -55,6 +55,8 @@ public class PemilikHomeActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
+
+
         if (doubleBackToExitPressedOnce) {
             super.onBackPressed();
             moveTaskToBack(true);

@@ -33,7 +33,7 @@ public class PengontrakDetailPembayaran extends AppCompatActivity {
         my_toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent inten = new Intent(PengontrakDetailPembayaran.this, PengontrakHome.class);
+                Intent inten = new Intent(PengontrakDetailPembayaran.this, PengontrakHomeActivity.class);
 
                 startActivity(inten);
             }
