@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/abuabumuda"
+    tools:context=".pengontrak.PengontrakEditProfile">
+
+    <include
+        android:id="@+id/my_toolbar_edit_profile_pengontrak"
+        layout="@layout/mytoolbar" />
+
+    <EditText
+        android:id="@+id/edit_profile_nama_pengontrak"
+        android:textColorHint="@color/hitam"
+        android:hint="Nama"
+        android:layout_marginHorizontal="31dp"
+        android:layout_marginTop="18dp"
+        android:layout_below="@id/my_toolbar_edit_profile_pengontrak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/edit_profile_email_pengontrak"
+        android:textColorHint="@color/hitam"
+        android:hint="Email"
+        android:layout_marginHorizontal="31dp"
+        android:layout_marginTop="18dp"
+        android:layout_below="@id/edit_profile_nama_pengontrak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:inputType="number"
+        android:id="@+id/edit_profile_umur_pengontrak"
+        android:textColorHint="@color/hitam"
+        android:hint="Umur"
+        android:layout_marginHorizontal="31dp"
+        android:layout_marginTop="18dp"
+        android:layout_below="@id/edit_profile_email_pengontrak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_marginTop="84dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/edit_profile_umur_pengontrak"
+        android:backgroundTint="@color/hijau"
+        android:background="@drawable/radius_btn_login"
+        android:text="Edit Profile"
+        android:layout_width="183dp"
+        android:layout_height="44dp"/>
+
+
+
+</RelativeLayout>

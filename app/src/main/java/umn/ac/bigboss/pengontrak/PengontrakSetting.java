@@ -26,7 +26,7 @@ public class PengontrakSetting extends Fragment {
     private SimpleDateFormat dateFormat;
     private String date;
 
-    Button btn_logout;
+    Button btn_logout,btn_EditProfile;
 
 
     @Override
@@ -53,6 +53,15 @@ public class PengontrakSetting extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_EditProfile = view.findViewById(R.id.btn_edit_profile_setting_pengontrak);
+        btn_EditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), PengontrakEditProfile.class);
                 startActivity(intent);
             }
         });
