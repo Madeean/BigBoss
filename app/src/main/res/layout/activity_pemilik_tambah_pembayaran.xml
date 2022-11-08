@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/abuabumuda"
+    android:layout_height="match_parent"
+    tools:context=".pemilik.PemilikTambahPembayaran">
+
+    <include
+        android:id="@+id/my_toolbar_add_pembayaran_pemilik"
+        layout="@layout/mytoolbar"
+        />
+
+    <Spinner
+        android:layout_below="@id/my_toolbar_add_pembayaran_pemilik"
+        android:layout_marginTop="28dp"
+        android:tooltipText="Pilih Nama Pengontrak"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/spinner_pemilik"
+        android:layout_width="298dp"
+        android:layout_height="48dp"
+        android:spinnerMode="dropdown"/>
+
+    <TextView
+        android:id="@+id/text_tanggal_bayar_add_pembayaran_pemilik"
+        android:layout_marginTop="28dp"
+        android:layout_marginLeft="31dp"
+        android:textSize="16sp"
+        android:textColor="@color/hitam"
+        android:fontFamily="@font/poppins"
+        android:text="Tanggal Bayar"
+        android:layout_below="@id/spinner_pemilik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_choose_date_add_pembayaran_pemilik"
+        android:layout_marginTop="14dp"
+        android:textSize="16dp"
+        android:fontFamily="@font/poppins"
+        android:textAllCaps="false"
+        android:layout_width="298dp"
+        android:layout_height="37dp"
+        android:layout_below="@id/text_tanggal_bayar_add_pembayaran_pemilik"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/radius_btn_login"
+        android:text="Choose Date"
+        android:textColor="@color/abuabumuda" />
+    
+    <EditText
+        android:id="@+id/et_jumlah_bayar_add_pembayaran_pemilik"
+        android:inputType="number"
+        android:textColorHint="@color/hitam"
+        android:hint="Jumlah Bayar"
+        android:layout_marginTop="28dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/btn_choose_date_add_pembayaran_pemilik"
+        android:layout_width="298dp"
+        android:layout_height="48dp"/>
+
+    <ImageView
+        android:id="@+id/image_input_add_pembayaran_pemilik"
+        android:layout_width="173dp"
+        android:layout_height="109dp"
+        android:layout_below="@+id/et_jumlah_bayar_add_pembayaran_pemilik"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/image_input" />
+
+    <Button
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="31dp"
+        android:id="@+id/btn_camera_tambah_pembayaran_pemilik"
+        android:layout_width="131dp"
+        android:layout_height="34dp"
+        android:layout_below="@+id/image_input_add_pembayaran_pemilik"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/radius_btn_login"
+        android:fontFamily="@font/poppins"
+        android:text="Camera"
+        android:textAllCaps="false"
+        android:textColor="@color/abuabumuda" />
+
+    <Button
+        android:id="@+id/btn_gallery_tambah_pembayaran_pemilik"
+        android:layout_width="131dp"
+        android:layout_height="34dp"
+        android:layout_below="@+id/image_input_add_pembayaran_pemilik"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="31dp"
+        android:backgroundTint="@color/ungu"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/radius_btn_login"
+        android:fontFamily="@font/poppins"
+        android:text="Gallery"
+
+        android:textAllCaps="false"
+        android:textColor="@color/abuabumuda" />
+
+    <Button
+        android:layout_marginBottom="50dp"
+        android:id="@+id/btn_tambah_pembayaran_pemilik"
+        android:layout_width="183dp"
+        android:layout_height="44dp"
+        android:layout_below="@+id/btn_gallery_tambah_pembayaran_pemilik"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/hijau"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/radius_btn_login"
+        android:fontFamily="@font/poppins"
+        android:text="Tambah Pembayaran"
+        android:textAllCaps="false"
+        android:textColor="@color/hitam" />
+
+
+
+
+</RelativeLayout>
