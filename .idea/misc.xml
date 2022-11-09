@@ -11,6 +11,7 @@
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.152" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/drawable/ic_launcher_background.xml" value="0.15" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/drawable/person.xml" value="0.152" />
+        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/drawable/radius_10_doang.xml" value="0.1385" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/drawable/radius_18_doang.xml" value="0.152" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/drawable/radius_botnav.xml" value="0.15" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/drawable/radius_btn_login.xml" value="0.15" />
@@ -18,7 +19,12 @@
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/drawable/search_input_radius.xml" value="0.15" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_login.xml" value="0.12360688956433637" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_main.xml" value="0.223731884057971" />
+        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_pemilik_daftar_orang_ngontrak.xml" value="0.2368659420289855" />
+        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_pemilik_detail_pengguna.xml" value="0.23958333333333334" />
+        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_pemilik_detail_transaksi.xml" value="0.2259963768115942" />
+        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_pemilik_edit_profile.xml" value="0.2" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_pemilik_home.xml" value="0.12360688956433637" />
+        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_pemilik_request_pembayaran.xml" value="0.2259963768115942" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_pemilik_tambah_pembayaran.xml" value="0.2368659420289855" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_pengontrak_detail_pembayaran.xml" value="0.2" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_pengontrak_edit_profile.xml" value="0.22916666666666666" />
@@ -28,6 +34,7 @@
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/data__history_pembayaran_pengontrak.xml" value="0.223731884057971" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/data_pemilik_belum_bayar_bulanan.xml" value="0.2368659420289855" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/data_pemilik_history_pembayaran.xml" value="0.264" />
+        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/data_pemilik_request_pembayaran.xml" value="0.2259963768115942" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/data_pengontrak_history_pembayaran.xml" value="0.264" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/data_pengontrak_request_pembayaran.xml" value="0.22916666666666666" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/fragment_pemilik.xml" value="0.2" />

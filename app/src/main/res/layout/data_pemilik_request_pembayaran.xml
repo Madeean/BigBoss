@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/radius_18_doang"
+    android:layout_width="345dp"
+    android:id="@+id/list_data_request_pembayaran"
+    android:layout_height="145dp">
+
+    <TextView
+        android:id="@+id/nama_request_pembayaran"
+        android:layout_marginTop="11dp"
+        android:layout_marginLeft="21dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins"
+        android:textColor="@color/hitam"
+        android:text="Made"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_alignParentRight="true"
+        android:id="@+id/bulan_request_pembayaran"
+        android:layout_marginTop="11dp"
+        android:layout_marginRight="21dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins"
+        android:textColor="@color/hitam"
+        android:text="Bulan ke-9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_detail_transaksi_request_pembayaran"
+        android:layout_marginTop="18dp"
+        android:layout_below="@id/nama_request_pembayaran"
+        android:backgroundTint="@color/hijau"
+        android:background="@drawable/radius_10_doang"
+        android:layout_centerHorizontal="true"
+        android:textSize="12sp"
+        android:fontFamily="@font/poppins"
+        android:textColor="@color/hitam"
+        android:textAllCaps="false"
+        android:text="Detail Transaksi"
+        android:layout_width="110dp"
+        android:layout_height="29dp"/>
+
+    <Button
+        android:id="@+id/btn_terima_request_pembayaran"
+        android:layout_width="110dp"
+        android:layout_height="29dp"
+        android:layout_below="@id/btn_detail_transaksi_request_pembayaran"
+        android:layout_marginTop="10dp"
+android:layout_marginLeft="21dp"
+        android:background="@drawable/radius_10_doang"
+        android:backgroundTint="@color/ungu"
+        android:fontFamily="@font/poppins"
+        android:text="Terima"
+        android:textAllCaps="false"
+        android:textColor="@color/hitam"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/btn_tolak_request_pembayaran"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/btn_detail_transaksi_request_pembayaran"
+        android:backgroundTint="@color/merah"
+        android:background="@drawable/radius_10_doang"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="21dp"
+        android:textSize="12sp"
+        android:fontFamily="@font/poppins"
+        android:textColor="@color/abuabumuda"
+        android:textAllCaps="false"
+        android:text="Tolak"
+        android:layout_width="110dp"
+        android:layout_height="29dp"/>
+
+</RelativeLayout>

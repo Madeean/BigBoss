@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/abuabumuda"
     android:layout_height="match_parent"
-    tools:context=".pemilik.PemilikBelumBayarBulanan">
+    android:background="@color/abuabumuda"
+    tools:context=".pemilik.PemilikRequestPembayaran">
 
-    <!-- TODO: Update blank fragment layout -->
     <include
-        android:id="@+id/my_toolbar_belum_bayar_bulanan_pemilik"
+        android:id="@+id/my_toolbar_request_pembayaran_pemilik"
         layout="@layout/mytoolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:background="@color/abuabumuda"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:layout_marginHorizontal="25dp"
-        android:id="@+id/rv_pemilik_belum_bayar_bulanan"
-        android:layout_below="@id/my_toolbar_belum_bayar_bulanan_pemilik"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="8dp"
+        android:id="@+id/rv_pemilik_request_pembayaran"
+        android:layout_below="@id/my_toolbar_request_pembayaran_pemilik"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"/>
 
