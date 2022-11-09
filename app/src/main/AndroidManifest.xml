@@ -13,6 +13,9 @@
         android:theme="@style/Theme.BigBoss"
         tools:targetApi="31">
         <activity
+            android:name=".pemilik.PemilikDaftarBelumLunas"
+            android:exported="false" />
+        <activity
             android:name=".pemilik.PemilikRequestPembayaran"
             android:exported="false" />
         <activity

@@ -2,16 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/globe_pemilik"
-            android:icon="@drawable/globe"
-            android:title="Home" />
+            android:id="@+id/sidebar_tambah_pembayaran"
+            android:icon="@drawable/add"
+            android:title="Tambah pembayaran" />
         <item
-            android:id="@+id/search_pemilik"
-            android:icon="@drawable/ic_baseline_search_24"
-            android:title="search" />
+            android:id="@+id/sidebar_daftar_belum_lunas"
+            android:icon="@drawable/circle_close"
+            android:title="Daftar belum lunas" />
         <item
-            android:id="@+id/setting_pemilik"
-            android:icon="@drawable/ic_baseline_settings_24"
-            android:title="setting" />
+            android:id="@+id/sidebar_daftar_orang_ngontrak"
+            android:icon="@drawable/list"
+            android:title="Daftar orang ngontrak" />
+        <item
+            android:id="@+id/sidebar_request_pembayaran"
+            android:icon="@drawable/request"
+            android:title="Request pembayaran" />
     </group>
 </menu>

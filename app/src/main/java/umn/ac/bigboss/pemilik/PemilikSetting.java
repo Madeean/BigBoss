@@ -35,7 +35,7 @@ public class PemilikSetting extends Fragment {
 
     TextView my_toolbar_title;
 
-    Button btn_logout_setting_pemilik;
+    Button btn_logout_setting_pemilik, btn_edit_profile_setting_pemilik;
 
 //    @Override
 //    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -65,6 +65,15 @@ public class PemilikSetting extends Fragment {
 //
 //        my_toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.list));
 //
+        btn_edit_profile_setting_pemilik = view.findViewById(R.id.btn_edit_profile_setting_pemilik);
+        btn_edit_profile_setting_pemilik.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), PemilikEditProfile.class);
+                startActivity(intent);
+            }
+        });
+
         btn_logout_setting_pemilik = view.findViewById(R.id.btn_logout_setting_pemilik);
         btn_logout_setting_pemilik.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,20 +138,27 @@ public class PemilikSetting extends Fragment {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.globe_pemilik:
-                        Intent intent = new Intent(getActivity(), PemilikHome.class);
+                    case R.id.sidebar_tambah_pembayaran:
+                        Intent intent = new Intent(getActivity(), PemilikTambahPembayaran.class);
                         startActivity(intent);
                         break;
-                    case R.id.search_pemilik:
-                        Fragment fragment = new PemilikBelumBayarBulanan();
-                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                        transaction.replace(R.id.container_pemilik, fragment);
-                        transaction.addToBackStack(null);
-                        transaction.commit();
+                    case R.id.sidebar_daftar_belum_lunas:
+//                        Fragment fragment = new PemilikBelumBayarBulanan();
+//                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//                        transaction.replace(R.id.container_pemilik, fragment);
+//                        transaction.addToBackStack(null);
+//                        transaction.commit();
+                        Intent intent1 = new Intent(getActivity(), PemilikDaftarBelumLunas.class);
+                        startActivity(intent1);
                         break;
-                    case R.id.setting_pemilik:
-                        Intent intent2 = new Intent(getActivity(), LoginActivity.class);
+                    case R.id.sidebar_daftar_orang_ngontrak:
+                        Intent intent2 = new Intent(getActivity(), PemilikDaftarOrangNgontrak.class);
                         startActivity(intent2);
+                        getActivity().finish();
+                        break;
+                    case R.id.sidebar_request_pembayaran:
+                        Intent intent3 = new Intent(getActivity(), PemilikRequestPembayaran.class);
+                        startActivity(intent3);
                         getActivity().finish();
                         break;
                 }

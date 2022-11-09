@@ -8,12 +8,12 @@
     tools:context=".pemilik.PemilikTambahPembayaran">
 
     <include
-        android:id="@+id/my_toolbar_add_pembayaran_pemilik"
+        android:id="@+id/my_toolbar_tambah_pembayaran_pemilik"
         layout="@layout/mytoolbar"
         />
 
     <Spinner
-        android:layout_below="@id/my_toolbar_add_pembayaran_pemilik"
+        android:layout_below="@id/my_toolbar_tambah_pembayaran_pemilik"
         android:layout_marginTop="28dp"
         android:tooltipText="Pilih Nama Pengontrak"
         android:layout_centerHorizontal="true"

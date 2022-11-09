@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import umn.ac.bigboss.R;
+import umn.ac.bigboss.pemilik.PemilikDetailTransaksi;
 import umn.ac.bigboss.pengontrak.PengontrakDetailPembayaran;
 import umn.ac.bigboss.pengontrak.adapter.adapter_data_history_pembayaran_pengontrak;
 
@@ -38,13 +39,13 @@ public class AdapterDataHistoryPembayaranPemilik extends RecyclerView.Adapter<Ad
     @Override
     public void onBindViewHolder(@NonNull AdapterDataHistoryPembayaranPemilik.HolderData holder, int position) {
         holder.nama_pengontrak.setText(listData.get(position));
-//        holder.btn_detail.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(v.getContext(), PengontrakDetailPembayaran.class);
-//                v.getContext().startActivity(intent);
-//            }
-//        });
+        holder.btn_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), PemilikDetailTransaksi.class);
+                v.getContext().startActivity(intent);
+            }
+        });
 
     }
 

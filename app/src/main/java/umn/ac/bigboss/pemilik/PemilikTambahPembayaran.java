@@ -31,7 +31,7 @@ public class PemilikTambahPembayaran extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pemilik_tambah_pembayaran);
 
-        my_toolbar = findViewById(R.id.my_toolbar_belum_bayar_bulanan_pemilik);
+        my_toolbar = findViewById(R.id.my_toolbar_tambah_pembayaran_pemilik);
         my_toolbar_title = my_toolbar.findViewById(R.id.my_toolbar_title);
         my_toolbar.setBackgroundColor(getResources().getColor(R.color.abuabumuda));
 
