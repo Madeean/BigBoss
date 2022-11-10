@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="161dp"
+    android:layout_height="144dp"
+    android:layout_marginRight="14dp">
+
+    <!--            <ImageView-->
+    <!--                android:id="@+id/iv_daftar_orang_ngontrak_pemilik"-->
+    <!--                android:src="@drawable/kucing_topi"-->
+    <!--                android:layout_width="161dp"-->
+    <!--                android:layout_height="120dp"/>-->
+
+    <androidx.cardview.widget.CardView
+
+        android:id="@+id/image_daftar_orang_ngontrak_pemilik"
+        android:layout_width="161dp"
+        android:layout_height="121dp"
+        app:cardCornerRadius="18dp">
+
+        <ImageView
+            android:id="@+id/iv_daftar_orang_ngontrak_pemilik"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/my_toolbar_detail_pembayaran_pengontrak"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+
+            android:src="@drawable/kucing_topi" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_nama_daftar_orang_ngontrak_pemilik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image_daftar_orang_ngontrak_pemilik"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/poppins"
+        android:text="Dwi Rianto"
+        android:textColor="@color/hitam"
+        android:textSize="12sp" />
+
+</RelativeLayout>
+
+
+

@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.102" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/drawable/add.xml" value="0.1385" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/drawable/arrow_back_hitam.xml" value="0.15" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/drawable/arrow_right.xml" value="0.152" />
@@ -25,6 +26,8 @@
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_pemilik_daftar_orang_ngontrak.xml" value="0.2368659420289855" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_pemilik_detail_pengguna.xml" value="0.23958333333333334" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_pemilik_detail_transaksi.xml" value="0.2259963768115942" />
+        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_pemilik_detail_transaksi_belum_lunas.xml" value="0.22780797101449277" />
+        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_pemilik_detail_transaksi_menunggu_konfirmasi_pemilik.xml" value="0.22780797101449277" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_pemilik_edit_profile.xml" value="0.2" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_pemilik_home.xml" value="0.12360688956433637" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/activity_pemilik_request_pembayaran.xml" value="0.2259963768115942" />
@@ -37,6 +40,7 @@
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/data__history_pembayaran_pengontrak.xml" value="0.223731884057971" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/data_pemilik_belum_bayar_bulanan.xml" value="0.2368659420289855" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/data_pemilik_belum_lunas.xml" value="0.2259963768115942" />
+        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/data_pemilik_daftar_orang_ngontrak.xml" value="0.22780797101449277" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/data_pemilik_history_pembayaran.xml" value="0.264" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/data_pemilik_request_pembayaran.xml" value="0.2259963768115942" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/data_pengontrak_history_pembayaran.xml" value="0.264" />
@@ -51,12 +55,14 @@
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/fragment_pengontrak_list.xml" value="0.223731884057971" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/fragment_pengontrak_list_request.xml" value="0.223731884057971" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/fragment_pengontrak_setting.xml" value="0.223731884057971" />
+        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/mytoolbar.xml" value="0.12360688956433637" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/sidebar_body.xml" value="0.2368659420289855" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/sidebar_header_pemilik.xml" value="0.2368659420289855" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/layout/start_toolbar.xml" value="0.17864583333333334" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/menu/bottom_nav_pemilik.xml" value="0.25416666666666665" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/menu/bottom_nav_pengontrak.xml" value="0.2351851851851852" />
         <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/menu/sidebar_pemilik.xml" value="0.253125" />
+        <entry key="..\:/UTSDANUAS/sms5/UAS/MAP/BigBoss/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.102" />
       </map>
     </option>
   </component>

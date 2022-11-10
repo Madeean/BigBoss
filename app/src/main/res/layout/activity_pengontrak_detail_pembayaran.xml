@@ -158,12 +158,13 @@
             android:layout_below="@id/tv_jumlah_dibayar_bulan_ini_pengontrak"
             android:layout_alignParentRight="true"
             android:fontFamily="@font/poppins"
-            android:paddingRight="13dp"
             android:paddingTop="13dp"
+            android:paddingRight="13dp"
             android:text="22-09-10"
             android:textColor="@color/hitam" />
 
         <TextView
+            android:id="@+id/tv_tanggal_pembayaran_detail_pembayaran_pengontrak"
             android:layout_marginBottom="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -172,6 +173,28 @@
             android:paddingLeft="13dp"
             android:paddingTop="13dp"
             android:text="Tanggal pembayaran"
+            android:textColor="@color/hitam" />
+
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_tanggal_pembayaran_detail_pembayaran_pengontrak"
+            android:fontFamily="@font/poppins"
+            android:paddingLeft="13dp"
+            android:paddingTop="13dp"
+            android:text="Pembayaran untuk Bulan"
+            android:textColor="@color/hitam" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_tanggal_pembayaran_detail_pembayaran_pengontrak"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/poppins"
+            android:paddingTop="13dp"
+            android:paddingRight="13dp"
+            android:text="Bulan ke -10"
             android:textColor="@color/hitam" />
 
     </RelativeLayout>

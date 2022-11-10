@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pemilik.PemilikDetailTransaksiBelumLunas">
+
+    <include
+        android:id="@+id/my_toolbar_detail_transaksi_belum_lunas_pemilik"
+        layout="@layout/mytoolbar" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/image_detail_video_pemilik"
+        android:layout_below="@id/my_toolbar_detail_transaksi_belum_lunas_pemilik"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginHorizontal="12dp"
+        app:cardCornerRadius="18dp"
+
+        android:layout_width="match_parent">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:adjustViewBounds="true"
+            android:layout_height="200dp"
+            android:layout_below="@id/my_toolbar_detail_pembayaran_pengontrak"
+
+            android:src="@drawable/kucing_topi" />
+    </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:layout_marginHorizontal="14dp"
+        android:layout_marginTop="18dp"
+        android:layout_below="@id/image_detail_video_pemilik"
+        android:layout_width="match_parent"
+        android:background="@color/abuabutua"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textColor="@color/hitam"
+            android:fontFamily="@font/poppins"
+            android:paddingLeft="13dp"
+            android:paddingTop="13dp"
+            android:text="Nama Pengontrak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/text_nama_pengontrak_detail_pembayaran_pemilik"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/hitam"
+            android:fontFamily="@font/poppins"
+            android:paddingRight="13dp"
+            android:paddingTop="13dp"
+            android:text="Made Reihan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/text_alamat_kontrakan_detail_pembayaran_pemilik"
+            android:layout_below="@id/text_nama_pengontrak_detail_pembayaran_pemilik"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/hitam"
+            android:fontFamily="@font/poppins"
+            android:paddingRight="13dp"
+            android:paddingTop="13dp"
+            android:text="Kampung Dadap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+
+            android:layout_below="@id/text_nama_pengontrak_detail_pembayaran_pemilik"
+            android:textColor="@color/hitam"
+            android:fontFamily="@font/poppins"
+            android:paddingLeft="13dp"
+            android:paddingTop="13dp"
+            android:text="Alamat / Nomor kontrakan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+
+            android:layout_below="@id/text_alamat_kontrakan_detail_pembayaran_pemilik"
+            android:textColor="@color/hitam"
+            android:fontFamily="@font/poppins"
+            android:paddingLeft="13dp"
+            android:paddingTop="13dp"
+            android:text="Status Bulan Ini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/text_status_bulan_ini_detail_pembayaran_pemilik"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_alamat_kontrakan_detail_pembayaran_pemilik"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/poppins"
+            android:paddingTop="13dp"
+            android:paddingRight="13dp"
+            android:text="BELUM LUNAS"
+            android:textColor="@color/merah" />
+
+        <TextView
+            android:id="@+id/tv_jumlah_harus_dibayar_bulan_ini_pemilik"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_status_bulan_ini_detail_pembayaran_pemilik"
+            android:fontFamily="@font/poppins"
+            android:paddingLeft="13dp"
+            android:paddingTop="13dp"
+            android:text="Jumlah harus yang \n dibayar bulan ini"
+            android:textColor="@color/hitam" />
+
+        <TextView
+            android:id="@+id/text_jumlah_harus_dibayar_detail_pembayaran_pemilik"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/text_status_bulan_ini_detail_pembayaran_pemilik"
+            android:fontFamily="@font/poppins"
+            android:paddingRight="13dp"
+            android:paddingTop="13dp"
+            android:text="Rp. 200.000"
+            android:textColor="@color/hitam" />
+
+        <TextView
+            android:id="@+id/tv_jumlah_dibayar_bulan_ini_pemilik"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_jumlah_harus_dibayar_bulan_ini_pemilik"
+            android:fontFamily="@font/poppins"
+            android:paddingLeft="13dp"
+            android:paddingTop="13dp"
+            android:text="Jumlah yang  dibayar\n bulan ini"
+            android:textColor="@color/hitam" />
+
+        <TextView
+            android:id="@+id/text_jumlah_dibayar_detail_pembayaran_pemilik"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_jumlah_harus_dibayar_bulan_ini_pemilik"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/poppins"
+            android:paddingRight="13dp"
+            android:paddingTop="13dp"
+            android:text="Rp. 100.000"
+            android:textColor="@color/hitam" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_jumlah_dibayar_bulan_ini_pemilik"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/poppins"
+            android:paddingRight="13dp"
+            android:paddingTop="13dp"
+            android:text="22-09-10"
+            android:textColor="@color/hitam" />
+
+        <TextView
+            android:id="@+id/tv_tanggal_pembayaran_detail_pembayaran_belum_lunas_pemilik"
+            android:layout_marginBottom="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_jumlah_dibayar_bulan_ini_pemilik"
+            android:fontFamily="@font/poppins"
+            android:paddingLeft="13dp"
+            android:paddingTop="13dp"
+            android:text="Tanggal pembayaran"
+            android:textColor="@color/hitam" />
+
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_tanggal_pembayaran_detail_pembayaran_belum_lunas_pemilik"
+            android:fontFamily="@font/poppins"
+            android:paddingLeft="13dp"
+            android:paddingTop="13dp"
+            android:text="Pembayaran bulan ke"
+            android:textColor="@color/hitam" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_tanggal_pembayaran_detail_pembayaran_belum_lunas_pemilik"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/poppins"
+            android:paddingRight="13dp"
+            android:paddingTop="13dp"
+            android:text="Bulan Ke -10"
+            android:textColor="@color/hitam" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

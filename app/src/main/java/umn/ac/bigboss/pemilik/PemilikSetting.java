@@ -138,6 +138,10 @@ public class PemilikSetting extends Fragment {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.sidebar_globe:
+                        Intent intent4 = new Intent(getActivity(), PemilikHomeActivity.class);
+                        startActivity(intent4);
+                        break;
                     case R.id.sidebar_tambah_pembayaran:
                         Intent intent = new Intent(getActivity(), PemilikTambahPembayaran.class);
                         startActivity(intent);
@@ -154,12 +158,10 @@ public class PemilikSetting extends Fragment {
                     case R.id.sidebar_daftar_orang_ngontrak:
                         Intent intent2 = new Intent(getActivity(), PemilikDaftarOrangNgontrak.class);
                         startActivity(intent2);
-                        getActivity().finish();
                         break;
                     case R.id.sidebar_request_pembayaran:
                         Intent intent3 = new Intent(getActivity(), PemilikRequestPembayaran.class);
                         startActivity(intent3);
-                        getActivity().finish();
                         break;
                 }
                 return false;

@@ -102,8 +102,8 @@
             android:fontFamily="@font/poppins"
             android:paddingTop="13dp"
             android:paddingRight="13dp"
-            android:text="BELUM LUNAS"
-            android:textColor="@color/merah" />
+            android:text="LUNAS"
+            android:textColor="@color/biru" />
 
         <TextView
             android:id="@+id/tv_jumlah_harus_dibayar_bulan_ini_pemilik"
@@ -163,6 +163,7 @@
             android:textColor="@color/hitam" />
 
         <TextView
+            android:id="@+id/tv_tanggal_pembayaran_detail_pembayaran_lunas_pemilik"
             android:layout_marginBottom="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -171,6 +172,28 @@
             android:paddingLeft="13dp"
             android:paddingTop="13dp"
             android:text="Tanggal pembayaran"
+            android:textColor="@color/hitam" />
+
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_tanggal_pembayaran_detail_pembayaran_lunas_pemilik"
+            android:fontFamily="@font/poppins"
+            android:paddingLeft="13dp"
+            android:paddingTop="13dp"
+            android:text="Pembayaran untuk bulan"
+            android:textColor="@color/hitam" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_tanggal_pembayaran_detail_pembayaran_lunas_pemilik"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/poppins"
+            android:paddingRight="13dp"
+            android:paddingTop="13dp"
+            android:text="Bulan Ke -10"
             android:textColor="@color/hitam" />
 
     </RelativeLayout>

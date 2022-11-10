@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/radius_18_doang"
+    android:id="@+id/list_data_belum_lunas"
+    android:layout_marginTop="10dp"
+    android:elevation="10dp"
     android:layout_width="310dp"
     android:layout_height="177dp">
 
