@@ -17,6 +17,7 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/et_email_login"
             android:layout_marginTop="28dp"
             android:fontFamily="@font/poppins"
             android:hint="Email"
@@ -24,6 +25,7 @@
             android:layout_height="48dp"/>
 
         <EditText
+            android:id="@+id/et_password_login"
             android:inputType="textPassword"
             android:layout_marginTop="28dp"
             android:fontFamily="@font/poppins"
