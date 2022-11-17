@@ -14,4 +14,15 @@ public interface ApiRequest {
             @Field("email") String email,
             @Field("password") String password
     );
+
+    @FormUrlEncoded
+    @POST("register")
+    Call<LoginModel> ARRegisterPemilik(
+            @Field("name") String name,
+            @Field("email") String email,
+            @Field("password") String password,
+            @Field("rooms") int rooms,
+            @Field("role") String role,
+            @Field("nama_kontrakan") String nama_kontrakan
+    );
 }
