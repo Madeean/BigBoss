@@ -44,11 +44,21 @@
             android:hint="Email" />
 
         <EditText
+            android:inputType="textPassword"
+            android:id="@+id/edit_text_password_pengontrak"
+            android:layout_width="295dp"
+            android:layout_height="48dp"
+            android:layout_below="@+id/edit_text_email_pengontrak"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="28dp"
+            android:hint="Password" />
+
+        <EditText
             android:inputType="number"
             android:id="@+id/edit_text_umur_pengontrak"
             android:layout_width="295dp"
             android:layout_height="48dp"
-            android:layout_below="@+id/edit_text_email_pengontrak"
+            android:layout_below="@+id/edit_text_password_pengontrak"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="28dp"
             android:hint="Umur" />
@@ -72,13 +82,14 @@
             android:hint="Alamat kontrakan sekarang" />
 
         <EditText
+            android:inputType="number"
             android:id="@+id/edit_text_harga_perbulan_pengontrak"
             android:layout_width="295dp"
             android:layout_height="48dp"
             android:layout_below="@+id/edit_text_alamat_kontrakan_sekarang_pengontrak"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="28dp"
-            android:hint="Alamat kontrakan sekarang" />
+            android:hint="Harga Perbulan" />
 
         <ImageView
             android:id="@+id/image_input_pengontrak"

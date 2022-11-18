@@ -1,10 +1,14 @@
 package umn.ac.bigboss.api;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import umn.ac.bigboss.modelauth.LoginModel;
 import umn.ac.bigboss.modelauth.DataNamaKontrakanModel;
 
@@ -29,4 +33,23 @@ public interface ApiRequest {
 
     @GET("get-nama-kontrakan")
     Call<DataNamaKontrakanModel> ARNamaKontrakan();
+
+    @Multipart
+    @POST("register")
+    Call<LoginModel> ARRegisterPengontrak(
+            @Part MultipartBody.Part foto_muka,
+            @Part ("name") RequestBody name,
+            @Part ("email") RequestBody email,
+            @Part ("password") RequestBody password,
+            @Part ("umur") RequestBody umur,
+            @Part ("role") RequestBody role,
+            @Part ("alamat_sesuai_ktp") RequestBody alamat_sesuai_ktp,
+            @Part ("alamat_kontrakan_sekarang") RequestBody alamat_kontrakan_sekarang,
+            @Part ("harga_perbulan") RequestBody harga_perbulan,
+            @Part ("nama_kontrakan") RequestBody nama_kontrakan
+
+            );
+
+
+
 }
