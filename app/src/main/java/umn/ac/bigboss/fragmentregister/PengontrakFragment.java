@@ -6,6 +6,7 @@ import android.Manifest;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -200,9 +201,15 @@ public class PengontrakFragment extends Fragment {
             @Override
             public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
                 if(response.isSuccessful()){
-                    String pesan = response.body().getToken();
+                    String token = response.body().getToken();
                     DataLoginModel data = response.body().getUser();
                     Toast.makeText(getActivity(), data.getFoto_muka(), Toast.LENGTH_SHORT).show();
+
+                    SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString(getString(R.string.token), token);
+                    editor.apply();
+
                     Intent intent = new Intent(getActivity(), PengontrakHomeActivity.class);
                     startActivity(intent);
                 }else{

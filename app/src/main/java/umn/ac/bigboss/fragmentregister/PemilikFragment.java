@@ -1,6 +1,8 @@
 package umn.ac.bigboss.fragmentregister;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import retrofit2.Call;
+import umn.ac.bigboss.LoginActivity;
 import umn.ac.bigboss.R;
 import umn.ac.bigboss.api.ApiRequest;
 import umn.ac.bigboss.api.Server;
@@ -80,6 +83,11 @@ public class PemilikFragment extends Fragment {
                 DataLoginModel data = response.body().getUser();
                 System.out.println("token : "+token);
                 if(token != null){
+                    SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString(getString(R.string.token), token);
+                    editor.apply();
+
                     Intent intent = new Intent(getActivity(), PemilikHomeActivity.class);
                     startActivity(intent);
                 }

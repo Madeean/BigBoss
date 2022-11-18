@@ -6,6 +6,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
@@ -26,7 +28,7 @@ import umn.ac.bigboss.RegisterActivity;
 
 public class PengontrakHomeActivity extends AppCompatActivity {
 
-
+    boolean doubleBackToExitPressedOnce = false;
 
     BottomNavigationView bottomNavigationView ;
     PengontrakHome pengontrakHome = new PengontrakHome();
@@ -115,5 +117,25 @@ public class PengontrakHomeActivity extends AppCompatActivity {
 //            }
 //        });
 
+    }
+    @Override
+    public void onBackPressed() {
+
+
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            moveTaskToBack(true);
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "tekan kembali dua kali, jika ingin menutup aplikasi", Toast.LENGTH_SHORT).show();
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 }

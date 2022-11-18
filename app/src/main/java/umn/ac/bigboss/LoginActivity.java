@@ -2,7 +2,9 @@ package umn.ac.bigboss;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -95,6 +97,11 @@ public class LoginActivity extends AppCompatActivity {
                 System.out.println("user"+data.getRole());
                 Toast.makeText(LoginActivity.this, data.getRole(), Toast.LENGTH_SHORT).show();
                 String role = data.getRole();
+
+                SharedPreferences sharedPref = LoginActivity.this.getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString(getString(R.string.token), token);
+                editor.apply();
 
                 if(role.equals("pemilik")){
                     Intent intent = new Intent(LoginActivity.this, PemilikHomeActivity.class);
