@@ -12,6 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -28,12 +31,22 @@ public class PengontrakSetting extends Fragment {
 
     Button btn_logout,btn_EditProfile;
 
+    TextView name_setting_pengontrak,email_setting_pengontrak;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pengontrak_setting, container, false);
+//        get data intent from pengontrak home activity
+        String name = getArguments().getString("name");
+        String email = getArguments().getString("email");
+
+        name_setting_pengontrak = view.findViewById(R.id.name_setting_pengontrak);
+        email_setting_pengontrak = view.findViewById(R.id.email_setting_pengontrak);
+        name_setting_pengontrak.setText(name);
+        email_setting_pengontrak.setText(email);
 
         my_toolbar = view.findViewById(R.id.my_toolbar_list_requerst_pengontrak);
         my_toolbar_title = my_toolbar.findViewById(R.id.my_toolbar_title);

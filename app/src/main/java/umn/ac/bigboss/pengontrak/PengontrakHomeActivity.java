@@ -36,10 +36,16 @@ public class PengontrakHomeActivity extends AppCompatActivity {
     PengontrakAddPembayaran pengontrakAddPembayaran =  new PengontrakAddPembayaran();
     PengontrakSetting pengontrakSetting = new PengontrakSetting();
 
+    public String email, name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pengontrak_home);
+//        get intent
+        Intent intent = getIntent();
+        name = intent.getStringExtra("name");
+        email = intent.getStringExtra("email");
 
         bottomNavigationView = findViewById(R.id.bottom_nav_pengontrak);
 
@@ -59,6 +65,12 @@ public class PengontrakHomeActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.container_pengontrak, pengontrakListRequest).commit();
                         return true;
                     case R.id.setting:
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.container_pengontrak, pengontrakSetting).commit();
+//                        send name and email to fragment
+                        Bundle bundle = new Bundle();
+                        bundle.putString("name", name);
+                        bundle.putString("email", email);
+                        pengontrakSetting.setArguments(bundle);
                         getSupportFragmentManager().beginTransaction().replace(R.id.container_pengontrak, pengontrakSetting).commit();
                         return true;
                 }
