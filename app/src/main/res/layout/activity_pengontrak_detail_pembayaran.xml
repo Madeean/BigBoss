@@ -22,6 +22,7 @@
         android:layout_width="match_parent">
 
         <ImageView
+            android:id="@+id/image_detail_pembayaran_pengontrak"
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
             android:adjustViewBounds="true"
@@ -121,11 +122,11 @@
             android:id="@+id/text_jumlah_harus_dibayar_detail_pembayaran_pengontrak"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_below="@id/text_status_bulan_ini_detail_pembayaran_pengontrak"
+            android:layout_alignParentRight="true"
             android:fontFamily="@font/poppins"
-            android:paddingRight="13dp"
             android:paddingTop="13dp"
+            android:paddingRight="13dp"
             android:text="Rp. 200.000"
             android:textColor="@color/hitam" />
 
@@ -147,12 +148,13 @@
             android:layout_below="@id/tv_jumlah_harus_dibayar_bulan_ini_pengontrak"
             android:layout_alignParentRight="true"
             android:fontFamily="@font/poppins"
-            android:paddingRight="13dp"
             android:paddingTop="13dp"
+            android:paddingRight="13dp"
             android:text="Rp. 100.000"
             android:textColor="@color/hitam" />
 
         <TextView
+            android:id="@+id/text_tanggal_bayar_detail_pembayaran_pengontrak"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_jumlah_dibayar_bulan_ini_pengontrak"
@@ -187,6 +189,7 @@
             android:textColor="@color/hitam" />
 
         <TextView
+            android:id="@+id/text_bulan_detail_pembayaran_pengontrak"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_tanggal_pembayaran_detail_pembayaran_pengontrak"

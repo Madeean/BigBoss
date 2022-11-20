@@ -113,7 +113,6 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent = new Intent(LoginActivity.this, PemilikHomeActivity.class);
                         startActivity(intent);
                     }else if(role.equals("pengontrak")){
-
                         Intent intent = new Intent(LoginActivity.this, PengontrakHomeActivity.class);
                         intent.putExtra("name", data.getName());
                         intent.putExtra("email", data.getEmail());

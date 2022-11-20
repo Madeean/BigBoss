@@ -63,6 +63,9 @@ public interface ApiRequest {
             @Header("Authorization") String token
     );
 
-
+    @GET("get-pembayaran-diterima-pengontrak")
+    Call<DataRequestPembayaranPengontrakModel> ARHistoryPembayaran(
+            @Header("Authorization") String token
+    );
 
 }

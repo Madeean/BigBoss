@@ -1,5 +1,7 @@
 package umn.ac.bigboss.modelauth;
 
+import java.util.List;
+
 public class RequestPembayaranPengontrakmodel {
     private int id;
     private int user_id;
@@ -11,6 +13,15 @@ public class RequestPembayaranPengontrakmodel {
     private String tanggal_bayar;
     private String bukti_bayar;
     private int jumlah_bayar;
+    private List<DataLoginModel> user;
+
+    public List<DataLoginModel> getUser() {
+        return user;
+    }
+
+    public void setUser(List<DataLoginModel> user) {
+        this.user = user;
+    }
 
     public int getId() {
         return id;

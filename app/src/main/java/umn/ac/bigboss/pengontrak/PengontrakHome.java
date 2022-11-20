@@ -26,7 +26,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import umn.ac.bigboss.R;
+import umn.ac.bigboss.api.ApiRequest;
+import umn.ac.bigboss.api.Server;
+import umn.ac.bigboss.modelauth.DataRequestPembayaranPengontrakModel;
+import umn.ac.bigboss.modelauth.RequestPembayaranPengontrakmodel;
+import umn.ac.bigboss.pengontrak.adapter.AdapterDataRequestPembayaranPengontrak;
 import umn.ac.bigboss.pengontrak.adapter.adapter_data_history_pembayaran_pengontrak;
 
 
@@ -35,13 +43,15 @@ public class PengontrakHome extends Fragment {
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
     adapter_data_history_pembayaran_pengontrak adapterData;
-    List<String> listData;
+    List<RequestPembayaranPengontrakmodel> listData;
 
     Toolbar start_toolbar_pengontrak_home;
     TextView start_toolbar, start_toolbar_tanggal;
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     private String date;
+
+    private String token;
 
     EditText search_input;
     @Override
@@ -51,8 +61,7 @@ public class PengontrakHome extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_pengontrak_home, container, false);
 
         SharedPreferences sh = getActivity().getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
-        String token = sh.getString("token", "");
-        System.out.println("token masuk: " + token);
+         token = sh.getString("token", "");
 
 
 
@@ -107,20 +116,40 @@ public class PengontrakHome extends Fragment {
         });
 
         recyclerView = view.findViewById(R.id.rv_history_pembayaran_pengontrak);
-        listData = new ArrayList<>();
-
-        for(int i = 1; i < 10; i++){
-            listData.add("madee - " + i);
-        }
-
         linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-
-        adapterData = new adapter_data_history_pembayaran_pengontrak(getActivity(), listData);
-        recyclerView.setAdapter(adapterData);
-        adapterData.notifyDataSetChanged();
+        getData();
+//
+//        adapterData = new adapter_data_history_pembayaran_pengontrak(getActivity(), listData);
+//        recyclerView.setAdapter(adapterData);
+//        adapterData.notifyDataSetChanged();
 
         return view;
+    }
+
+    public void getData(){
+        ApiRequest api  = Server.konekRetrofit().create(ApiRequest.class);
+        Call<DataRequestPembayaranPengontrakModel> tampilData = api.ARHistoryPembayaran("Bearer " + token);
+        tampilData.enqueue(new Callback<DataRequestPembayaranPengontrakModel>() {
+            @Override
+            public void onResponse(Call<DataRequestPembayaranPengontrakModel> call, Response<DataRequestPembayaranPengontrakModel> response) {
+                if (response.isSuccessful()){
+                    listData = response.body().getData();
+                    System.out.println("list data: " + listData);
+                    adapterData = new adapter_data_history_pembayaran_pengontrak(getActivity(), listData);
+                    recyclerView.setAdapter(adapterData);
+                    adapterData.notifyDataSetChanged();
+                }else{
+                    Toast.makeText(getActivity(), "gagal ambil data", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DataRequestPembayaranPengontrakModel> call, Throwable t) {
+                Toast.makeText(getActivity(), "error "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                System.out.println("error" + t.getMessage());
+            }
+        });
     }
 
 
