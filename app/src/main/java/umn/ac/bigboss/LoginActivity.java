@@ -90,29 +90,40 @@ public class LoginActivity extends AppCompatActivity {
         simpanData.enqueue(new Callback<LoginModel>() {
             @Override
             public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
-                System.out.println("on response masuk");
-                String token = response.body().getToken();
-                DataLoginModel data = response.body().getUser();
-                System.out.println("token : "+token);
-                System.out.println("user"+data.getRole());
-                Toast.makeText(LoginActivity.this, data.getRole(), Toast.LENGTH_SHORT).show();
-                String role = data.getRole();
 
-                SharedPreferences sharedPref = LoginActivity.this.getPreferences(Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putString(getString(R.string.token), token);
-                editor.apply();
-
-                if(role.equals("pemilik")){
-                    Intent intent = new Intent(LoginActivity.this, PemilikHomeActivity.class);
-                    startActivity(intent);
-                }else if(role.equals("pengontrak")){
-
-                    Intent intent = new Intent(LoginActivity.this, PengontrakHomeActivity.class);
-                    intent.putExtra("name", data.getName());
-                    intent.putExtra("email", data.getEmail());
-                    startActivity(intent);
+//                check status code
+                if(call.timeout().equals("")) {
+                    Toast.makeText(LoginActivity.this, "Gagal terhubung ke server", Toast.LENGTH_SHORT).show();
                 }
+                if(response.isSuccessful()){
+                    System.out.println("on response masuk");
+                    String token = response.body().getToken();
+                    DataLoginModel data = response.body().getUser();
+                    System.out.println("token : "+token);
+                    System.out.println("user"+data.getRole());
+                    Toast.makeText(LoginActivity.this, data.getRole(), Toast.LENGTH_SHORT).show();
+                    String role = data.getRole();
+
+                    SharedPreferences sharedPreferences = getSharedPreferences("BigbossPreff",MODE_PRIVATE);
+                    SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                    myEdit.putString("token", token);
+                    myEdit.apply();
+
+                    if(role.equals("pemilik")){
+                        Intent intent = new Intent(LoginActivity.this, PemilikHomeActivity.class);
+                        startActivity(intent);
+                    }else if(role.equals("pengontrak")){
+
+                        Intent intent = new Intent(LoginActivity.this, PengontrakHomeActivity.class);
+                        intent.putExtra("name", data.getName());
+                        intent.putExtra("email", data.getEmail());
+                        startActivity(intent);
+                    }
+                }else{
+                    Toast.makeText(LoginActivity.this, "Email atau password salah", Toast.LENGTH_SHORT).show();
+                }
+
+
 
             }
             @Override

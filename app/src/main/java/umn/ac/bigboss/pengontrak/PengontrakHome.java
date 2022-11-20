@@ -1,5 +1,9 @@
 package umn.ac.bigboss.pengontrak;
 
+import static android.content.Context.MODE_APPEND;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,6 +49,12 @@ public class PengontrakHome extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_pengontrak_home, container, false);
+
+        SharedPreferences sh = getActivity().getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
+        String token = sh.getString("token", "");
+        System.out.println("token masuk: " + token);
+
+
 
         search_input = view.findViewById(R.id.search_input);
 

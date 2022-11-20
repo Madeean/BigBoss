@@ -1,5 +1,7 @@
 package umn.ac.bigboss.pengontrak;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,13 +14,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import umn.ac.bigboss.R;
+import umn.ac.bigboss.api.ApiRequest;
+import umn.ac.bigboss.api.Server;
+import umn.ac.bigboss.modelauth.DataRequestPembayaranPengontrakModel;
+import umn.ac.bigboss.modelauth.RequestPembayaranPengontrakmodel;
 import umn.ac.bigboss.pengontrak.adapter.AdapterDataRequestPembayaranPengontrak;
 import umn.ac.bigboss.pengontrak.adapter.adapter_data_history_pembayaran_pengontrak;
 
@@ -28,7 +38,7 @@ public class PengontrakListRequest extends Fragment {
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
     AdapterDataRequestPembayaranPengontrak adapterData;
-    List<String> listData;
+    List<RequestPembayaranPengontrakmodel> listData;
 
     Toolbar my_toolbar;
     TextView my_toolbar_title;
@@ -36,11 +46,17 @@ public class PengontrakListRequest extends Fragment {
     private SimpleDateFormat dateFormat;
     private String date;
 
+    private String token;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pengontrak_list_request, container, false);
+
+        SharedPreferences sh = getActivity().getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
+        token = sh.getString("token", "");
+        System.out.println("token masuk: " + token);
 
         my_toolbar = view.findViewById(R.id.my_toolbar_list_requerst_pengontrak);
         my_toolbar_title = my_toolbar.findViewById(R.id.my_toolbar_title);
@@ -57,19 +73,44 @@ public class PengontrakListRequest extends Fragment {
 
 
         recyclerView = view.findViewById(R.id.rv_request_pembayaran_pengontrak);
-        listData = new ArrayList<>();
-
-        for(int i = 1; i < 10; i++){
-            listData.add("madee - " + i);
-        }
-
         linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-
-        adapterData = new AdapterDataRequestPembayaranPengontrak(getActivity(), listData);
-        recyclerView.setAdapter(adapterData);
-        adapterData.notifyDataSetChanged();
+        getData();
+//        listData = new ArrayList<>();
+//
+//
+//
+//
+//
+//        adapterData = new AdapterDataRequestPembayaranPengontrak(getActivity(), listData);
+//        recyclerView.setAdapter(adapterData);
+//        adapterData.notifyDataSetChanged();
 
         return view;
+    }
+
+    public void getData(){
+        Toast.makeText(getActivity(), "get adata", Toast.LENGTH_SHORT).show();
+        ApiRequest api  = Server.konekRetrofit().create(ApiRequest.class);
+        Call<DataRequestPembayaranPengontrakModel> tampilData = api.ARListRequest("Bearer " + token);
+        tampilData.enqueue(new Callback<DataRequestPembayaranPengontrakModel>() {
+            @Override
+            public void onResponse(Call<DataRequestPembayaranPengontrakModel> call, Response<DataRequestPembayaranPengontrakModel> response) {
+                if (response.isSuccessful()){
+                    listData = response.body().getData();
+                    System.out.println("list data: " + listData);
+                    adapterData = new AdapterDataRequestPembayaranPengontrak(getActivity(), listData);
+                    recyclerView.setAdapter(adapterData);
+                    adapterData.notifyDataSetChanged();
+                }else{
+                    Toast.makeText(getActivity(), "gagal ambil data", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DataRequestPembayaranPengontrakModel> call, Throwable t) {
+                Toast.makeText(getActivity(), "error "+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

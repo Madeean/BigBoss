@@ -13,13 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import umn.ac.bigboss.R;
+import umn.ac.bigboss.modelauth.RequestPembayaranPengontrakmodel;
 
 public class AdapterDataRequestPembayaranPengontrak extends RecyclerView.Adapter<AdapterDataRequestPembayaranPengontrak.HolderData>{
-    List<String> listData;
+    List<RequestPembayaranPengontrakmodel> listData;
     LayoutInflater layoutInflater;
 
 
-    public AdapterDataRequestPembayaranPengontrak(Context context, List<String> listData) {
+    public AdapterDataRequestPembayaranPengontrak(Context context, List<RequestPembayaranPengontrakmodel> listData) {
         this.listData = listData;
         this.layoutInflater = LayoutInflater.from(context);
 
@@ -34,7 +35,9 @@ public class AdapterDataRequestPembayaranPengontrak extends RecyclerView.Adapter
 
     @Override
     public void onBindViewHolder(@NonNull AdapterDataRequestPembayaranPengontrak.HolderData holder, int position) {
-        holder.text_name_request_pengontrak.setText(listData.get(position));
+        holder.text_name_request_pengontrak.setText(listData.get(position).getNama_pengontrak());
+        holder.text_bulan_request_pengontrak.setText("bulan ke - "+listData.get(position).getBulan());
+        holder.text_status_konfirmasi_request_pengontrak.setText(listData.get(position).getStatus_konfirmasi());
 
     }
 
