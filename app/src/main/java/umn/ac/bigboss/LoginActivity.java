@@ -107,6 +107,12 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences sharedPreferences = getSharedPreferences("BigbossPreff",MODE_PRIVATE);
                     SharedPreferences.Editor myEdit = sharedPreferences.edit();
                     myEdit.putString("token", token);
+                    myEdit.putString("role", role);
+                    myEdit.putString("name", data.getName());
+                    myEdit.putString("email", data.getEmail());
+                    myEdit.putInt("umur", data.getUmur());
+                    myEdit.putString("nama_kontrakan", data.getNama_kontrakan());
+
                     myEdit.apply();
 
                     if(role.equals("pemilik")){
@@ -114,8 +120,8 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                     }else if(role.equals("pengontrak")){
                         Intent intent = new Intent(LoginActivity.this, PengontrakHomeActivity.class);
-                        intent.putExtra("name", data.getName());
-                        intent.putExtra("email", data.getEmail());
+
+
                         startActivity(intent);
                     }
                 }else{

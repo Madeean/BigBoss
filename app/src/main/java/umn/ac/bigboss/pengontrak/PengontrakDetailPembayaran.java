@@ -42,20 +42,20 @@ public class PengontrakDetailPembayaran extends AppCompatActivity {
         String nama_pengontrak = intent.getStringExtra("nama_pengontrak");
         String alamat_pengontrak = intent.getStringExtra("alamat_pengontrak");
         String status_lunas = intent.getStringExtra("status_lunas");
-        int jumlah_harus_bayar = intent.getIntExtra("jumlah_harus_bayar", 0);
+        String jumlah_harus_bayar = intent.getStringExtra("jumlah_harus_bayar");
         int jumlah_bayar = intent.getIntExtra("jumlah_bayar",0);
         String tanggal_bayar = intent.getStringExtra("tanggal_bayar");
-        String bulan = intent.getStringExtra("bulan");
+        int bulan = intent.getIntExtra("bulan",0);
         String bukti_bayar = intent.getStringExtra("bukti_bayar");
 
         System.out.println("bukti bayar: "+bukti_bayar);
 
         text_nama_pengontrak_detail_pembayaran.setText(nama_pengontrak);
         text_alamat_kontrakan_detail_pembayaran_pengontrak.setText(alamat_pengontrak);
-        text_bulan_detail_pembayaran_pengontrak.setText(bulan);
+        text_bulan_detail_pembayaran_pengontrak.setText("Bulan ke-"+bulan);
         text_tanggal_bayar_detail_pembayaran_pengontrak.setText(tanggal_bayar);
         text_jumlah_dibayar_detail_pembayaran_pengontrak.setText(String.valueOf(jumlah_bayar));
-        text_jumlah_harus_dibayar_detail_pembayaran_pengontrak.setText(String.valueOf(jumlah_harus_bayar));
+        text_jumlah_harus_dibayar_detail_pembayaran_pengontrak.setText(jumlah_harus_bayar);
         text_status_bulan_ini_detail_pembayaran_pengontrak.setText(status_lunas);
 
 //        image_detail_pembayaran_pengontrak.setImageURI(Uri.parse("https://madeekan.madee.my.id/storage/pembayaran-images/468jcGbkTxc0XGaFZFqEog2kgBsIO9yb5nUa4BIp.jpg"));

@@ -15,8 +15,10 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import umn.ac.bigboss.modelauth.DataRequestPembayaranPengontrakModel;
+import umn.ac.bigboss.modelauth.EditLogin;
 import umn.ac.bigboss.modelauth.LoginModel;
 import umn.ac.bigboss.modelauth.DataNamaKontrakanModel;
+import umn.ac.bigboss.modelauth.PembayaranModel;
 
 public interface ApiRequest {
 
@@ -36,6 +38,15 @@ public interface ApiRequest {
             @Field("rooms") int rooms,
             @Field("role") String role,
             @Field("nama_kontrakan") String nama_kontrakan
+    );
+
+    @FormUrlEncoded
+    @POST("edit-profile-pengontrak")
+    Call<EditLogin> AREditProfilePengontrak(
+            @Header("Authorization") String token,
+            @Field("name") String name,
+            @Field("email") String email,
+            @Field("umur") String umur
     );
 
     @GET("get-nama-kontrakan")
@@ -66,6 +77,20 @@ public interface ApiRequest {
     @GET("get-pembayaran-diterima-pengontrak")
     Call<DataRequestPembayaranPengontrakModel> ARHistoryPembayaran(
             @Header("Authorization") String token
+    );
+
+    @Multipart
+    @POST("bayar")
+    Call<PembayaranModel> ARBayar(
+            @Header("Authorization") String token,
+            @Part MultipartBody.Part bukti_bayar,
+            @Part ("bulan") RequestBody bulan,
+            @Part ("nama_pengontrak") RequestBody nama_pengontrak,
+            @Part ("tanggal_bayar") RequestBody tanggal_bayar,
+            @Part ("jumlah_bayar") RequestBody jumlah_bayar,
+            @Part ("role") RequestBody role,
+            @Part ("nama_kontrakan") RequestBody nama_kontrakan
+
     );
 
 }

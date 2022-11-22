@@ -25,17 +25,25 @@
 
     <Button
         android:id="@+id/btn_choose_date_add_pembayaran_pengontrak"
-        android:layout_marginTop="14dp"
-        android:textSize="16dp"
-        android:fontFamily="@font/poppins"
-        android:textAllCaps="false"
         android:layout_width="298dp"
         android:layout_height="37dp"
         android:layout_below="@id/text_tanggal_bayar_add_pembayaran_pengontrak"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
         android:background="@drawable/radius_btn_login"
+        android:fontFamily="@font/poppins"
         android:text="Choose Date"
-        android:textColor="@color/abuabumuda" />
+        android:textAllCaps="false"
+        android:textColor="@color/abuabumuda"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/text_tanggal_pembayaaran_pengontrak"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/btn_choose_date_add_pembayaran_pengontrak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
 
     <EditText
         android:id="@+id/edit_text_jumlah_bayar_add_pembayaran_pengontrak"
@@ -59,12 +67,12 @@
         android:src="@drawable/image_input" />
 
     <Button
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="31dp"
         android:id="@+id/btn_camera_tambah_pembayaran_pengontrak"
         android:layout_width="131dp"
         android:layout_height="34dp"
         android:layout_below="@+id/image_input_add_pembayaran_pengontrak"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="31dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/radius_btn_login"
         android:fontFamily="@font/poppins"
@@ -78,10 +86,10 @@
         android:layout_height="34dp"
         android:layout_below="@+id/image_input_add_pembayaran_pengontrak"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="31dp"
-        android:backgroundTint="@color/ungu"
         android:layout_marginTop="28dp"
+        android:layout_marginRight="31dp"
         android:background="@drawable/radius_btn_login"
+        android:backgroundTint="@color/ungu"
         android:fontFamily="@font/poppins"
         android:text="Gallery"
 
@@ -89,15 +97,15 @@
         android:textColor="@color/abuabumuda" />
 
     <Button
-        android:layout_marginBottom="50dp"
         android:id="@+id/btn_tambah_pembayaran_pengontrak"
         android:layout_width="183dp"
         android:layout_height="44dp"
         android:layout_below="@+id/btn_gallery_tambah_pembayaran_pengontrak"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/hijau"
         android:layout_marginTop="28dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/radius_btn_login"
+        android:backgroundTint="@color/hijau"
         android:fontFamily="@font/poppins"
         android:text="Tambah Pembayaran"
         android:textAllCaps="false"

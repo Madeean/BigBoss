@@ -1,6 +1,8 @@
 package umn.ac.bigboss.pengontrak;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,8 +42,11 @@ public class PengontrakSetting extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pengontrak_setting, container, false);
 //        get data intent from pengontrak home activity
-        String name = getArguments().getString("name");
-        String email = getArguments().getString("email");
+        SharedPreferences sh = getActivity().getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
+        String name = sh.getString("name", "");
+        String email = sh.getString("email", "");
+        String nama_kontrakan = sh.getString("nama_kontrakan", "");
+        int umur = sh.getInt("umur", 0);
 
         name_setting_pengontrak = view.findViewById(R.id.name_setting_pengontrak);
         email_setting_pengontrak = view.findViewById(R.id.email_setting_pengontrak);
@@ -75,6 +80,7 @@ public class PengontrakSetting extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), PengontrakEditProfile.class);
+
                 startActivity(intent);
             }
         });

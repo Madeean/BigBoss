@@ -43,6 +43,7 @@
         android:layout_height="wrap_content"/>
 
     <Button
+        android:id="@+id/btn_edit_pengontrak"
         android:layout_width="183dp"
         android:layout_height="44dp"
         android:layout_below="@id/edit_profile_umur_pengontrak"

@@ -38,7 +38,8 @@ public class PengontrakHomeActivity extends AppCompatActivity {
     PengontrakAddPembayaran pengontrakAddPembayaran =  new PengontrakAddPembayaran();
     PengontrakSetting pengontrakSetting = new PengontrakSetting();
 
-    public String email, name;
+    public String email, name,nama_kontrakan;
+    public int umur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +47,22 @@ public class PengontrakHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pengontrak_home);
 
 
-
+        SharedPreferences sh = getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
+        String token = sh.getString("token", "");
+        name = sh.getString("name", "");
+        email = sh.getString("email", "");
+        umur = sh.getInt("umur", 0);
+        nama_kontrakan = sh.getString("nama_kontrakan", "");
+        if(token.equals("") || token == null){
+            Intent intent = new Intent(PengontrakHomeActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
 
 
 //        get intent
-        Intent intent = getIntent();
-        name = intent.getStringExtra("name");
-        email = intent.getStringExtra("email");
+
 
         bottomNavigationView = findViewById(R.id.bottom_nav_pengontrak);
 
@@ -67,6 +76,12 @@ public class PengontrakHomeActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.container_pengontrak, pengontrakHome).commit();
                         return true;
                     case R.id.add:
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.container_pengontrak, pengontrakAddPembayaran).commit();
+                        Bundle bundle2 = new Bundle();
+                        bundle2.putString("name", name);
+                        bundle2.putString("email", email);
+                        bundle2.putString("nama_kontrakan", nama_kontrakan);
+                        pengontrakSetting.setArguments(bundle2);
                         getSupportFragmentManager().beginTransaction().replace(R.id.container_pengontrak, pengontrakAddPembayaran).commit();
                         return true;
                     case R.id.list:
@@ -75,10 +90,7 @@ public class PengontrakHomeActivity extends AppCompatActivity {
                     case R.id.setting:
 //                        getSupportFragmentManager().beginTransaction().replace(R.id.container_pengontrak, pengontrakSetting).commit();
 //                        send name and email to fragment
-                        Bundle bundle = new Bundle();
-                        bundle.putString("name", name);
-                        bundle.putString("email", email);
-                        pengontrakSetting.setArguments(bundle);
+
                         getSupportFragmentManager().beginTransaction().replace(R.id.container_pengontrak, pengontrakSetting).commit();
                         return true;
                 }
