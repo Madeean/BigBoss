@@ -24,9 +24,12 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +37,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import okhttp3.MediaType;
@@ -60,7 +64,7 @@ public class PengontrakAddPembayaran extends Fragment {
     private Calendar calendar,calendar2;
     private SimpleDateFormat dateFormat,dateFormat2;
     private String date;
-    private String tanggal_bayar;
+    private String pilih_tanggal_bayar;
 
     int SELECT_PICTURE = 200;
     private static final int CAMERA_REQUEST = 1888;
@@ -74,9 +78,12 @@ public class PengontrakAddPembayaran extends Fragment {
 
     int mYear,mMonth,mDay;
     String role,name,email;
+    public int pilih_bulan;
     String nkontrakan;
 
     String token;
+
+    ArrayList<String> list = new ArrayList<String>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,17 +95,59 @@ public class PengontrakAddPembayaran extends Fragment {
         btn_gallery_tambah_pembayaran_pengontrak = view.findViewById(R.id.btn_gallery_tambah_pembayaran_pengontrak);
         btn_camera_tambah_pembayaran_pengontrak = view.findViewById(R.id.btn_camera_tambah_pembayaran_pengontrak);
 
+        list.add("Pilih Bulan");
+        list.add("Januari");
+        list.add("Februari");
+        list.add("Maret");
+        list.add("April");
+        list.add("Mei");
+        list.add("Juni");
+        list.add("Juli");
+        list.add("Agustus");
+        list.add("September");
+        list.add("Oktober");
+        list.add("November");
+        list.add("Desember");
+
+
+        Spinner s = (Spinner) view.findViewById(R.id.spinner_add_pembayaran_pengontrak);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, list);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        s.setAdapter(adapter);
+
+        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
+                if(position >0 ){
+                    Toast.makeText(getActivity(), "bulan "+position, Toast.LENGTH_SHORT).show();
+                    pilih_bulan = position;
+                }else{
+
+                    Toast.makeText(getActivity(), "Please select", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+            }
+        });
+
+
         SharedPreferences sh = getActivity().getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
         token = sh.getString("token", "");
 
 
-         name = getActivity().getIntent().getStringExtra("name");
-         email = getActivity().getIntent().getStringExtra("email");
-        nkontrakan = getActivity().getIntent().getStringExtra("nama_kontrakan");
+         name = sh.getString("name", "");
+         email = sh.getString("email", "");
+        nkontrakan = sh.getString("nama_kontrakan", "");
         role = "pengontrak";
         calendar2 = Calendar.getInstance();
         dateFormat2 = new SimpleDateFormat("dd-MM-yyyy");
-        tanggal_bayar = dateFormat2.format(calendar2.getTime());
+        pilih_tanggal_bayar = dateFormat2.format(calendar2.getTime());
 
 
         btn_gallery_tambah_pembayaran_pengontrak.setOnClickListener(view1 -> {
@@ -135,32 +184,32 @@ public class PengontrakAddPembayaran extends Fragment {
         activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         text_tanggal_pembayaaran_pengontrak = view.findViewById(R.id.text_tanggal_pembayaaran_pengontrak);
-        btn_choose_date_add_pembayaran_pengontrak = view.findViewById(R.id.btn_choose_date_add_pembayaran_pengontrak);
-        btn_choose_date_add_pembayaran_pengontrak.setOnClickListener(view1 -> {
-            final Calendar c = Calendar.getInstance();
-             mYear = c.get(Calendar.YEAR); // current year
-             mMonth = c.get(Calendar.MONTH); // current month
-             mDay = c.get(Calendar.DAY_OF_MONTH); // current day
-
-            datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
-
-                        @Override
-                        public void onDateSet(DatePicker view, int year,
-                                              int monthOfYear, int dayOfMonth) {
-                            // set day of month , month and year value in the edit text
-                            text_tanggal_pembayaaran_pengontrak.setText(dayOfMonth + "-"
-                                    + (monthOfYear + 1) + "-" + year);
-                        }
-                    }, mYear, mMonth, mDay);
-            datePickerDialog.show();
-        });
+//        btn_choose_date_add_pembayaran_pengontrak = view.findViewById(R.id.btn_choose_date_add_pembayaran_pengontrak);
+//        btn_choose_date_add_pembayaran_pengontrak.setOnClickListener(view1 -> {
+//            final Calendar c = Calendar.getInstance();
+//             mYear = c.get(Calendar.YEAR); // current year
+//             mMonth = c.get(Calendar.MONTH); // current month
+//             mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+//
+//            datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+//
+//                        @Override
+//                        public void onDateSet(DatePicker view, int year,
+//                                              int monthOfYear, int dayOfMonth) {
+//                            // set day of month , month and year value in the edit text
+//                            text_tanggal_pembayaaran_pengontrak.setText(dayOfMonth + "-"
+//                                    + (monthOfYear + 1) + "-" + year);
+//                        }
+//                    }, mYear, mMonth, mDay);
+//            datePickerDialog.show();
+//        });
 
         btn_tambah_pembayaran_pengontrak = view.findViewById(R.id.btn_tambah_pembayaran_pengontrak);
         btn_tambah_pembayaran_pengontrak.setOnClickListener(view1 -> {
             if(edit_text_jumlah_bayar_add_pembayaran_pengontrak.getText().toString().isEmpty()){
                 edit_text_jumlah_bayar_add_pembayaran_pengontrak.setError("Jumlah Pembayaran Tidak Boleh Kosong");
-            }else if(text_tanggal_pembayaaran_pengontrak.getText().toString().isEmpty()){
-                text_tanggal_pembayaaran_pengontrak.setError("Tanggal Pembayaran Tidak Boleh Kosong");
+            }else if(pilih_bulan == 0){
+                Toast.makeText(getActivity(), "Pilih Bulan dahulu", Toast.LENGTH_SHORT).show();
             }else if(filePath == null || filePath.isEmpty() || finalFile == null || finalFile.length() == 0){
                 Toast.makeText(getActivity(), "Gambar Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
             }else{
@@ -175,16 +224,25 @@ public class PengontrakAddPembayaran extends Fragment {
     private void tambahPembayaran() {
         String nama_pengontrak = name;
         String nama_kontrakan = nkontrakan;
-        String bulan = date;
+        int bulan = pilih_bulan;
         int jumlah_bayar = Integer.parseInt(edit_text_jumlah_bayar_add_pembayaran_pengontrak.getText().toString());
-        String tanggal_bayar = text_tanggal_pembayaaran_pengontrak.getText().toString();
+        String tanggal_bayar = pilih_tanggal_bayar;
         String role = "pengontrak";
         File bukti_bayar = finalFile;
+
+        System.out.println("nama_pengontrak : "+nama_pengontrak);
+        System.out.println("nama_kontrakan : "+nama_kontrakan);
+        System.out.println("bulan : "+bulan);
+        System.out.println("jumlah_bayar : "+jumlah_bayar);
+        System.out.println("tanggal_bayar : "+tanggal_bayar);
+        System.out.println("role : "+role);
+        System.out.println("bukti_bayar : "+bukti_bayar);
+
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), bukti_bayar);
         MultipartBody.Part body = MultipartBody.Part.createFormData("bukti_bayar", bukti_bayar.getName(), requestFile);
         RequestBody namaBody = RequestBody.create(MediaType.parse("multipart/form-data"), nama_pengontrak);
         RequestBody namaKontrakanBody = RequestBody.create(MediaType.parse("multipart/form-data"), nama_kontrakan);
-        RequestBody bulanBody = RequestBody.create(MediaType.parse("multipart/form-data"), bulan);
+        RequestBody bulanBody = RequestBody.create(MediaType.parse("multipart/form-data"), String.valueOf(bulan));
         RequestBody jumlahBayarBody = RequestBody.create(MediaType.parse("multipart/form-data"), String.valueOf(jumlah_bayar));
         RequestBody tanggalBayarBody = RequestBody.create(MediaType.parse("multipart/form-data"), tanggal_bayar);
         RequestBody roleBody = RequestBody.create(MediaType.parse("multipart/form-data"), role);

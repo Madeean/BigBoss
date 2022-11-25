@@ -18,29 +18,25 @@
         android:textSize="16sp"
         android:textColor="@color/hitam"
         android:fontFamily="@font/poppins"
-        android:text="Tanggal Bayar"
+        android:text="Bulan Bayar"
         android:layout_below="@id/my_toolbar_add_pembayaran_pengontrak"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <Button
-        android:id="@+id/btn_choose_date_add_pembayaran_pengontrak"
-        android:layout_width="298dp"
-        android:layout_height="37dp"
-        android:layout_below="@id/text_tanggal_bayar_add_pembayaran_pengontrak"
+    <Spinner
+        android:layout_below="@+id/text_tanggal_bayar_add_pembayaran_pengontrak"
+        android:layout_marginTop="28dp"
+        android:tooltipText="Pilih Nama Kontrakan"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp"
-        android:background="@drawable/radius_btn_login"
-        android:fontFamily="@font/poppins"
-        android:text="Choose Date"
-        android:textAllCaps="false"
-        android:textColor="@color/abuabumuda"
-        android:textSize="16dp" />
+        android:id="@+id/spinner_add_pembayaran_pengontrak"
+        android:layout_width="298dp"
+        android:layout_height="48dp"
+        android:spinnerMode="dropdown"/>
 
     <TextView
         android:id="@+id/text_tanggal_pembayaaran_pengontrak"
         android:layout_centerInParent="true"
-        android:layout_below="@id/btn_choose_date_add_pembayaran_pengontrak"
+        android:layout_below="@id/spinner_add_pembayaran_pengontrak"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -53,7 +49,7 @@
         android:hint="Jumlah Bayar"
         android:layout_marginTop="28dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/btn_choose_date_add_pembayaran_pengontrak"
+        android:layout_below="@+id/spinner_add_pembayaran_pengontrak"
         android:layout_width="298dp"
         android:layout_height="48dp"/>
 
