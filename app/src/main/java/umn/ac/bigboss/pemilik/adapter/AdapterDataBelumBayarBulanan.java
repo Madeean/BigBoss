@@ -11,19 +11,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import umn.ac.bigboss.R;
+import umn.ac.bigboss.modelauth.DataLoginModel;
 
 public class AdapterDataBelumBayarBulanan extends RecyclerView.Adapter<AdapterDataBelumBayarBulanan.HolderData>{
-    List<String> listData;
+    List<DataLoginModel> listData;
     LayoutInflater layoutInflater;
+    int bulan;
 
 
-    public AdapterDataBelumBayarBulanan(Context context, List<String> listData) {
+    public AdapterDataBelumBayarBulanan(Context context, List<DataLoginModel> listData,int bulan) {
         this.listData = listData;
         this.layoutInflater = LayoutInflater.from(context);
-
+        this.bulan = bulan;
     }
 
     @NonNull
@@ -35,7 +39,9 @@ public class AdapterDataBelumBayarBulanan extends RecyclerView.Adapter<AdapterDa
 
     @Override
     public void onBindViewHolder(@NonNull AdapterDataBelumBayarBulanan.HolderData holder, int position) {
-        holder.text_bulan_pemilik_belum_bayar_bulanan.setText(listData.get(position));
+        holder.text_bulan_pemilik_belum_bayar_bulanan.setText("bulan ke - "+bulan);
+        holder.text_name_pemilik_belum_bayar_bulanan.setText(listData.get(position).getName());
+        Glide.with(holder.imageView.getContext()).load(listData.get(position).getFoto_muka()).placeholder(R.drawable.kucing_topi).into(holder.imageView);
 //        holder.btn_detail.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -48,7 +54,11 @@ public class AdapterDataBelumBayarBulanan extends RecyclerView.Adapter<AdapterDa
 
     @Override
     public int getItemCount() {
-        return listData.size();
+        if(listData != null){
+            return listData.size();
+        }else{
+            return 0;
+        }
     }
 
     public class HolderData extends RecyclerView.ViewHolder{

@@ -1,6 +1,8 @@
 package umn.ac.bigboss.pemilik;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,37 +19,118 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import umn.ac.bigboss.LoginActivity;
 import umn.ac.bigboss.R;
+import umn.ac.bigboss.api.ApiRequest;
+import umn.ac.bigboss.api.Server;
+import umn.ac.bigboss.modelauth.DataLoginModel;
+import umn.ac.bigboss.modelauth.DataRequestPembayaranPengontrakModel;
+import umn.ac.bigboss.modelauth.DataYangSudahBayarModel;
+import umn.ac.bigboss.modelauth.PemilikBelumBayarBulananModel;
+import umn.ac.bigboss.modelauth.RequestPembayaranPengontrakmodel;
 import umn.ac.bigboss.pemilik.adapter.AdapterDataBelumBayarBulanan;
 import umn.ac.bigboss.pemilik.adapter.AdapterDataHistoryPembayaranPemilik;
 import umn.ac.bigboss.pengontrak.PengontrakDetailPembayaran;
 import umn.ac.bigboss.pengontrak.PengontrakHome;
+import umn.ac.bigboss.pengontrak.adapter.AdapterDataRequestPembayaranPengontrak;
 
 
 public class PemilikBelumBayarBulanan extends Fragment {
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
     AdapterDataBelumBayarBulanan adapterData;
+    List<DataLoginModel> listData;
 
-    List<String> listData;
+
     DrawerLayout drawerLayout;
     NavigationView navigationView;
 
     Toolbar my_toolbar;
     TextView my_toolbar_title;
+
+    ArrayList<String> list = new ArrayList<String>();
+    int pilih_bulan;
+
+
+    private Calendar calendar;
+    private SimpleDateFormat dateFormat;
+    private String date;
+
+    public String tokenSP;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_pemilik_belum_bayar_bulanan, container, false);
+
+        SharedPreferences sh = getActivity().getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
+        tokenSP = sh.getString("token", "");
+
+        list.add("Pilih Bulan");
+        list.add("Januari");
+        list.add("Februari");
+        list.add("Maret");
+        list.add("April");
+        list.add("Mei");
+        list.add("Juni");
+        list.add("Juli");
+        list.add("Agustus");
+        list.add("September");
+        list.add("Oktober");
+        list.add("November");
+        list.add("Desember");
+
+        Spinner s = (Spinner) view.findViewById(R.id.spinner_pilih_bulan_belum_bayar_bulanan_pemilik);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, list);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        s.setAdapter(adapter);
+
+        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
+                if(position >0 ){
+                    pilih_bulan = position;
+                    Toast.makeText(getActivity(), "bulan "+pilih_bulan, Toast.LENGTH_SHORT).show();
+                    getData(pilih_bulan);
+
+                }else{
+
+                    Toast.makeText(getActivity(), "pilih bulan dahulu", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+            }
+        });
+
+        calendar = Calendar.getInstance();
+        dateFormat = new SimpleDateFormat("MM");
+        date = dateFormat.format(calendar.getTime());
+        pilih_bulan = Integer.parseInt(date);
+        Toast.makeText(getActivity(), "bulan : "+pilih_bulan, Toast.LENGTH_SHORT).show();
+
 
         drawerLayout = view.findViewById(R.id.drawer_layout);
         navigationView = view.findViewById(R.id.nav_view);
@@ -108,19 +191,23 @@ public class PemilikBelumBayarBulanan extends Fragment {
 
 
 //        RECYCLE VIEW
+
         recyclerView = view.findViewById(R.id.rv_pemilik_belum_bayar_bulanan);
-        listData = new ArrayList<>();
-
-        for(int i = 1; i < 10; i++){
-            listData.add("Bulan Ke - " + i);
-        }
-
         linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
+        getData(pilih_bulan);
+//        listData = new ArrayList<>();
+//
+//        for(int i = 1; i < 10; i++){
+//            listData.add("Bulan Ke - " + i);
+//        }
+//
 
-        adapterData = new AdapterDataBelumBayarBulanan(getActivity(), listData);
-        recyclerView.setAdapter(adapterData);
-        adapterData.notifyDataSetChanged();
+//
+//        adapterData = new AdapterDataBelumBayarBulanan(getActivity(), listData);
+//        recyclerView.setAdapter(adapterData);
+//        adapterData.notifyDataSetChanged();
+
 //        AKHIR RECYCLE VIEW
 
 
@@ -128,4 +215,34 @@ public class PemilikBelumBayarBulanan extends Fragment {
 
         return view;
     }
+
+    private void getData(int pilih_bulan) {
+        String token = "Bearer "+tokenSP;
+        ApiRequest api  = Server.konekRetrofit().create(ApiRequest.class);
+        Call<PemilikBelumBayarBulananModel> tampilData = api.ARBelumBayarBulanan(pilih_bulan, token);
+        tampilData.enqueue(new Callback<PemilikBelumBayarBulananModel>() {
+            @Override
+            public void onResponse(Call<PemilikBelumBayarBulananModel> call, Response<PemilikBelumBayarBulananModel> response) {
+                if(response.isSuccessful()){
+                    System.out.println("RESPONSE : "+response.body().getData_yang_belum_bayar());
+                    listData = response.body().getData_yang_belum_bayar();
+                    adapterData = new AdapterDataBelumBayarBulanan(getActivity(), listData,pilih_bulan);
+                    recyclerView.setAdapter(adapterData);
+                    adapterData.notifyDataSetChanged();
+                }else{
+                    Toast.makeText(getActivity(), "gagal ambil data", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PemilikBelumBayarBulananModel> call, Throwable t) {
+                System.out.println("error : "+t.getMessage());
+                Toast.makeText(getActivity(), "error "+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
+
+
 }

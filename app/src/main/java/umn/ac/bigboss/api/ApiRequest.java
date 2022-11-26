@@ -14,11 +14,13 @@ import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 import umn.ac.bigboss.modelauth.DataRequestPembayaranPengontrakModel;
 import umn.ac.bigboss.modelauth.EditLogin;
 import umn.ac.bigboss.modelauth.LoginModel;
 import umn.ac.bigboss.modelauth.DataNamaKontrakanModel;
 import umn.ac.bigboss.modelauth.PembayaranModel;
+import umn.ac.bigboss.modelauth.PemilikBelumBayarBulananModel;
 
 public interface ApiRequest {
 
@@ -100,6 +102,12 @@ public interface ApiRequest {
             @Field("name") String name,
             @Field("nama_kontrakan") String nama_kontrakan,
             @Field("rooms") int rooms
+    );
+
+    @GET("get-belum-bayar-bulanan/{bulan}")
+    Call<PemilikBelumBayarBulananModel> ARBelumBayarBulanan(
+            @Path("bulan") int bulan,
+            @Header("Authorization") String token
     );
 
 }
