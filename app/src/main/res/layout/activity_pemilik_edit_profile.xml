@@ -50,17 +50,17 @@
         android:layout_height="48dp"/>
 
     <Button
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/et_ruangan_yang_dipunya_pemilik"
         android:id="@+id/btn_editprofile_pemilik"
-        android:layout_marginTop="28dp"
         android:layout_width="183dp"
         android:layout_height="44dp"
-        android:fontFamily="@font/poppins"
+        android:layout_below="@id/et_ruangan_yang_dipunya_pemilik"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
         android:background="@drawable/radius_btn_login"
         android:backgroundTint="@color/hijau"
+        android:fontFamily="@font/poppins"
         android:text="Edit Profile"
-        android:textColor="@color/hitam"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        android:textColor="@color/hitam" />
 
 </RelativeLayout>

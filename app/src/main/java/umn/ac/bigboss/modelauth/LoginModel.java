@@ -8,6 +8,7 @@ public class LoginModel {
     private DataLoginModel user;
     private String token;
 
+
     public DataLoginModel getUser() {
         return user;
     }

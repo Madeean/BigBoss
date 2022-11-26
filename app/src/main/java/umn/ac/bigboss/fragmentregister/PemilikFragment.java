@@ -1,5 +1,7 @@
 package umn.ac.bigboss.fragmentregister;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,12 +17,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import retrofit2.Call;
+import retrofit2.Response;
 import umn.ac.bigboss.LoginActivity;
 import umn.ac.bigboss.R;
 import umn.ac.bigboss.api.ApiRequest;
 import umn.ac.bigboss.api.Server;
 import umn.ac.bigboss.modelauth.DataLoginModel;
 import umn.ac.bigboss.modelauth.LoginModel;
+import umn.ac.bigboss.modelauth.ValidationBEAuth;
 import umn.ac.bigboss.pemilik.PemilikHomeActivity;
 
 
@@ -78,19 +82,31 @@ public class PemilikFragment extends Fragment {
         Call<LoginModel> simpanData = api.ARRegisterPemilik(nama,email,password,rooms,role,nama_kontrakan);
         simpanData.enqueue(new retrofit2.Callback<LoginModel>() {
             @Override
-            public void onResponse(Call<LoginModel> call, retrofit2.Response<LoginModel> response) {
-                String token = response.body().getToken();
-                DataLoginModel data = response.body().getUser();
-                System.out.println("token : "+token);
-                if(token != null){
-                    SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putString(getString(R.string.token), token);
-                    editor.apply();
+            public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
+                if(response.isSuccessful()){
+                    String token = response.body().getToken();
+                    DataLoginModel data = response.body().getUser();
+                    System.out.println("token : "+token);
+                    if(token != null){
+                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("BigbossPreff",MODE_PRIVATE);
+                        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                        myEdit.putString("token", token);
+                        myEdit.putString("role", role);
+                        myEdit.putString("name", data.getName());
+                        myEdit.putString("email", data.getEmail());
+                        myEdit.putInt("umur", data.getUmur());
+                        myEdit.putString("nama_kontrakan", data.getNama_kontrakan());
+                        myEdit.putInt("rooms", data.getRooms());
 
-                    Intent intent = new Intent(getActivity(), PemilikHomeActivity.class);
-                    startActivity(intent);
+                        myEdit.apply();
+
+                        Intent intent = new Intent(getActivity(), PemilikHomeActivity.class);
+                        startActivity(intent);
+                    }
+                }else{
+                    Toast.makeText(getActivity(), "gagal register email sudah terapakai", Toast.LENGTH_SHORT).show();
                 }
+
 
             }
 

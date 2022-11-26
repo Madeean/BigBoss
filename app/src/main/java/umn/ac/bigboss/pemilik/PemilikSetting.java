@@ -1,6 +1,8 @@
 package umn.ac.bigboss.pemilik;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -33,7 +35,7 @@ public class PemilikSetting extends Fragment {
     NavigationView navigationView;
     Toolbar my_toolbar;
 
-    TextView my_toolbar_title;
+    TextView my_toolbar_title,name_setting_pemilik,email_setting_pemilik;
 
     Button btn_logout_setting_pemilik, btn_edit_profile_setting_pemilik;
 
@@ -50,6 +52,18 @@ public class PemilikSetting extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_pemilik_setting, container, false);
+
+        SharedPreferences sh = getActivity().getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
+        String name = sh.getString("name", "");
+        String email = sh.getString("email", "");
+        String nama_kontrakan = sh.getString("nama_kontrakan", "");
+        int umur = sh.getInt("umur", 0);
+
+        name_setting_pemilik = view.findViewById(R.id.name_setting_pemilik);
+        email_setting_pemilik = view.findViewById(R.id.email_setting_pemilik);
+
+        name_setting_pemilik.setText(name);
+        email_setting_pemilik.setText(email);
 
 //        my_toolbar = view.findViewById(R.id.my_toolbar_setting_pemilik);
 //        my_toolbar_title = my_toolbar.findViewById(R.id.my_toolbar_title);

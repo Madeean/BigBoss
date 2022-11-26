@@ -116,6 +116,10 @@ public class LoginActivity extends AppCompatActivity {
                     myEdit.apply();
 
                     if(role.equals("pemilik")){
+                        SharedPreferences SP = getSharedPreferences("BigbossPreff",MODE_PRIVATE);
+                        SharedPreferences.Editor ME = SP.edit();
+                        ME.putInt("rooms", data.getRooms());
+                        ME.apply();
                         Intent intent = new Intent(LoginActivity.this, PemilikHomeActivity.class);
                         startActivity(intent);
                     }else if(role.equals("pengontrak")){

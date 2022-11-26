@@ -93,4 +93,13 @@ public interface ApiRequest {
 
     );
 
+    @FormUrlEncoded
+    @POST("edit-profile")
+    Call<EditLogin> AREditProfilePemilik(
+            @Header("Authorization") String token,
+            @Field("name") String name,
+            @Field("nama_kontrakan") String nama_kontrakan,
+            @Field("rooms") int rooms
+    );
+
 }

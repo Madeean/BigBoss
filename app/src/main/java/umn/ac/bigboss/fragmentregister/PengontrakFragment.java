@@ -1,6 +1,7 @@
 package umn.ac.bigboss.fragmentregister;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
 
 import android.Manifest;
 import android.app.DownloadManager;
@@ -205,15 +206,21 @@ public class PengontrakFragment extends Fragment {
                     DataLoginModel data = response.body().getUser();
                     Toast.makeText(getActivity(), data.getFoto_muka(), Toast.LENGTH_SHORT).show();
 
-                    SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putString(getString(R.string.token), token);
-                    editor.apply();
+                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences("BigbossPreff",MODE_PRIVATE);
+                    SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                    myEdit.putString("token", token);
+                    myEdit.putString("role", role);
+                    myEdit.putString("name", data.getName());
+                    myEdit.putString("email", data.getEmail());
+                    myEdit.putInt("umur", data.getUmur());
+                    myEdit.putString("nama_kontrakan", data.getNama_kontrakan());
+
+                    myEdit.apply();
 
                     Intent intent = new Intent(getActivity(), PengontrakHomeActivity.class);
                     startActivity(intent);
                 }else{
-                    Toast.makeText(getActivity(), "Gagal" + response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Gagal register email sudah terpakai" + response.message(), Toast.LENGTH_SHORT).show();
                 }
             }
 
