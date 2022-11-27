@@ -1,6 +1,8 @@
 package umn.ac.bigboss.pemilik;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,8 +32,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import umn.ac.bigboss.LoginActivity;
 import umn.ac.bigboss.R;
+import umn.ac.bigboss.api.ApiRequest;
+import umn.ac.bigboss.api.Server;
+import umn.ac.bigboss.modelauth.DataRequestPembayaranPengontrakModel;
+import umn.ac.bigboss.modelauth.EditLogin;
+import umn.ac.bigboss.modelauth.GetJumlahOrangNgontrakModel;
+import umn.ac.bigboss.modelauth.RequestPembayaranPengontrakmodel;
 import umn.ac.bigboss.pemilik.adapter.AdapterDataHistoryPembayaranPemilik;
 import umn.ac.bigboss.pengontrak.adapter.adapter_data_history_pembayaran_pengontrak;
 
@@ -41,7 +52,7 @@ public class PemilikHome extends Fragment {
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
     AdapterDataHistoryPembayaranPemilik adapterData;
-    List<String> listData;
+    List<RequestPembayaranPengontrakmodel> listData;
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -51,15 +62,24 @@ public class PemilikHome extends Fragment {
 
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
-    private String date;
+    private String date,nameSP,tokenSP;
+
+    int roomsSP;
 
     EditText search_input;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_pemilik_home, container, false);
+
+        SharedPreferences sh = getActivity().getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
+        nameSP = sh.getString("name", "");
+        String nama_kontrakan = sh.getString("nama_kontrakan", "");
+        tokenSP = sh.getString("token", "");
+        roomsSP = sh.getInt("rooms", 0);
 
         search_input = view.findViewById(R.id.search_input);
         search_input.addTextChangedListener(new TextWatcher() {
@@ -85,30 +105,7 @@ public class PemilikHome extends Fragment {
             }
         });
 
-//        start_toolbar_pemilik_home = view.findViewById(R.id.my_toolbar_home_pemilik);
-//        start_toolbar = start_toolbar_pemilik_home.findViewById(R.id.start_toolbar_text);
-//        start_toolbar_tanggal = start_toolbar_pemilik_home.findViewById(R.id.start_toolbar_text_tanggal);
-//        start_toolbar_pemilik_home.setBackgroundColor(getResources().getColor(R.color.abuabumuda));
-//
-//
-//        start_toolbar.setText("Madee\nJumlah Orang 2/30");
-//        start_toolbar.setTextColor(getResources().getColor(R.color.hitam));
-//        start_toolbar.setTextSize(16);
-//
-//        calendar = Calendar.getInstance();
-//        dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-//        date = dateFormat.format(calendar.getTime());
-//
-//
-//        start_toolbar_tanggal.setText(date);
-//        start_toolbar_tanggal.setTextColor(getResources().getColor(R.color.hitam));
-//        start_toolbar_tanggal.setTextSize(16);
-//        AppCompatActivity activity = (AppCompatActivity) getActivity();
-//        activity.setSupportActionBar(start_toolbar_pemilik_home);
-//
-//        activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
-//
-//        start_toolbar_pemilik_home.setNavigationIcon(getResources().getDrawable(R.drawable.list));
+
 
 
 
@@ -121,7 +118,7 @@ public class PemilikHome extends Fragment {
 
         my_toolbar.setBackgroundColor(getResources().getColor(R.color.abuabumuda));
 
-        start_toolbar.setText("Madee\nJumlah Orang 2/30");
+        start_toolbar.setText(nameSP+"\nJumlah Orang 2/30");
         start_toolbar.setTextColor(getResources().getColor(R.color.hitam));
         start_toolbar.setTextSize(16);
 
@@ -180,27 +177,73 @@ public class PemilikHome extends Fragment {
             }
         });
 
+        getNameAndJumlahOrangNgontrak();
+
+
 
 //        RECYCLE VIEW
 
         recyclerView = view.findViewById(R.id.rv_history_pembayaran_pemilik);
-        listData = new ArrayList<>();
-
-        for(int i = 1; i < 10; i++){
-            listData.add("madee - " + i);
-        }
-
-        linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+                linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
+        getData();
 
-        adapterData = new AdapterDataHistoryPembayaranPemilik(getActivity(), listData);
-        recyclerView.setAdapter(adapterData);
-        adapterData.notifyDataSetChanged();
+//
+//        adapterData = new AdapterDataHistoryPembayaranPemilik(getActivity(), listData);
+//        recyclerView.setAdapter(adapterData);
+//        adapterData.notifyDataSetChanged();
 
 //        AKHIR RECYCLE VIEW
 
 
 
         return view;
+    }
+
+    private void getData() {
+        String token = "Bearer "+tokenSP;
+        ApiRequest api = Server.konekRetrofit().create(ApiRequest.class);
+        Call<DataRequestPembayaranPengontrakModel> simpanData = api.ARHistoryPembayaranPemilik(token);
+        simpanData.enqueue(new Callback<DataRequestPembayaranPengontrakModel>() {
+            @Override
+            public void onResponse(Call<DataRequestPembayaranPengontrakModel> call, Response<DataRequestPembayaranPengontrakModel> response) {
+                if(response.isSuccessful()) {
+                    listData = response.body().getData();
+                    adapterData = new AdapterDataHistoryPembayaranPemilik(getActivity(), listData);
+                    recyclerView.setAdapter(adapterData);
+                    adapterData.notifyDataSetChanged();
+                }
+                else{
+                    Toast.makeText(getActivity(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DataRequestPembayaranPengontrakModel> call, Throwable t) {
+                Toast.makeText(getActivity(), "Gagal menghubungkan server", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void getNameAndJumlahOrangNgontrak() {
+        String token = "Bearer "+tokenSP;
+        ApiRequest api = Server.konekRetrofit().create(ApiRequest.class);
+        Call<GetJumlahOrangNgontrakModel> simpanData = api.ARJumlahOrangNgontrak(token);
+        simpanData.enqueue(new Callback<GetJumlahOrangNgontrakModel>() {
+            @Override
+            public void onResponse(Call<GetJumlahOrangNgontrakModel> call, Response<GetJumlahOrangNgontrakModel> response) {
+                if(response.isSuccessful()){
+                    int jumlahOrang = response.body().getData();
+                    start_toolbar.setText(nameSP+"\nJumlah Orang "+jumlahOrang+"/"+roomsSP);
+                }else{
+                    Toast.makeText(getActivity(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetJumlahOrangNgontrakModel> call, Throwable t) {
+                Toast.makeText(getActivity(), "Gagal menghubungkan server", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
