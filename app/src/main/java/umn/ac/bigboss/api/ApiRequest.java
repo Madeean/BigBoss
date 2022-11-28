@@ -3,6 +3,7 @@ package umn.ac.bigboss.api;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import kotlin.jvm.internal.SerializedIr;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -129,6 +130,13 @@ public interface ApiRequest {
 
     @GET("get-request-pemilik")
     Call<DataRequestPembayaranPengontrakModel> ARRequestPembayaranPemilik(
+            @Header("Authorization") String token
+    );
+
+
+    @POST("terima-pembayaran/{id}")
+    Call<EditLogin> ARTerimaPembayaran(
+            @Path("id") int id,
             @Header("Authorization") String token
     );
 

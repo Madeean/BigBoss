@@ -49,7 +49,7 @@ public class PemilikDetailTransaksiMenungguKonfirmasiPemilik extends AppCompatAc
         text_tanggal_bayar_detail_transaksi_request_pemilik = findViewById(R.id.text_tanggal_bayar_detail_transaksi_request_pemilik);
         bulan_detail_transaksi_request_pemilik = findViewById(R.id.bulan_detail_transaksi_request_pemilik);
 
-        Glide.with(this).load(bukti_bayar).placeholder(R.drawable.kucing_topi).into(iv_detail_transaksi_request_pemilik);
+        Glide.with(this).load(bukti_bayar).into(iv_detail_transaksi_request_pemilik);
         text_nama_pengontrak_detail_pembayaran_menunggu_pemilik.setText(nama_pengontrak);
         text_alamat_kontrakan_detail_pembayaran_menunggu_pemilik.setText(alamat_kontrakan_sekarang);
 text_status_bulan_ini_detail_pembayaran_menunggu_pemilik.setText(status_lunas);

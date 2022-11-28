@@ -2,31 +2,43 @@ package umn.ac.bigboss.pemilik.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import umn.ac.bigboss.R;
+import umn.ac.bigboss.api.ApiRequest;
+import umn.ac.bigboss.api.Server;
+import umn.ac.bigboss.modelauth.DataRequestPembayaranPengontrakModel;
+import umn.ac.bigboss.modelauth.EditLogin;
 import umn.ac.bigboss.modelauth.RequestPembayaranPengontrakmodel;
 import umn.ac.bigboss.pemilik.PemilikDetailTransaksiMenungguKonfirmasiPemilik;
+import umn.ac.bigboss.pemilik.PemilikHomeActivity;
 
 public class AdapterDataRequestPembayaran extends RecyclerView.Adapter<AdapterDataRequestPembayaran.HolderData>{
 
     List<RequestPembayaranPengontrakmodel> listData;
     LayoutInflater layoutInflater;
+    Context ctx;
 
 
     public AdapterDataRequestPembayaran(Context context, List<RequestPembayaranPengontrakmodel> listData) {
         this.layoutInflater = LayoutInflater.from(context);
         this.listData = listData;
+        this.ctx = context;
 
     }
 
@@ -59,6 +71,32 @@ public class AdapterDataRequestPembayaran extends RecyclerView.Adapter<AdapterDa
             }
         });
 
+        holder.btn_terima_request_pembayaran.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String token ="Bearer "+holder.tokenSP;
+                int id = listData.get(position).getId();
+                ApiRequest api = Server.konekRetrofit().create(ApiRequest.class);
+                Call<EditLogin> simpanData = api.ARTerimaPembayaran(id,token);
+                simpanData.enqueue(new Callback<EditLogin>() {
+                    @Override
+                    public void onResponse(Call<EditLogin> call, Response<EditLogin> response) {
+                        if(response.isSuccessful()){
+                            Intent intent = new Intent(view.getContext(), PemilikHomeActivity.class);
+                            view.getContext().startActivity(intent);
+                        }else{
+                            Toast.makeText(ctx, "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<EditLogin> call, Throwable t) {
+                        Toast.makeText(ctx, "Gagal Terhubung ke Server", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
     }
 
     @Override
@@ -69,12 +107,16 @@ public class AdapterDataRequestPembayaran extends RecyclerView.Adapter<AdapterDa
         return 0;
     }
 
+
+
     public class HolderData extends RecyclerView.ViewHolder{
        TextView nama_request_pembayaran,bulan_request_pembayaran;
        Button btn_terima_request_pembayaran,btn_tolak_request_pembayaran,btn_detail_transaksi_request_pembayaran;
-
+        String tokenSP;
         public HolderData(@NonNull View itemView) {
             super(itemView);
+            SharedPreferences sh = ctx.getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
+            tokenSP = sh.getString("token", "");
             nama_request_pembayaran = itemView.findViewById(R.id.nama_request_pembayaran);
             bulan_request_pembayaran = itemView.findViewById(R.id.bulan_request_pembayaran);
             btn_detail_transaksi_request_pembayaran = itemView.findViewById(R.id.btn_detail_transaksi_request_pembayaran);

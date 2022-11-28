@@ -44,7 +44,8 @@ public class AdapterDataHistoryPembayaranPemilik extends RecyclerView.Adapter<Ad
         holder.nama_pengontrak.setText(listData.get(position).getNama_pengontrak());
         holder.alamat_pengontrak.setText(listData.get(position).getUser().get(0).getAlamat_kontrakan_sekarang());
         holder.tanggal_bayar.setText(listData.get(position).getTanggal_bayar());
-        holder.status_lunas.setTextColor(listData.get(position).getStatus_lunas().equals("LUNAS") ? 0xff5066CE : 0xffF55C5C);
+        String lunas = "LUNAS";
+        holder.status_lunas.setTextColor(listData.get(position).getStatus_lunas().equals(lunas) ? 0xff5066CE : 0xffF55C5C);
         holder.status_lunas.setText(listData.get(position).getStatus_lunas());
         String jumlahBayar = "Rp. " + listData.get(position).getJumlah_bayar();
         System.out.println("jumlah bayar : " + jumlahBayar);
