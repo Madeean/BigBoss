@@ -8,17 +8,29 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import umn.ac.bigboss.R;
+import umn.ac.bigboss.api.ApiRequest;
+import umn.ac.bigboss.api.Server;
+import umn.ac.bigboss.modelauth.DataRequestPembayaranPengontrakModel;
+import umn.ac.bigboss.modelauth.EditLogin;
+import umn.ac.bigboss.modelauth.RequestPembayaranPengontrakmodel;
 import umn.ac.bigboss.pemilik.adapter.AdapterDataBelumBayarBulanan;
 import umn.ac.bigboss.pemilik.adapter.AdapterDataRequestPembayaran;
 import umn.ac.bigboss.pengontrak.PengontrakEditProfile;
@@ -30,14 +42,19 @@ public class PemilikRequestPembayaran extends AppCompatActivity {
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
     AdapterDataRequestPembayaran adapterData;
+    List<RequestPembayaranPengontrakmodel> listData;
 
     Toolbar my_toolbar;
     TextView my_toolbar_title;
+
+    String tokenSP;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pemilik_request_pembayaran);
 
+        SharedPreferences sh = getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
+        tokenSP = sh.getString("token", "");
 //        my_toolbar = findViewById(R.id.my_toolbar_request_pembayaran_pemilik);
 //        my_toolbar_title = my_toolbar.findViewById(R.id.my_toolbar_title);
 //        my_toolbar.setBackgroundColor(getResources().getColor(R.color.abuabumuda));
@@ -109,19 +126,49 @@ public class PemilikRequestPembayaran extends AppCompatActivity {
 
 
 //        RECYCLE VIEW
+
         recyclerView = findViewById(R.id.rv_pemilik_request_pembayaran);
-        ArrayList listData = new ArrayList<>();
-
-        for(int i = 1; i < 10; i++){
-            listData.add("Made - " + i);
-        }
-
         linearLayoutManager = new LinearLayoutManager(PemilikRequestPembayaran.this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
+//        ArrayList listData = new ArrayList<>();
+//
+//        for(int i = 1; i < 10; i++){
+//            listData.add("Made - " + i);
+//        }
+//
+//        li
+//
+//        adapterData = new AdapterDataRequestPembayaran(this, listData);
+//        recyclerView.setAdapter(adapterData);
+//        adapterData.notifyDataSetChanged();
 
-        adapterData = new AdapterDataRequestPembayaran(this, listData);
-        recyclerView.setAdapter(adapterData);
-        adapterData.notifyDataSetChanged();
 //        AKHIR RECYCLE VIEW
+
+        getData();
+    }
+
+    public void getData(){
+        String token  = "Bearer " + this.tokenSP;
+        ApiRequest api = Server.konekRetrofit().create(ApiRequest.class);
+        Call<DataRequestPembayaranPengontrakModel> simpanData = api.ARRequestPembayaranPemilik(token);
+        simpanData.enqueue(new Callback<DataRequestPembayaranPengontrakModel>() {
+            @Override
+            public void onResponse(Call<DataRequestPembayaranPengontrakModel> call, Response<DataRequestPembayaranPengontrakModel> response) {
+                if(response.isSuccessful()){
+                    listData = response.body().getData();
+                    adapterData = new AdapterDataRequestPembayaran(PemilikRequestPembayaran.this, listData);
+                    recyclerView.setAdapter(adapterData);
+                    adapterData.notifyDataSetChanged();
+
+                }else{
+                    Toast.makeText(PemilikRequestPembayaran.this, "gagal mendapatkan", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DataRequestPembayaranPengontrakModel> call, Throwable t) {
+                Toast.makeText(PemilikRequestPembayaran.this, "gagal menghubungi server", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

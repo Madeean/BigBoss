@@ -15,17 +15,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import umn.ac.bigboss.R;
+import umn.ac.bigboss.modelauth.RequestPembayaranPengontrakmodel;
 import umn.ac.bigboss.pemilik.PemilikDetailTransaksiMenungguKonfirmasiPemilik;
 
 public class AdapterDataRequestPembayaran extends RecyclerView.Adapter<AdapterDataRequestPembayaran.HolderData>{
 
-    List<String> listData;
+    List<RequestPembayaranPengontrakmodel> listData;
     LayoutInflater layoutInflater;
 
 
-    public AdapterDataRequestPembayaran(Context context, List<String> listData) {
-        this.listData = listData;
+    public AdapterDataRequestPembayaran(Context context, List<RequestPembayaranPengontrakmodel> listData) {
         this.layoutInflater = LayoutInflater.from(context);
+        this.listData = listData;
 
     }
 
@@ -38,11 +39,22 @@ public class AdapterDataRequestPembayaran extends RecyclerView.Adapter<AdapterDa
 
     @Override
     public void onBindViewHolder(@NonNull AdapterDataRequestPembayaran.HolderData holder, int position) {
-        holder.nama_request_pembayaran.setText(listData.get(position));
+        holder.nama_request_pembayaran.setText(listData.get(position).getNama_pengontrak());
+        holder.bulan_request_pembayaran.setText("Bulan ke - "+listData.get(position).getBulan());
+//        holder.nama_request_pembayaran.setText(listData.get(position));
         holder.btn_detail_transaksi_request_pembayaran.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), PemilikDetailTransaksiMenungguKonfirmasiPemilik.class);
+                intent.putExtra("nama_pengontrak", listData.get(position).getNama_pengontrak());
+                intent.putExtra("alamat_kontrakan_sekarang",listData.get(position).getUser().get(0).getAlamat_kontrakan_sekarang());
+                intent.putExtra("status_lunas",listData.get(position).getStatus_konfirmasi());
+                intent.putExtra("jumlah_yang_harus_dibayar",listData.get(position).getUser().get(0).getHarga_perbulan());
+                intent.putExtra("jumlah_yang_dibayar",listData.get(position).getJumlah_bayar());
+                intent.putExtra("bukti_bayar",listData.get(position).getBukti_bayar());
+                intent.putExtra("tanggal_bayar",listData.get(position).getTanggal_bayar());
+                intent.putExtra("bulan",listData.get(position).getBulan());
+
                 v.getContext().startActivity(intent);
             }
         });
@@ -51,7 +63,10 @@ public class AdapterDataRequestPembayaran extends RecyclerView.Adapter<AdapterDa
 
     @Override
     public int getItemCount() {
-        return listData.size();
+        if (listData != null) {
+            return listData.size();
+        }
+        return 0;
     }
 
     public class HolderData extends RecyclerView.ViewHolder{

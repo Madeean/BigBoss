@@ -127,4 +127,9 @@ public interface ApiRequest {
             @Header("Authorization") String token
     );
 
+    @GET("get-request-pemilik")
+    Call<DataRequestPembayaranPengontrakModel> ARRequestPembayaranPemilik(
+            @Header("Authorization") String token
+    );
+
 }
