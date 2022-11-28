@@ -18,6 +18,7 @@ import retrofit2.http.Path;
 import umn.ac.bigboss.modelauth.DataRequestPembayaranPengontrakModel;
 import umn.ac.bigboss.modelauth.EditLogin;
 import umn.ac.bigboss.modelauth.GetJumlahOrangNgontrakModel;
+import umn.ac.bigboss.modelauth.GetUserKontrakanModel;
 import umn.ac.bigboss.modelauth.LoginModel;
 import umn.ac.bigboss.modelauth.DataNamaKontrakanModel;
 import umn.ac.bigboss.modelauth.PembayaranModel;
@@ -118,6 +119,11 @@ public interface ApiRequest {
 
     @GET("get-pembayaran-diterima-pemilik")
     Call<DataRequestPembayaranPengontrakModel> ARHistoryPembayaranPemilik(
+            @Header("Authorization") String token
+    );
+
+    @GET("get-user-kontrakan")
+    Call<GetUserKontrakanModel> ARDaftarPengontrak(
             @Header("Authorization") String token
     );
 

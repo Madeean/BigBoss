@@ -184,7 +184,7 @@ public class PemilikHome extends Fragment {
 //        RECYCLE VIEW
 
         recyclerView = view.findViewById(R.id.rv_history_pembayaran_pemilik);
-                linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         getData();
 

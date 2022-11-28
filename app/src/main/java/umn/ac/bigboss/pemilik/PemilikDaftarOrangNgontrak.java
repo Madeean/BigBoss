@@ -8,14 +8,27 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import umn.ac.bigboss.R;
+import umn.ac.bigboss.api.ApiRequest;
+import umn.ac.bigboss.api.Server;
+import umn.ac.bigboss.modelauth.DataLoginModel;
+import umn.ac.bigboss.modelauth.EditLogin;
+import umn.ac.bigboss.modelauth.GetUserKontrakanModel;
 import umn.ac.bigboss.pemilik.adapter.AdapterDataDaftarOrangNgontrak;
 
 public class PemilikDaftarOrangNgontrak extends AppCompatActivity {
@@ -29,10 +42,18 @@ public class PemilikDaftarOrangNgontrak extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     AdapterDataDaftarOrangNgontrak adapterDataDaftarOrangNgontrak;
 
+    String tokenSP;
+
+    List<DataLoginModel> listData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pemilik_daftar_orang_ngontrak);
+
+        SharedPreferences sh = getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
+        tokenSP = sh.getString("token", "");
+
 
 
 
@@ -97,12 +118,40 @@ public class PemilikDaftarOrangNgontrak extends AppCompatActivity {
         recyclerView = findViewById(R.id.rv_daftar_orang_ngontrak_pemilik);
         layoutManager = new GridLayoutManager(this,2);
         recyclerView.setLayoutManager(layoutManager);
-        int []arr = {R.drawable.kucing_topi};
-        adapterDataDaftarOrangNgontrak = new AdapterDataDaftarOrangNgontrak(arr);
-        recyclerView.setAdapter(adapterDataDaftarOrangNgontrak);
-        recyclerView.setHasFixedSize(true);
+        getData();
+//        int []arr = {R.drawable.kucing_topi};
+//        adapterDataDaftarOrangNgontrak = new AdapterDataDaftarOrangNgontrak(arr);
+//        recyclerView.setAdapter(adapterDataDaftarOrangNgontrak);
+//        recyclerView.setHasFixedSize(true);
 
 //        Akhir recyclew View
 
+
+
+    }
+
+    private void getData() {
+        String token = "Bearer "+ this.tokenSP;
+        ApiRequest api = Server.konekRetrofit().create(ApiRequest.class);
+        Call<GetUserKontrakanModel> simpanData = api.ARDaftarPengontrak(token);
+        simpanData.enqueue(new Callback<GetUserKontrakanModel>() {
+            @Override
+            public void onResponse(Call<GetUserKontrakanModel> call, Response<GetUserKontrakanModel> response) {
+                if (response.isSuccessful()){
+
+                    listData = response.body().getUser();
+//                    Toast.makeText(PemilikDaftarOrangNgontrak.this, listData.toString(), Toast.LENGTH_SHORT).show();
+//
+                    adapterDataDaftarOrangNgontrak = new AdapterDataDaftarOrangNgontrak(listData);
+                    recyclerView.setAdapter(adapterDataDaftarOrangNgontrak);
+                    recyclerView.setHasFixedSize(true);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetUserKontrakanModel> call, Throwable t) {
+                Toast.makeText(PemilikDaftarOrangNgontrak.this, "Gagal menghubungi server", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

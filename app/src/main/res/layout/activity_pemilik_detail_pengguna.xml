@@ -23,6 +23,7 @@
         android:layout_width="match_parent">
 
         <ImageView
+            android:id="@+id/image_view_detail_pengontrak"
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
             android:adjustViewBounds="true"
@@ -52,26 +53,26 @@
 
         <TextView
             android:id="@+id/text_nama_pengontrak_detail_pengguna"
-            android:layout_alignParentRight="true"
-            android:textColor="@color/hitam"
-            android:fontFamily="@font/poppins"
-            android:paddingRight="13dp"
-            android:paddingTop="13dp"
-            android:text="Dwi Rianto"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/poppins"
+            android:paddingTop="13dp"
+            android:paddingRight="13dp"
+            android:text="Dwi Rianto"
+            android:textColor="@color/hitam" />
 
         <TextView
             android:id="@+id/text_umur_detail_pengguna_pemilik"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/text_nama_pengontrak_detail_pengguna"
             android:layout_alignParentRight="true"
-            android:textColor="@color/hitam"
             android:fontFamily="@font/poppins"
-            android:paddingRight="13dp"
             android:paddingTop="13dp"
+            android:paddingRight="13dp"
             android:text="20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textColor="@color/hitam" />
 
         <TextView
 
@@ -123,11 +124,11 @@
             android:id="@+id/textalamat_kontrakan_sekarang_detail_pengguna"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_below="@id/text_alamat_sesuai_ktp_detail_pengguna_pemilik"
+            android:layout_alignParentRight="true"
             android:fontFamily="@font/poppins"
-            android:paddingRight="13dp"
             android:paddingTop="13dp"
+            android:paddingRight="13dp"
             android:text="kampung ddp"
             android:textColor="@color/hitam" />
 
@@ -149,8 +150,8 @@
             android:layout_below="@id/tv_alamat_kontrakan_sekarang_detail_pengguna"
             android:layout_alignParentRight="true"
             android:fontFamily="@font/poppins"
-            android:paddingRight="13dp"
             android:paddingTop="13dp"
+            android:paddingRight="13dp"
             android:text="Rp. 100.000"
             android:textColor="@color/hitam" />
 

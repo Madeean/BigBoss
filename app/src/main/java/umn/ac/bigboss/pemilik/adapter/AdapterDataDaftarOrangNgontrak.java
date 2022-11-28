@@ -10,17 +10,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import org.w3c.dom.Text;
 
+import java.util.List;
+
 import umn.ac.bigboss.R;
+import umn.ac.bigboss.modelauth.DataLoginModel;
 import umn.ac.bigboss.pemilik.PemilikDetailPengguna;
 
 public class AdapterDataDaftarOrangNgontrak extends RecyclerView.Adapter<AdapterDataDaftarOrangNgontrak.HolderData> {
-    int [] arr;
+    List<DataLoginModel> listData;
 
 
-    public AdapterDataDaftarOrangNgontrak(int[] arr) {
-        this.arr = arr;
+    public AdapterDataDaftarOrangNgontrak(List<DataLoginModel> listData) {
+        this.listData = listData;
     }
 
 
@@ -34,13 +39,25 @@ public class AdapterDataDaftarOrangNgontrak extends RecyclerView.Adapter<Adapter
 
     @Override
     public void onBindViewHolder(@NonNull HolderData holder, int position) {
-        holder.imageView.setImageResource(arr[position]);
-        holder.textView.setText("dwi Rianto");
+        Glide.with(holder.itemView.getContext())
+                .load(listData.get(position).getFoto_muka())
+                .into(holder.imageView);
 
+        holder.textView.setText(listData.get(position).getName());
+//        holder.imageView.setImageResource(arr[position]);
+//        holder.textView.setText("dwi Rianto");
+//
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), PemilikDetailPengguna.class);
+                intent.putExtra("foto_muka",listData.get(position).getFoto_muka());
+                intent.putExtra("name",listData.get(position).getName());
+                intent.putExtra("umur",listData.get(position).getUmur());
+                intent.putExtra("alamat_ktp",listData.get(position).getAlamat_sesuai_ktp());
+                intent.putExtra("alamat_kontrakan",listData.get(position).getAlamat_kontrakan_sekarang());
+                intent.putExtra("harga_perbulan",listData.get(position).getHarga_perbulan());
+                intent.putExtra("tanngal_bergabung",listData.get(position).getCreated());
                 v.getContext().startActivity(intent);
             }
         });
@@ -48,7 +65,11 @@ public class AdapterDataDaftarOrangNgontrak extends RecyclerView.Adapter<Adapter
 
     @Override
     public int getItemCount() {
-        return arr.length;
+        if (listData.size() > 0){
+            return listData.size();
+        }else {
+            return 0;
+        }
     }
 
     public class HolderData extends RecyclerView.ViewHolder{
