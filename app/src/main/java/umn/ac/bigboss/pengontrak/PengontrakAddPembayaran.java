@@ -95,6 +95,7 @@ public class PengontrakAddPembayaran extends Fragment {
         btn_gallery_tambah_pembayaran_pengontrak = view.findViewById(R.id.btn_gallery_tambah_pembayaran_pengontrak);
         btn_camera_tambah_pembayaran_pengontrak = view.findViewById(R.id.btn_camera_tambah_pembayaran_pengontrak);
 
+        list.clear();
         list.add("Pilih Bulan");
         list.add("Januari");
         list.add("Februari");

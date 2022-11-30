@@ -78,8 +78,7 @@ public class PengontrakSetting extends Fragment {
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
+                logout();
             }
         });
 
@@ -87,7 +86,8 @@ public class PengontrakSetting extends Fragment {
         btn_EditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                logout();
+                Intent intent = new Intent(getActivity(), PengontrakEditProfile.class);
+                startActivity(intent);
             }
         });
 
