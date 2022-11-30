@@ -8,17 +8,28 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import umn.ac.bigboss.R;
+import umn.ac.bigboss.api.ApiRequest;
+import umn.ac.bigboss.api.Server;
+import umn.ac.bigboss.modelauth.DataRequestPembayaranPengontrakModel;
+import umn.ac.bigboss.modelauth.RequestPembayaranPengontrakmodel;
 import umn.ac.bigboss.pemilik.adapter.AdapterDataBelumBayarBulanan;
 import umn.ac.bigboss.pemilik.adapter.AdapterDataBelumLunas;
 import umn.ac.bigboss.pengontrak.PengontrakEditProfile;
@@ -34,6 +45,9 @@ public class PemilikDaftarBelumLunas extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
+
+    List<RequestPembayaranPengontrakmodel> listData;
+    String TokenSP;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +64,9 @@ public class PemilikDaftarBelumLunas extends AppCompatActivity {
 //        getSupportActionBar().setDisplayShowTitleEnabled(false);
 //
 //        my_toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.list));
+
+        SharedPreferences sh = getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
+        TokenSP = sh.getString("token", "0");
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -107,21 +124,50 @@ public class PemilikDaftarBelumLunas extends AppCompatActivity {
         });
 
         //        RECYCLE VIEW
+
         recyclerView = findViewById(R.id.rv_pemilik_belum_lunas);
-        ArrayList listData = new ArrayList<>();
-
-        for(int i = 1; i < 10; i++){
-            listData.add("Bulan Ke - " + i);
-        }
-
         linearLayoutManager = new LinearLayoutManager( this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        adapterData = new AdapterDataBelumLunas(PemilikDaftarBelumLunas.this, listData);
-        recyclerView.setAdapter(adapterData);
-        adapterData.notifyDataSetChanged();
+        getData();
+
+//        for(int i = 1; i < 10; i++){
+//            listData.add("Bulan Ke - " + i);
+//        }
+
+
+
+//        adapterData = new AdapterDataBelumLunas(PemilikDaftarBelumLunas.this, listData);
+//        recyclerView.setAdapter(adapterData);
+//        adapterData.notifyDataSetChanged();
+
 //        AKHIR RECYCLE VIEW
 
 
+    }
+
+    private void getData() {
+        String token = "Bearer "+TokenSP;
+        ApiRequest api = Server.konekRetrofit().create(ApiRequest.class);
+        Call<DataRequestPembayaranPengontrakModel> simpanData = api.ARGetPembayaranBelumLunas(token);
+        simpanData.enqueue(new Callback<DataRequestPembayaranPengontrakModel>() {
+            @Override
+            public void onResponse(Call<DataRequestPembayaranPengontrakModel> call, Response<DataRequestPembayaranPengontrakModel> response) {
+                if(response.isSuccessful()){
+                    listData = response.body().getData();
+                    adapterData = new AdapterDataBelumLunas(PemilikDaftarBelumLunas.this, listData);
+                    recyclerView.setAdapter(adapterData);
+                    adapterData.notifyDataSetChanged();
+                }else{
+                    Toast.makeText(PemilikDaftarBelumLunas.this, "gagal mendapatkan data", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DataRequestPembayaranPengontrakModel> call, Throwable t) {
+                Toast.makeText(PemilikDaftarBelumLunas.this, "gagal menghubungi server", Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 }

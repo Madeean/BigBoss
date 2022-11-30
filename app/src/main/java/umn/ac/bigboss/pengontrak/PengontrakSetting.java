@@ -21,8 +21,14 @@ import org.w3c.dom.Text;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import umn.ac.bigboss.LoginActivity;
 import umn.ac.bigboss.R;
+import umn.ac.bigboss.api.ApiRequest;
+import umn.ac.bigboss.api.Server;
+import umn.ac.bigboss.modelauth.PembayaranModel;
 
 public class PengontrakSetting extends Fragment {
     Toolbar my_toolbar;
@@ -34,6 +40,7 @@ public class PengontrakSetting extends Fragment {
     Button btn_logout,btn_EditProfile;
 
     TextView name_setting_pengontrak,email_setting_pengontrak;
+    String tokenSP;;
 
 
     @Override
@@ -47,6 +54,7 @@ public class PengontrakSetting extends Fragment {
         String email = sh.getString("email", "");
         String nama_kontrakan = sh.getString("nama_kontrakan", "");
         int umur = sh.getInt("umur", 0);
+        tokenSP = sh.getString("token", "");
 
         name_setting_pengontrak = view.findViewById(R.id.name_setting_pengontrak);
         email_setting_pengontrak = view.findViewById(R.id.email_setting_pengontrak);
@@ -79,13 +87,35 @@ public class PengontrakSetting extends Fragment {
         btn_EditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), PengontrakEditProfile.class);
-
-                startActivity(intent);
+                logout();
             }
         });
 
 
         return view;
+    }
+
+    public void logout(){
+        String token = "Bearer "+tokenSP;
+        ApiRequest api = Server.konekRetrofit().create(ApiRequest.class);
+        Call<PembayaranModel> simpanData = api.ARLogout(token);
+        simpanData.enqueue(new Callback<PembayaranModel>() {
+            @Override
+            public void onResponse(Call<PembayaranModel> call, Response<PembayaranModel> response) {
+                if(response.isSuccessful()){
+                    String pesan = response.body().getMessage();
+                    Toast.makeText(getActivity(), pesan, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getActivity(), "Gagal Logout", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PembayaranModel> call, Throwable t) {
+                Toast.makeText(getActivity(), "Gagal Menghubungi server", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

@@ -48,24 +48,22 @@
             android:textSize="16sp"
             android:textColor="@color/hitam"
             android:fontFamily="@font/poppins"
-            android:text="Tanggal Bayar"
+            android:text="bulan Bayar"
             android:layout_below="@id/spinner_pemilik"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <Button
-            android:id="@+id/btn_choose_date_add_pembayaran_pemilik"
-            android:layout_marginTop="14dp"
-            android:textSize="16dp"
-            android:fontFamily="@font/poppins"
-            android:textAllCaps="false"
-            android:layout_width="298dp"
-            android:layout_height="37dp"
+
+        <Spinner
+
             android:layout_below="@id/text_tanggal_bayar_add_pembayaran_pemilik"
+            android:layout_marginTop="28dp"
+            android:tooltipText="Pilih bulan"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/radius_btn_login"
-            android:text="Choose Date"
-            android:textColor="@color/abuabumuda" />
+            android:id="@+id/spinner_pilih_bulan_pemilik"
+            android:layout_width="298dp"
+            android:layout_height="48dp"
+            android:spinnerMode="dropdown"/>
 
         <EditText
             android:id="@+id/et_jumlah_bayar_add_pembayaran_pemilik"
@@ -74,7 +72,7 @@
             android:hint="Jumlah Bayar"
             android:layout_marginTop="28dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/btn_choose_date_add_pembayaran_pemilik"
+            android:layout_below="@id/spinner_pilih_bulan_pemilik"
             android:layout_width="298dp"
             android:layout_height="48dp"/>
 

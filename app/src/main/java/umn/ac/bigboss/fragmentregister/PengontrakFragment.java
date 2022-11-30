@@ -134,7 +134,7 @@ public class PengontrakFragment extends Fragment {
                 Toast.makeText(getActivity(), "Alamat Kontrakan Sekarang Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
             }else if(edit_text_harga_perbulan_pengontrak.getText().toString().isEmpty()){
                 Toast.makeText(getActivity(), "Harga Perbulan Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
-            }else if(filePath == null || filePath.isEmpty() || finalFile == null || finalFile.length() == 0){
+            }else if(finalFile == null) {
                 Toast.makeText(getActivity(), "Foto Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
             }else if(edit_text_password_pengontrak.getText().toString().isEmpty()){
                 Toast.makeText(getActivity(), "Password Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();

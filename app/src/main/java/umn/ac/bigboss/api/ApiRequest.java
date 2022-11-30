@@ -140,4 +140,24 @@ public interface ApiRequest {
             @Header("Authorization") String token
     );
 
+    @POST("tolak-pembayaran/{id}")
+    Call<EditLogin> ARTolakPembayaran(
+            @Path("id") int id,
+            @Header("Authorization") String token
+    );
+
+    @GET("get-user-kontrakan")
+    Call<GetUserKontrakanModel> ARGetNamaPengontrak(
+            @Header("Authorization") String token
+    );
+
+    @GET("get-pembayaran-belum-lunas-pemilik")
+    Call<DataRequestPembayaranPengontrakModel> ARGetPembayaranBelumLunas(
+            @Header("Authorization") String token
+    );
+    @POST("logout")
+    Call<PembayaranModel> ARLogout(
+            @Header("Authorization") String token
+    );
+
 }

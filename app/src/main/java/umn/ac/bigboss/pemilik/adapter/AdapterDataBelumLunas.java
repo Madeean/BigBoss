@@ -15,15 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import umn.ac.bigboss.R;
+import umn.ac.bigboss.modelauth.RequestPembayaranPengontrakmodel;
 import umn.ac.bigboss.pemilik.PemilikDetailTransaksi;
 import umn.ac.bigboss.pemilik.PemilikDetailTransaksiBelumLunas;
 
 public class AdapterDataBelumLunas extends RecyclerView.Adapter<AdapterDataBelumLunas.HolderData>{
-        List<String> listData;
+        List<RequestPembayaranPengontrakmodel> listData;
         LayoutInflater layoutInflater;
 
 
-public AdapterDataBelumLunas(Context context, List<String> listData) {
+public AdapterDataBelumLunas(Context context, List<RequestPembayaranPengontrakmodel> listData) {
         this.listData = listData;
         this.layoutInflater = LayoutInflater.from(context);
 
@@ -38,11 +39,25 @@ public AdapterDataBelumLunas(Context context, List<String> listData) {
 
     @Override
     public void onBindViewHolder(@NonNull AdapterDataBelumLunas.HolderData holder, int position) {
-            holder.text_nama_belum_lunas.setText(listData.get(position));
+            holder.text_nama_belum_lunas.setText(listData.get(position).getNama_pengontrak());
+            holder.text_alamat_belum_lunas.setText(listData.get(position).getUser().get(0).getAlamat_kontrakan_sekarang());
+            holder.text_status_lunas_belum_lunas.setText(listData.get(position).getStatus_lunas());
+            int bayar = listData.get(position).getJumlah_bayar();
+            String harus_bayar = listData.get(position).getUser().get(0).getHarga_perbulan();
+            holder.text_jumlah_bayar_belum_lunas.setText("Rp. "+bayar + " / " + "Rp. "+harus_bayar );
+
         holder.btn_detail_transaksi_belum_lunas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                Intent intent = new Intent(v.getContext(), PemilikDetailTransaksiBelumLunas.class);
+                intent.putExtra("nama_pengontrak", listData.get(position).getNama_pengontrak());
+                intent.putExtra("alamat_pengontrak", listData.get(position).getUser().get(0).getAlamat_kontrakan_sekarang());
+                intent.putExtra("status_lunas", listData.get(position).getStatus_lunas());
+                intent.putExtra("jumlah_bayar", listData.get(position).getJumlah_bayar());
+                intent.putExtra("tanggal_bayar", listData.get(position).getTanggal_bayar());
+                intent.putExtra("bukti_pembayaran", listData.get(position).getBukti_bayar());
+                intent.putExtra("jumlah_yang_harus_dibayar",listData.get(position).getUser().get(0).getHarga_perbulan());
+                intent.putExtra("bulan",listData.get(position).getBulan());
                 v.getContext().startActivity(intent);
             }
         });

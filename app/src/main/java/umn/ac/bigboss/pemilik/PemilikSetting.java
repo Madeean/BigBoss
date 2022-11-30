@@ -25,8 +25,15 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import umn.ac.bigboss.LoginActivity;
 import umn.ac.bigboss.R;
+import umn.ac.bigboss.api.ApiRequest;
+import umn.ac.bigboss.api.Server;
+import umn.ac.bigboss.modelauth.DataRequestPembayaranPengontrakModel;
+import umn.ac.bigboss.modelauth.PembayaranModel;
 
 
 public class PemilikSetting extends Fragment {
@@ -38,6 +45,8 @@ public class PemilikSetting extends Fragment {
     TextView my_toolbar_title,name_setting_pemilik,email_setting_pemilik;
 
     Button btn_logout_setting_pemilik, btn_edit_profile_setting_pemilik;
+
+    String tokenSP;
 
 //    @Override
 //    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -58,6 +67,7 @@ public class PemilikSetting extends Fragment {
         String email = sh.getString("email", "");
         String nama_kontrakan = sh.getString("nama_kontrakan", "");
         int umur = sh.getInt("umur", 0);
+        tokenSP = sh.getString("token", "");
 
         name_setting_pemilik = view.findViewById(R.id.name_setting_pemilik);
         email_setting_pemilik = view.findViewById(R.id.email_setting_pemilik);
@@ -92,8 +102,7 @@ public class PemilikSetting extends Fragment {
         btn_logout_setting_pemilik.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
+                logout();
             }
         });
 //
@@ -186,6 +195,30 @@ public class PemilikSetting extends Fragment {
 
 
         return view;
+    }
+
+    public void logout(){
+        String token = "Bearer "+tokenSP;
+        ApiRequest api = Server.konekRetrofit().create(ApiRequest.class);
+        Call<PembayaranModel> simpanData = api.ARLogout(token);
+        simpanData.enqueue(new Callback<PembayaranModel>() {
+            @Override
+            public void onResponse(Call<PembayaranModel> call, Response<PembayaranModel> response) {
+                if(response.isSuccessful()){
+                    String pesan = response.body().getMessage();
+                    Toast.makeText(getActivity(), pesan, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getActivity(), "Gagal Logout", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PembayaranModel> call, Throwable t) {
+                Toast.makeText(getActivity(), "Gagal Menghubungi server", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

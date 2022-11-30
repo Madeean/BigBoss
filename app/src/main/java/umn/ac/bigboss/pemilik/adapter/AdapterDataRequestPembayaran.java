@@ -97,6 +97,32 @@ public class AdapterDataRequestPembayaran extends RecyclerView.Adapter<AdapterDa
             }
         });
 
+        holder.btn_tolak_request_pembayaran.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String token ="Bearer "+holder.tokenSP;
+                int id = listData.get(position).getId();
+                ApiRequest api = Server.konekRetrofit().create(ApiRequest.class);
+                Call<EditLogin> simpanData = api.ARTolakPembayaran(id,token);
+                simpanData.enqueue(new Callback<EditLogin>() {
+                    @Override
+                    public void onResponse(Call<EditLogin> call, Response<EditLogin> response) {
+                        if(response.isSuccessful()){
+                            Intent intent = new Intent(view.getContext(), PemilikHomeActivity.class);
+                            view.getContext().startActivity(intent);
+                        }else{
+                            Toast.makeText(ctx, "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<EditLogin> call, Throwable t) {
+                        Toast.makeText(ctx, "Gagal Terhubung ke Server", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
     }
 
     @Override

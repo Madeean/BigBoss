@@ -210,7 +210,7 @@ public class PengontrakAddPembayaran extends Fragment {
                 edit_text_jumlah_bayar_add_pembayaran_pengontrak.setError("Jumlah Pembayaran Tidak Boleh Kosong");
             }else if(pilih_bulan == 0){
                 Toast.makeText(getActivity(), "Pilih Bulan dahulu", Toast.LENGTH_SHORT).show();
-            }else if(filePath == null || filePath.isEmpty() || finalFile == null || finalFile.length() == 0){
+            }else if(finalFile == null){
                 Toast.makeText(getActivity(), "Gambar Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
             }else{
                 tambahPembayaran();

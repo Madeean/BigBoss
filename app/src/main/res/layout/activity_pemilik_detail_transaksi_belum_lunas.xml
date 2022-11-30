@@ -21,6 +21,7 @@
         android:layout_width="match_parent">
 
         <ImageView
+            android:id="@+id/image_view_belum_lunas"
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
             android:adjustViewBounds="true"
@@ -49,26 +50,26 @@
 
         <TextView
             android:id="@+id/text_nama_pengontrak_detail_pembayaran_pemilik"
-            android:layout_alignParentRight="true"
-            android:textColor="@color/hitam"
-            android:fontFamily="@font/poppins"
-            android:paddingRight="13dp"
-            android:paddingTop="13dp"
-            android:text="Made Reihan"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/poppins"
+            android:paddingTop="13dp"
+            android:paddingRight="13dp"
+            android:text="Made Reihan"
+            android:textColor="@color/hitam" />
 
         <TextView
             android:id="@+id/text_alamat_kontrakan_detail_pembayaran_pemilik"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/text_nama_pengontrak_detail_pembayaran_pemilik"
             android:layout_alignParentRight="true"
-            android:textColor="@color/hitam"
             android:fontFamily="@font/poppins"
-            android:paddingRight="13dp"
             android:paddingTop="13dp"
+            android:paddingRight="13dp"
             android:text="Kampung Dadap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textColor="@color/hitam" />
 
         <TextView
 
@@ -120,11 +121,11 @@
             android:id="@+id/text_jumlah_harus_dibayar_detail_pembayaran_pemilik"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_below="@id/text_status_bulan_ini_detail_pembayaran_pemilik"
+            android:layout_alignParentRight="true"
             android:fontFamily="@font/poppins"
-            android:paddingRight="13dp"
             android:paddingTop="13dp"
+            android:paddingRight="13dp"
             android:text="Rp. 200.000"
             android:textColor="@color/hitam" />
 
@@ -146,19 +147,20 @@
             android:layout_below="@id/tv_jumlah_harus_dibayar_bulan_ini_pemilik"
             android:layout_alignParentRight="true"
             android:fontFamily="@font/poppins"
-            android:paddingRight="13dp"
             android:paddingTop="13dp"
+            android:paddingRight="13dp"
             android:text="Rp. 100.000"
             android:textColor="@color/hitam" />
 
         <TextView
+            android:id="@+id/text_tanggal_pembayaran_belumlunas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_jumlah_dibayar_bulan_ini_pemilik"
             android:layout_alignParentRight="true"
             android:fontFamily="@font/poppins"
-            android:paddingRight="13dp"
             android:paddingTop="13dp"
+            android:paddingRight="13dp"
             android:text="22-09-10"
             android:textColor="@color/hitam" />
 
@@ -186,13 +188,14 @@
             android:textColor="@color/hitam" />
 
         <TextView
+            android:id="@+id/text_pembayaran_bulan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_tanggal_pembayaran_detail_pembayaran_belum_lunas_pemilik"
             android:layout_alignParentRight="true"
             android:fontFamily="@font/poppins"
-            android:paddingRight="13dp"
             android:paddingTop="13dp"
+            android:paddingRight="13dp"
             android:text="Bulan Ke -10"
             android:textColor="@color/hitam" />
 
