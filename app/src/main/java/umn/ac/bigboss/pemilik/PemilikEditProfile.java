@@ -98,13 +98,13 @@ public class PemilikEditProfile extends AppCompatActivity {
             public void onResponse(Call<EditLogin> call, Response<EditLogin> response) {
                 if(response.isSuccessful()){
                     DataLoginModel data = response.body().getUser();
-                    Toast.makeText(PemilikEditProfile.this, "Edit Profile Berhasil", Toast.LENGTH_SHORT).show();
                     SharedPreferences sharedPreferences = getSharedPreferences("BigbossPreff",MODE_PRIVATE);
                     SharedPreferences.Editor myEdit = sharedPreferences.edit();
                     myEdit.putString("name",data.getName());
                     myEdit.putString("nama_kontrakan",data.getNama_kontrakan());
                     myEdit.putInt("rooms",data.getRooms());
                     myEdit.apply();
+                    Toast.makeText(PemilikEditProfile.this, "Edit Profile berhasil "+response.body(), Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(PemilikEditProfile.this, PemilikHomeActivity.class);
                     startActivity(intent);

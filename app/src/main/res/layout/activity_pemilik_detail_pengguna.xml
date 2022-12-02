@@ -181,16 +181,16 @@
     </RelativeLayout>
 
     <Button
-        android:layout_marginTop="70dp"
-        android:id="@+id/btn_detail_pengguna_pemilik"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/relative_detail_pengguna_pemilik"
-        android:textColor="@color/abuabumuda"
-        android:textAllCaps="false"
-        android:text="Hapus Pengguna"
-        android:backgroundTint="@color/merah"
-        android:background="@drawable/radius_btn_login"
+        android:id="@+id/btn_hapus_pengguna"
         android:layout_width="165dp"
-        android:layout_height="39dp"/>
+        android:layout_height="39dp"
+        android:layout_below="@+id/relative_detail_pengguna_pemilik"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/radius_btn_login"
+        android:backgroundTint="@color/merah"
+        android:text="Hapus Pengguna"
+        android:textAllCaps="false"
+        android:textColor="@color/abuabumuda" />
 
 </RelativeLayout>

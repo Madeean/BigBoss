@@ -103,7 +103,6 @@ public class PengontrakFragment extends Fragment {
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 list.get(position);
                 if(position >0 ){
-                    Toast.makeText(getActivity(), list.get(position), Toast.LENGTH_SHORT).show();
                     nama_kontrakan = list.get(position);
                 }else{
 
@@ -204,7 +203,6 @@ public class PengontrakFragment extends Fragment {
                 if(response.isSuccessful()){
                     String token = response.body().getToken();
                     DataLoginModel data = response.body().getUser();
-                    Toast.makeText(getActivity(), data.getFoto_muka(), Toast.LENGTH_SHORT).show();
 
                     SharedPreferences sharedPreferences = getActivity().getSharedPreferences("BigbossPreff",MODE_PRIVATE);
                     SharedPreferences.Editor myEdit = sharedPreferences.edit();
@@ -226,8 +224,7 @@ public class PengontrakFragment extends Fragment {
 
             @Override
             public void onFailure(Call<LoginModel> call, Throwable t) {
-                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                System.out.println(t.getMessage());
+                Toast.makeText(getActivity(), "gagal menghubungi server", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -150,8 +150,7 @@ public class PengontrakHome extends Fragment {
 
             @Override
             public void onFailure(Call<DataRequestPembayaranPengontrakModel> call, Throwable t) {
-                Toast.makeText(getActivity(), "error "+t.getMessage(), Toast.LENGTH_SHORT).show();
-                System.out.println("error" + t.getMessage());
+                Toast.makeText(getActivity(), "gagal menghubungi data", Toast.LENGTH_SHORT).show();
             }
         });
     }

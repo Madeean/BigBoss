@@ -90,7 +90,6 @@ public class PengontrakListRequest extends Fragment {
     }
 
     public void getData(){
-        Toast.makeText(getActivity(), "get adata", Toast.LENGTH_SHORT).show();
         ApiRequest api  = Server.konekRetrofit().create(ApiRequest.class);
         Call<DataRequestPembayaranPengontrakModel> tampilData = api.ARListRequest("Bearer " + token);
         tampilData.enqueue(new Callback<DataRequestPembayaranPengontrakModel>() {
@@ -98,7 +97,6 @@ public class PengontrakListRequest extends Fragment {
             public void onResponse(Call<DataRequestPembayaranPengontrakModel> call, Response<DataRequestPembayaranPengontrakModel> response) {
                 if (response.isSuccessful()){
                     listData = response.body().getData();
-                    System.out.println("list data: " + listData);
                     adapterData = new AdapterDataRequestPembayaranPengontrak(getActivity(), listData);
                     recyclerView.setAdapter(adapterData);
                     adapterData.notifyDataSetChanged();

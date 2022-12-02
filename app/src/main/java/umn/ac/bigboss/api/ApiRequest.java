@@ -159,5 +159,10 @@ public interface ApiRequest {
     Call<PembayaranModel> ARLogout(
             @Header("Authorization") String token
     );
+    @POST("delete-pengontrak/{id}")
+    Call<PembayaranModel> ARHapusPengontrak(
+            @Path("id") int id,
+            @Header("Authorization") String token
+    );
 
 }

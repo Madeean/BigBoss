@@ -171,8 +171,8 @@ public class PemilikTambahPembayaran extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 if(position >0 ){
-                    Toast.makeText(PemilikTambahPembayaran.this, list_bulan.get(position), Toast.LENGTH_SHORT).show();
                     pilih_bulan = position;
+
                 }else{
 
                     Toast.makeText(PemilikTambahPembayaran.this, "Pilih bulan pembayaran", Toast.LENGTH_SHORT).show();
@@ -376,7 +376,6 @@ public class PemilikTambahPembayaran extends AppCompatActivity {
                     Uri tempUri = getImageUri(PemilikTambahPembayaran.this, bitmap);
                     finalFile = new File(getRealPathFromURI(tempUri));
 
-                    Toast.makeText(PemilikTambahPembayaran.this, finalFile.toString(), Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(PemilikTambahPembayaran.this, "Cancelled", Toast.LENGTH_SHORT).show();
                 }
@@ -388,7 +387,6 @@ public class PemilikTambahPembayaran extends AppCompatActivity {
 
                 Uri tempUri = getImageUri(PemilikTambahPembayaran.this, photo);
                 finalFile = new File(getRealPathFromURI(tempUri));
-                Toast.makeText(PemilikTambahPembayaran.this, finalFile.toString(), Toast.LENGTH_SHORT).show();
             }
         }else{
             Toast.makeText(PemilikTambahPembayaran.this, "Cancelled", Toast.LENGTH_SHORT).show();

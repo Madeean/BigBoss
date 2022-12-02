@@ -122,7 +122,6 @@ public class PengontrakAddPembayaran extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 if(position >0 ){
-                    Toast.makeText(getActivity(), "bulan "+position, Toast.LENGTH_SHORT).show();
                     pilih_bulan = position;
                 }else{
 
@@ -311,7 +310,6 @@ public class PengontrakAddPembayaran extends Fragment {
                     Uri tempUri = getImageUri(getActivity(), bitmap);
                     finalFile = new File(getRealPathFromURI(tempUri));
 
-                    Toast.makeText(getActivity(), finalFile.toString(), Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getActivity(), "Cancelled", Toast.LENGTH_SHORT).show();
                 }
@@ -323,7 +321,6 @@ public class PengontrakAddPembayaran extends Fragment {
 
                 Uri tempUri = getImageUri(getActivity(), photo);
                 finalFile = new File(getRealPathFromURI(tempUri));
-                Toast.makeText(getActivity(), finalFile.toString(), Toast.LENGTH_SHORT).show();
             }
         }else{
             Toast.makeText(getActivity(), "Cancelled", Toast.LENGTH_SHORT).show();

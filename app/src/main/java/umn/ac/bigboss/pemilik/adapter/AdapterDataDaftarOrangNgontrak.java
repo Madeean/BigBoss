@@ -51,6 +51,7 @@ public class AdapterDataDaftarOrangNgontrak extends RecyclerView.Adapter<Adapter
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), PemilikDetailPengguna.class);
+                intent.putExtra("id",listData.get(position).getId());
                 intent.putExtra("foto_muka",listData.get(position).getFoto_muka());
                 intent.putExtra("name",listData.get(position).getName());
                 intent.putExtra("umur",listData.get(position).getUmur());

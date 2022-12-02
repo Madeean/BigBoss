@@ -101,7 +101,6 @@ public class LoginActivity extends AppCompatActivity {
                     DataLoginModel data = response.body().getUser();
                     System.out.println("token : "+token);
                     System.out.println("user"+data.getRole());
-                    Toast.makeText(LoginActivity.this, data.getRole(), Toast.LENGTH_SHORT).show();
                     String role = data.getRole();
 
                     SharedPreferences sharedPreferences = getSharedPreferences("BigbossPreff",MODE_PRIVATE);
@@ -137,8 +136,7 @@ public class LoginActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<LoginModel> call, Throwable t) {
-                System.out.println("error"+t.getMessage());
-                Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this,"gagal menghubungi server", Toast.LENGTH_SHORT).show();
             }
         });
 

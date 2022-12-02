@@ -112,8 +112,7 @@ public class PemilikFragment extends Fragment {
 
             @Override
             public void onFailure(Call<LoginModel> call, Throwable t) {
-                System.out.println("gagal "+t.getMessage());
-                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "gagal menghubungi server", Toast.LENGTH_SHORT).show();
             }
         });
     }

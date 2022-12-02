@@ -161,7 +161,7 @@ public class PemilikRequestPembayaran extends AppCompatActivity {
                     adapterData.notifyDataSetChanged();
 
                 }else{
-                    Toast.makeText(PemilikRequestPembayaran.this, "gagal mendapatkan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PemilikRequestPembayaran.this, "gagal mendapatkan data", Toast.LENGTH_SHORT).show();
                 }
             }
 

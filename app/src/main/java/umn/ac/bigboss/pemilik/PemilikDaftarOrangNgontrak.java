@@ -145,6 +145,8 @@ public class PemilikDaftarOrangNgontrak extends AppCompatActivity {
                     adapterDataDaftarOrangNgontrak = new AdapterDataDaftarOrangNgontrak(listData);
                     recyclerView.setAdapter(adapterDataDaftarOrangNgontrak);
                     recyclerView.setHasFixedSize(true);
+                }else{
+                    Toast.makeText(PemilikDaftarOrangNgontrak.this, "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                 }
             }
 

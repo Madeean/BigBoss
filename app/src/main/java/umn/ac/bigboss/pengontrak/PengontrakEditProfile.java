@@ -50,7 +50,6 @@ public class PengontrakEditProfile extends AppCompatActivity {
         String name = sh.getString("name", "");
         String email = sh.getString("email", "");
         int umur = sh.getInt("umur", 0);
-        Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
 
 
 

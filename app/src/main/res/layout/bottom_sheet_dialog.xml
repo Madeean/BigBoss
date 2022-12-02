@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_margin="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yakin ingin menghapus pengontrak ini?"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <Space
+        android:layout_height="1dp"
+        android:layout_width="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/Yes"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_gravity="center"
+            android:src="@drawable/delete"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+        <TextView
+
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ya, hapus pengontrak"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+        />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/No"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_gravity="center"
+            android:src="@drawable/circle_close"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tidak Jadi"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+        />
+    </LinearLayout>
+
+</LinearLayout>
