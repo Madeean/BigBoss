@@ -82,7 +82,7 @@ public class PemilikBelumBayarBulanan extends Fragment {
 
         SharedPreferences sh = getActivity().getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
         tokenSP = sh.getString("token", "");
-
+        list.clear();
         list.add("Pilih Bulan");
         list.add("Januari");
         list.add("Februari");
