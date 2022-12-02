@@ -28,6 +28,7 @@ import umn.ac.bigboss.LoginActivity;
 import umn.ac.bigboss.R;
 import umn.ac.bigboss.api.ApiRequest;
 import umn.ac.bigboss.api.Server;
+import umn.ac.bigboss.modelauth.EditLogin;
 import umn.ac.bigboss.modelauth.PembayaranModel;
 
 public class PengontrakSetting extends Fragment {
@@ -50,16 +51,17 @@ public class PengontrakSetting extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pengontrak_setting, container, false);
 //        get data intent from pengontrak home activity
         SharedPreferences sh = getActivity().getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
-        String name = sh.getString("name", "");
-        String email = sh.getString("email", "");
         String nama_kontrakan = sh.getString("nama_kontrakan", "");
         int umur = sh.getInt("umur", 0);
         tokenSP = sh.getString("token", "");
+        int id = sh.getInt("id", 0);
 
         name_setting_pengontrak = view.findViewById(R.id.name_setting_pengontrak);
         email_setting_pengontrak = view.findViewById(R.id.email_setting_pengontrak);
-        name_setting_pengontrak.setText(name);
-        email_setting_pengontrak.setText(email);
+
+        getName(id);
+//        name_setting_pengontrak.setText(name);
+//        email_setting_pengontrak.setText(email);
 
         my_toolbar = view.findViewById(R.id.my_toolbar_list_requerst_pengontrak);
         my_toolbar_title = my_toolbar.findViewById(R.id.my_toolbar_title);
@@ -93,6 +95,30 @@ public class PengontrakSetting extends Fragment {
 
 
         return view;
+    }
+
+    private void getName(int id) {
+        String token = "Bearer "+this.tokenSP;
+        ApiRequest api  = Server.konekRetrofit().create(ApiRequest.class);
+        Call<EditLogin> tampilData = api.ARDetailPengontrak(id,token);
+        tampilData.enqueue(new Callback<EditLogin>() {
+            @Override
+            public void onResponse(Call<EditLogin> call, Response<EditLogin> response) {
+                if (response.isSuccessful()){
+                    String name = response.body().getUser().getName();
+                    String email = response.body().getUser().getEmail();
+                            name_setting_pengontrak.setText(name);
+                            email_setting_pengontrak.setText(email);
+                }else{
+                    Toast.makeText(getActivity(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<EditLogin> call, Throwable t) {
+                Toast.makeText(getActivity(), "Gagal menghubungi server", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void logout(){

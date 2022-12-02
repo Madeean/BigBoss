@@ -165,4 +165,10 @@ public interface ApiRequest {
             @Header("Authorization") String token
     );
 
+    @GET("detail-pengontrak/{id}")
+    Call<EditLogin> ARDetailPengontrak(
+            @Path("id") int id,
+            @Header("Authorization") String token
+    );
+
 }

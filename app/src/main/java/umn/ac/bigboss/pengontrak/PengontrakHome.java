@@ -33,6 +33,7 @@ import umn.ac.bigboss.R;
 import umn.ac.bigboss.api.ApiRequest;
 import umn.ac.bigboss.api.Server;
 import umn.ac.bigboss.modelauth.DataRequestPembayaranPengontrakModel;
+import umn.ac.bigboss.modelauth.EditLogin;
 import umn.ac.bigboss.modelauth.RequestPembayaranPengontrakmodel;
 import umn.ac.bigboss.pengontrak.adapter.AdapterDataRequestPembayaranPengontrak;
 import umn.ac.bigboss.pengontrak.adapter.adapter_data_history_pembayaran_pengontrak;
@@ -51,7 +52,7 @@ public class PengontrakHome extends Fragment {
     private SimpleDateFormat dateFormat;
     private String date;
 
-    private String token;
+    private String tokenSP;
 
     EditText search_input;
     @Override
@@ -61,8 +62,10 @@ public class PengontrakHome extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_pengontrak_home, container, false);
 
         SharedPreferences sh = getActivity().getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
-         token = sh.getString("token", "");
-         String name = sh.getString("name", "");
+         tokenSP = sh.getString("token", "");
+         int id = sh.getInt("id", 0);
+
+         getName(id);
 
 
 
@@ -75,7 +78,6 @@ public class PengontrakHome extends Fragment {
         start_toolbar_pengontrak_home.setBackgroundColor(getResources().getColor(R.color.abuabumuda));
 
 
-        start_toolbar.setText("Hi, "+name);
         start_toolbar.setTextColor(getResources().getColor(R.color.hitam));
         start_toolbar.setTextSize(16);
 
@@ -122,6 +124,28 @@ public class PengontrakHome extends Fragment {
         return view;
     }
 
+    private void getName(int id) {
+        String token = "Bearer "+this.tokenSP;
+        ApiRequest api  = Server.konekRetrofit().create(ApiRequest.class);
+        Call<EditLogin> tampilData = api.ARDetailPengontrak(id,token);
+        tampilData.enqueue(new Callback<EditLogin>() {
+            @Override
+            public void onResponse(Call<EditLogin> call, Response<EditLogin> response) {
+                if (response.isSuccessful()){
+                    String name = response.body().getUser().getName();
+                    start_toolbar.setText("Hi, "+name);
+                }else{
+                    Toast.makeText(getActivity(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<EditLogin> call, Throwable t) {
+                Toast.makeText(getActivity(), "Gagal menghubungi server", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void filter(String text) {
         ArrayList<RequestPembayaranPengontrakmodel> filteredList = new ArrayList<>();
         for(RequestPembayaranPengontrakmodel item : listData){
@@ -134,7 +158,7 @@ public class PengontrakHome extends Fragment {
 
     public void getData(){
         ApiRequest api  = Server.konekRetrofit().create(ApiRequest.class);
-        Call<DataRequestPembayaranPengontrakModel> tampilData = api.ARHistoryPembayaran("Bearer " + token);
+        Call<DataRequestPembayaranPengontrakModel> tampilData = api.ARHistoryPembayaran("Bearer " + tokenSP);
         tampilData.enqueue(new Callback<DataRequestPembayaranPengontrakModel>() {
             @Override
             public void onResponse(Call<DataRequestPembayaranPengontrakModel> call, Response<DataRequestPembayaranPengontrakModel> response) {

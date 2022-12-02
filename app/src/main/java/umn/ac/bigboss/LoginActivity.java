@@ -111,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                     myEdit.putString("email", data.getEmail());
                     myEdit.putInt("umur", data.getUmur());
                     myEdit.putString("nama_kontrakan", data.getNama_kontrakan());
+                    myEdit.putInt("id", data.getId());
 
                     myEdit.apply();
 

@@ -82,6 +82,7 @@ public class AdapterDataRequestPembayaran extends RecyclerView.Adapter<AdapterDa
                     @Override
                     public void onResponse(Call<EditLogin> call, Response<EditLogin> response) {
                         if(response.isSuccessful()){
+                            Toast.makeText(ctx, "berhasil terima pembayaran", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(view.getContext(), PemilikHomeActivity.class);
                             view.getContext().startActivity(intent);
                         }else{

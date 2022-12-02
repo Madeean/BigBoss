@@ -104,7 +104,7 @@ public class PemilikEditProfile extends AppCompatActivity {
                     myEdit.putString("nama_kontrakan",data.getNama_kontrakan());
                     myEdit.putInt("rooms",data.getRooms());
                     myEdit.apply();
-                    Toast.makeText(PemilikEditProfile.this, "Edit Profile berhasil "+response.body(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PemilikEditProfile.this, "Edit Profile berhasil ", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(PemilikEditProfile.this, PemilikHomeActivity.class);
                     startActivity(intent);

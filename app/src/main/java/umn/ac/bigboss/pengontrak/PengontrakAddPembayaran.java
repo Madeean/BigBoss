@@ -52,6 +52,7 @@ import umn.ac.bigboss.RegisterActivity;
 import umn.ac.bigboss.api.ApiRequest;
 import umn.ac.bigboss.api.Server;
 import umn.ac.bigboss.modelauth.DataRequestPembayaranPengontrakModel;
+import umn.ac.bigboss.modelauth.EditLogin;
 import umn.ac.bigboss.modelauth.LoginModel;
 import umn.ac.bigboss.modelauth.PembayaranModel;
 
@@ -77,9 +78,11 @@ public class PengontrakAddPembayaran extends Fragment {
     DatePickerDialog datePickerDialog;
 
     int mYear,mMonth,mDay;
-    String role,name,email;
+    public String role;
     public int pilih_bulan;
-    String nkontrakan;
+
+    public String namaSP,emailSP,nama_kontrakanSP;
+
 
     String token;
 
@@ -139,11 +142,16 @@ public class PengontrakAddPembayaran extends Fragment {
 
         SharedPreferences sh = getActivity().getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
         token = sh.getString("token", "");
+        int id = sh.getInt("id", 0);
+        getName(id);
 
 
-         name = sh.getString("name", "");
-         email = sh.getString("email", "");
-        nkontrakan = sh.getString("nama_kontrakan", "");
+//         name = sh.getString("name", "");
+//         email = sh.getString("email", "");
+//        nkontrakan = sh.getString("nama_kontrakan", "");
+
+
+
         role = "pengontrak";
         calendar2 = Calendar.getInstance();
         dateFormat2 = new SimpleDateFormat("dd-MM-yyyy");
@@ -221,22 +229,40 @@ public class PengontrakAddPembayaran extends Fragment {
        return view;
     }
 
+    private void getName(int id) {
+        String token = "Bearer "+this.token;
+        ApiRequest api  = Server.konekRetrofit().create(ApiRequest.class);
+        Call<EditLogin> tampilData = api.ARDetailPengontrak(id,token);
+        tampilData.enqueue(new Callback<EditLogin>() {
+            @Override
+            public void onResponse(Call<EditLogin> call, Response<EditLogin> response) {
+                if (response.isSuccessful()){
+                    String name = response.body().getUser().getName();
+                    String email = response.body().getUser().getEmail();
+                    String nama_kontrakan = response.body().getUser().getNama_kontrakan();
+                    namaSP = name;
+                    emailSP = email;
+                    nama_kontrakanSP = nama_kontrakan;
+                }else{
+                    Toast.makeText(getActivity(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<EditLogin> call, Throwable t) {
+                Toast.makeText(getActivity(), "Gagal menghubungi server", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void tambahPembayaran() {
-        String nama_pengontrak = name;
-        String nama_kontrakan = nkontrakan;
+        String nama_pengontrak = namaSP;
+        String nama_kontrakan = nama_kontrakanSP;
         int bulan = pilih_bulan;
         int jumlah_bayar = Integer.parseInt(edit_text_jumlah_bayar_add_pembayaran_pengontrak.getText().toString());
         String tanggal_bayar = pilih_tanggal_bayar;
         String role = "pengontrak";
         File bukti_bayar = finalFile;
-
-        System.out.println("nama_pengontrak : "+nama_pengontrak);
-        System.out.println("nama_kontrakan : "+nama_kontrakan);
-        System.out.println("bulan : "+bulan);
-        System.out.println("jumlah_bayar : "+jumlah_bayar);
-        System.out.println("tanggal_bayar : "+tanggal_bayar);
-        System.out.println("role : "+role);
-        System.out.println("bukti_bayar : "+bukti_bayar);
 
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), bukti_bayar);
         MultipartBody.Part body = MultipartBody.Part.createFormData("bukti_bayar", bukti_bayar.getName(), requestFile);
