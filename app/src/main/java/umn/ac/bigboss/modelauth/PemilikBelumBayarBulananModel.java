@@ -7,6 +7,24 @@ public class PemilikBelumBayarBulananModel {
     private List<Integer> list_data_sudah_bayar;
     private List<DataYangSudahBayarModel> data_yang_sudah_bayar;
     private List<DataLoginModel> data_yang_belum_bayar;
+    private String message;
+    private List<DataLoginModel> data;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public List<DataLoginModel> getData() {
+        return data;
+    }
+
+    public void setData(List<DataLoginModel> data) {
+        this.data = data;
+    }
 
     public List<Integer> getList_data_sudah_bayar() {
         return list_data_sudah_bayar;

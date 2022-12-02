@@ -109,7 +109,6 @@ public class PemilikBelumBayarBulanan extends Fragment {
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 if(position >0 ){
                     pilih_bulan = position;
-                    Toast.makeText(getActivity(), "bulan "+pilih_bulan, Toast.LENGTH_SHORT).show();
                     getData(pilih_bulan);
 
                 }else{
@@ -128,8 +127,6 @@ public class PemilikBelumBayarBulanan extends Fragment {
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("MM");
         date = dateFormat.format(calendar.getTime());
-        pilih_bulan = Integer.parseInt(date);
-        Toast.makeText(getActivity(), "bulan : "+pilih_bulan, Toast.LENGTH_SHORT).show();
 
 
         drawerLayout = view.findViewById(R.id.drawer_layout);
@@ -195,7 +192,6 @@ public class PemilikBelumBayarBulanan extends Fragment {
         recyclerView = view.findViewById(R.id.rv_pemilik_belum_bayar_bulanan);
         linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        getData(pilih_bulan);
 //        listData = new ArrayList<>();
 //
 //        for(int i = 1; i < 10; i++){
@@ -224,11 +220,21 @@ public class PemilikBelumBayarBulanan extends Fragment {
             @Override
             public void onResponse(Call<PemilikBelumBayarBulananModel> call, Response<PemilikBelumBayarBulananModel> response) {
                 if(response.isSuccessful()){
-                    System.out.println("RESPONSE : "+response.body().getData_yang_belum_bayar());
-                    listData = response.body().getData_yang_belum_bayar();
-                    adapterData = new AdapterDataBelumBayarBulanan(getActivity(), listData,pilih_bulan);
-                    recyclerView.setAdapter(adapterData);
-                    adapterData.notifyDataSetChanged();
+                    if(response.body().getMessage() != null){
+                        listData = response.body().getData();
+                        adapterData = new AdapterDataBelumBayarBulanan(getActivity(), listData,pilih_bulan);
+                        recyclerView.setAdapter(adapterData);
+                        adapterData.notifyDataSetChanged();
+                    }else{
+                        listData = response.body().getData_yang_belum_bayar();
+                        adapterData = new AdapterDataBelumBayarBulanan(getActivity(), listData,pilih_bulan);
+                        recyclerView.setAdapter(adapterData);
+                        adapterData.notifyDataSetChanged();
+                        System.out.println("RESPONSE : "+response.body().getData_yang_belum_bayar());
+                    }
+
+
+
                 }else{
                     Toast.makeText(getActivity(), "gagal ambil data", Toast.LENGTH_SHORT).show();
                 }
