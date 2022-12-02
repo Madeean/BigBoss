@@ -62,6 +62,7 @@ public class PengontrakHome extends Fragment {
 
         SharedPreferences sh = getActivity().getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
          token = sh.getString("token", "");
+         String name = sh.getString("name", "");
 
 
 
@@ -74,7 +75,7 @@ public class PengontrakHome extends Fragment {
         start_toolbar_pengontrak_home.setBackgroundColor(getResources().getColor(R.color.abuabumuda));
 
 
-        start_toolbar.setText("Hi, Madee");
+        start_toolbar.setText("Hi, "+name);
         start_toolbar.setTextColor(getResources().getColor(R.color.hitam));
         start_toolbar.setTextSize(16);
 

@@ -107,7 +107,7 @@ public class PengontrakListRequest extends Fragment {
 
             @Override
             public void onFailure(Call<DataRequestPembayaranPengontrakModel> call, Throwable t) {
-                Toast.makeText(getActivity(), "error "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "gagal menghubungi server", Toast.LENGTH_SHORT).show();
             }
         });
     }

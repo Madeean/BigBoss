@@ -116,8 +116,7 @@ public class PemilikEditProfile extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<EditLogin> call, Throwable t) {
-                System.out.println("edit profile error"+t.getMessage());
-                Toast.makeText(PemilikEditProfile.this, "edit profile"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(PemilikEditProfile.this, "gagal menghubungi server", Toast.LENGTH_SHORT).show();
             }
         });
     }
