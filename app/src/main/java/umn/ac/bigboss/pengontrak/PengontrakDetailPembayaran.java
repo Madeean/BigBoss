@@ -56,6 +56,11 @@ public class PengontrakDetailPembayaran extends AppCompatActivity {
         text_tanggal_bayar_detail_pembayaran_pengontrak.setText(tanggal_bayar);
         text_jumlah_dibayar_detail_pembayaran_pengontrak.setText(String.valueOf(jumlah_bayar));
         text_jumlah_harus_dibayar_detail_pembayaran_pengontrak.setText(jumlah_harus_bayar);
+        if(status_lunas.equals("LUNAS")){
+            text_status_bulan_ini_detail_pembayaran_pengontrak.setTextColor(getResources().getColor(R.color.biru));
+        }else{
+            text_status_bulan_ini_detail_pembayaran_pengontrak.setTextColor(getResources().getColor(R.color.merah));
+        }
         text_status_bulan_ini_detail_pembayaran_pengontrak.setText(status_lunas);
 
 //        image_detail_pembayaran_pengontrak.setImageURI(Uri.parse("https://madeekan.madee.my.id/storage/pembayaran-images/468jcGbkTxc0XGaFZFqEog2kgBsIO9yb5nUa4BIp.jpg"));

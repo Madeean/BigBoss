@@ -37,7 +37,8 @@ public class adapter_data_history_pembayaran_pengontrak extends RecyclerView.Ada
     @Override
     public adapter_data_history_pembayaran_pengontrak.HolderData onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = layoutInflater.from(parent.getContext()).inflate(R.layout.data_pengontrak_history_pembayaran, parent, false);
-        return new HolderData(view);
+        HolderData holderData = new HolderData(view);
+        return holderData;
     }
 
     @Override
@@ -86,5 +87,10 @@ public class adapter_data_history_pembayaran_pengontrak extends RecyclerView.Ada
             btn_detail = itemView.findViewById(R.id.btn_detail_transaksi);
 
         }
+    }
+
+    public void filterList(List<RequestPembayaranPengontrakmodel> filteredList) {
+        listData = filteredList;
+        notifyDataSetChanged();
     }
 }

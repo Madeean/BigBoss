@@ -58,6 +58,7 @@
             android:name=".pengontrak.PengontrakHomeActivity"
             android:exported="false" />
         <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".pemilik.PemilikHomeActivity"
             android:exported="false" />
         <activity

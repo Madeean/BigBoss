@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -66,7 +68,7 @@ public class PemilikHome extends Fragment {
 
     int roomsSP;
 
-    EditText search_input;
+    EditText search_view_pemilik;
 
 
     @Override
@@ -81,8 +83,20 @@ public class PemilikHome extends Fragment {
         tokenSP = sh.getString("token", "");
         roomsSP = sh.getInt("rooms", 0);
 
-        search_input = view.findViewById(R.id.search_input);
-        search_input.addTextChangedListener(new TextWatcher() {
+        getNameAndJumlahOrangNgontrak();
+
+
+
+//        RECYCLE VIEW
+
+        recyclerView = view.findViewById(R.id.rv_history_pembayaran_pemilik);
+        recyclerView.setHasFixedSize(true);
+        linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        getData();
+
+        search_view_pemilik = view.findViewById(R.id.search_view_pemilik);
+        search_view_pemilik.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -90,24 +104,13 @@ public class PemilikHome extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length() == 0) {
-                    search_input.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_search_24, 0, 0, 0);
-                }
-                else
-                {
-                    search_input.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                Toast.makeText( getActivity(), s.toString(), Toast.LENGTH_SHORT).show();
+                filter(s.toString());
             }
         });
-
-
-
-
 
 
         drawerLayout = view.findViewById(R.id.drawer_layout);
@@ -177,16 +180,7 @@ public class PemilikHome extends Fragment {
             }
         });
 
-        getNameAndJumlahOrangNgontrak();
 
-
-
-//        RECYCLE VIEW
-
-        recyclerView = view.findViewById(R.id.rv_history_pembayaran_pemilik);
-        linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        getData();
 
 //
 //        adapterData = new AdapterDataHistoryPembayaranPemilik(getActivity(), listData);
@@ -198,6 +192,16 @@ public class PemilikHome extends Fragment {
 
 
         return view;
+    }
+
+    private void filter(String text) {
+        ArrayList<RequestPembayaranPengontrakmodel> filteredList = new ArrayList<>();
+        for(RequestPembayaranPengontrakmodel item : listData){
+            if(item.getNama_pengontrak().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(item);
+            }
+        }
+        adapterData.filterList(filteredList);
     }
 
     private void getData() {
@@ -246,4 +250,6 @@ public class PemilikHome extends Fragment {
             }
         });
     }
+
+
 }

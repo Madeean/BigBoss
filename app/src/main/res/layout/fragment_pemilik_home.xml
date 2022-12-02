@@ -6,7 +6,6 @@
     android:id="@+id/drawer_layout"
     android:translationZ="1dp"
     android:layout_width="match_parent"
-    tools:context=".pemilik.PemilikHome"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
     android:layout_height="match_parent" >
@@ -30,29 +29,31 @@
                layout="@layout/start_toolbar"
           />
 
+
+
       <EditText
-          android:id="@+id/search_input"
-          android:drawableLeft="@drawable/ic_baseline_search_24"
-          android:textColorHint="@color/hitam"
+          app:iconifiedByDefault="false"
+          android:id="@+id/search_view_pemilik"
+                android:drawableLeft="@drawable/ic_baseline_search_24"
+                android:textColorHint="@color/hitam"
           android:hint="Search Pembayaran"
-          android:padding="16dp"
-          android:background="@drawable/search_input_radius"
-          android:layout_marginTop="14dp"
-          android:layout_centerHorizontal="true"
-          android:layout_below="@id/my_toolbar_home_pemilik"
-          android:layout_width="310dp"
-          android:layout_height="58dp"/>
+                android:padding="16dp"
+                android:background="@drawable/search_input_radius"
+                android:layout_marginTop="14dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/my_toolbar_home_pemilik"
+                android:layout_width="310dp"
+                android:layout_height="58dp" />
 
-      <androidx.recyclerview.widget.RecyclerView
-          android:background="@color/abuabumuda"
-          android:layout_centerHorizontal="true"
-          android:layout_marginTop="24dp"
-          android:layout_marginHorizontal="25dp"
-          android:id="@+id/rv_history_pembayaran_pemilik"
-          android:layout_below="@id/search_input"
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:background="@color/abuabumuda"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:id="@+id/rv_history_pembayaran_pemilik"
+                android:layout_below="@id/search_view_pemilik"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
 
 
-   </RelativeLayout>
-</androidx.drawerlayout.widget.DrawerLayout>
+         </RelativeLayout>
+      </androidx.drawerlayout.widget.DrawerLayout>

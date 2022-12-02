@@ -4,7 +4,8 @@
     android:layout_marginTop="10dp"
     android:layout_centerHorizontal="true"
     android:id="@+id/list_data_history_pembayaran"
-    android:layout_width="310dp" android:orientation="vertical"
+    android:layout_width="310dp"
+    android:orientation="vertical"
     android:background="@drawable/bg_history_pembayaran_pengontrak"
     android:elevation="5dp"
     android:layout_height="177dp">

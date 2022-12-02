@@ -100,18 +100,12 @@ public class PengontrakHome extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length() == 0) {
-                    search_input.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_search_24, 0, 0, 0);
-                }
-                else
-                {
-                    search_input.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                }
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                Toast.makeText( getActivity(), s.toString(), Toast.LENGTH_SHORT).show();
+                filter(s.toString());
             }
         });
 
@@ -125,6 +119,16 @@ public class PengontrakHome extends Fragment {
 //        adapterData.notifyDataSetChanged();
 
         return view;
+    }
+
+    private void filter(String text) {
+        ArrayList<RequestPembayaranPengontrakmodel> filteredList = new ArrayList<>();
+        for(RequestPembayaranPengontrakmodel item : listData){
+            if(item.getNama_pengontrak().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(item);
+            }
+        }
+        adapterData.filterList(filteredList);
     }
 
     public void getData(){

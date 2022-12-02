@@ -26,21 +26,26 @@ public class AdapterDataHistoryPembayaranPemilik extends RecyclerView.Adapter<Ad
     LayoutInflater layoutInflater;
 
 
+
+
     public AdapterDataHistoryPembayaranPemilik(Context context, List<RequestPembayaranPengontrakmodel> listData) {
         this.listData = listData;
         this.layoutInflater = LayoutInflater.from(context);
 
     }
 
+
     @NonNull
     @Override
     public AdapterDataHistoryPembayaranPemilik.HolderData onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = layoutInflater.from(parent.getContext()).inflate(R.layout.data_pemilik_history_pembayaran, parent, false);
-        return new AdapterDataHistoryPembayaranPemilik.HolderData(view);
+        HolderData holderData = new HolderData(view);
+        return holderData;
     }
 
     @Override
     public void onBindViewHolder(@NonNull AdapterDataHistoryPembayaranPemilik.HolderData holder, int position) {
+        RequestPembayaranPengontrakmodel data = listData.get(position);
         holder.nama_pengontrak.setText(listData.get(position).getNama_pengontrak());
         holder.alamat_pengontrak.setText(listData.get(position).getUser().get(0).getAlamat_kontrakan_sekarang());
         holder.tanggal_bayar.setText(listData.get(position).getTanggal_bayar());
@@ -72,7 +77,11 @@ public class AdapterDataHistoryPembayaranPemilik extends RecyclerView.Adapter<Ad
 
     @Override
     public int getItemCount() {
-        return listData.size();
+        if(listData != null){
+            return listData.size();
+        }else{
+            return 0;
+        }
     }
 
     public class HolderData extends RecyclerView.ViewHolder{
@@ -89,5 +98,10 @@ public class AdapterDataHistoryPembayaranPemilik extends RecyclerView.Adapter<Ad
             btn_detail = itemView.findViewById(R.id.btn_detail_transaksi);
 
         }
+    }
+
+    public void filterList(List<RequestPembayaranPengontrakmodel> filteredList) {
+        listData = filteredList;
+        notifyDataSetChanged();
     }
 }
