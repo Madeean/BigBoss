@@ -50,7 +50,7 @@ public class PengontrakHome extends Fragment {
     TextView start_toolbar, start_toolbar_tanggal;
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
-    private String date;
+    private String date,namaBundle;
 
     private String tokenSP;
 
@@ -61,18 +61,18 @@ public class PengontrakHome extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_pengontrak_home, container, false);
 
-        SharedPreferences sh = getActivity().getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
-         tokenSP = sh.getString("token", "");
-         int id = sh.getInt("id", 0);
 
-         getName(id);
+
+        SharedPreferences sh = getActivity().getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
+        tokenSP = sh.getString("token", "");
+        int id = sh.getInt("id", 0);
+        String name = sh.getString("name", "");
 
 
 
         search_input = view.findViewById(R.id.search_input);
 
         start_toolbar_pengontrak_home = view.findViewById(R.id.start_toolbar_pengontrak_home);
-        start_toolbar = start_toolbar_pengontrak_home.findViewById(R.id.start_toolbar_text);
         start_toolbar = start_toolbar_pengontrak_home.findViewById(R.id.start_toolbar_text);
         start_toolbar_tanggal = start_toolbar_pengontrak_home.findViewById(R.id.start_toolbar_text_tanggal);
         start_toolbar_pengontrak_home.setBackgroundColor(getResources().getColor(R.color.abuabumuda));
@@ -85,7 +85,7 @@ public class PengontrakHome extends Fragment {
         dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         date = dateFormat.format(calendar.getTime());
 
-
+        start_toolbar.setText("Hi, "+name);
         start_toolbar_tanggal.setText(date);
         start_toolbar_tanggal.setTextColor(getResources().getColor(R.color.hitam));
         start_toolbar_tanggal.setTextSize(16);
@@ -124,27 +124,7 @@ public class PengontrakHome extends Fragment {
         return view;
     }
 
-    private void getName(int id) {
-        String token = "Bearer "+this.tokenSP;
-        ApiRequest api  = Server.konekRetrofit().create(ApiRequest.class);
-        Call<EditLogin> tampilData = api.ARDetailPengontrak(id,token);
-        tampilData.enqueue(new Callback<EditLogin>() {
-            @Override
-            public void onResponse(Call<EditLogin> call, Response<EditLogin> response) {
-                if (response.isSuccessful()){
-                    String name = response.body().getUser().getName();
-                    start_toolbar.setText("Hi, "+name);
-                }else{
-                    Toast.makeText(getActivity(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
-                }
-            }
 
-            @Override
-            public void onFailure(Call<EditLogin> call, Throwable t) {
-                Toast.makeText(getActivity(), "Gagal menghubungi server", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
     private void filter(String text) {
         ArrayList<RequestPembayaranPengontrakmodel> filteredList = new ArrayList<>();

@@ -29,9 +29,15 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import umn.ac.bigboss.LoginActivity;
 import umn.ac.bigboss.R;
 import umn.ac.bigboss.RegisterActivity;
+import umn.ac.bigboss.api.ApiRequest;
+import umn.ac.bigboss.api.Server;
+import umn.ac.bigboss.modelauth.EditLogin;
 import umn.ac.bigboss.pemilik.PemilikTambahPembayaran;
 
 public class PengontrakHomeActivity extends AppCompatActivity {
@@ -44,8 +50,8 @@ public class PengontrakHomeActivity extends AppCompatActivity {
     PengontrakAddPembayaran pengontrakAddPembayaran =  new PengontrakAddPembayaran();
     PengontrakSetting pengontrakSetting = new PengontrakSetting();
 
-    public String email, name,nama_kontrakan;
-    public int umur;
+    public String email, name,nama_kontrakan,tokenSP;
+    public int umur,id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,17 +59,6 @@ public class PengontrakHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pengontrak_home);
 
 
-        SharedPreferences sh = getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
-        String token = sh.getString("token", "");
-        name = sh.getString("name", "");
-        email = sh.getString("email", "");
-        umur = sh.getInt("umur", 0);
-        nama_kontrakan = sh.getString("nama_kontrakan", "");
-        if(token.equals("") || token == null){
-            Intent intent = new Intent(PengontrakHomeActivity.this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-        }
 
 
 
@@ -90,14 +85,11 @@ public class PengontrakHomeActivity extends AppCompatActivity {
                 switch(item.getItemId()){
                     case R.id.globe:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container_pengontrak, pengontrakHome).commit();
+
+
                         return true;
                     case R.id.add:
-//                        getSupportFragmentManager().beginTransaction().replace(R.id.container_pengontrak, pengontrakAddPembayaran).commit();
-                        Bundle bundle2 = new Bundle();
-                        bundle2.putString("name", name);
-                        bundle2.putString("email", email);
-                        bundle2.putString("nama_kontrakan", nama_kontrakan);
-                        pengontrakSetting.setArguments(bundle2);
+
                         getSupportFragmentManager().beginTransaction().replace(R.id.container_pengontrak, pengontrakAddPembayaran).commit();
                         return true;
                     case R.id.list:
@@ -166,6 +158,9 @@ public class PengontrakHomeActivity extends AppCompatActivity {
 //        });
 
     }
+
+
+
     @Override
     public void onBackPressed() {
 
@@ -192,9 +187,6 @@ public class PengontrakHomeActivity extends AppCompatActivity {
         if (uri != null) {
 //            move page to pengontrak add pembayaran
             Bundle bundle = new Bundle();
-            bundle.putString("name", name);
-            bundle.putString("email", email);
-            bundle.putString("nama_kontrakan", nama_kontrakan);
             bundle.putString("uri", uri.toString());
             pengontrakAddPembayaran.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().replace(R.id.container_pengontrak, pengontrakAddPembayaran).commit();

@@ -46,7 +46,7 @@ public class PengontrakListRequest extends Fragment {
     private SimpleDateFormat dateFormat;
     private String date;
 
-    private String token;
+    public String tokenSP;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,8 +55,7 @@ public class PengontrakListRequest extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pengontrak_list_request, container, false);
 
         SharedPreferences sh = getActivity().getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
-        token = sh.getString("token", "");
-        System.out.println("token masuk: " + token);
+        tokenSP = sh.getString("token", "");
 
         my_toolbar = view.findViewById(R.id.my_toolbar_list_requerst_pengontrak);
         my_toolbar_title = my_toolbar.findViewById(R.id.my_toolbar_title);
@@ -91,7 +90,7 @@ public class PengontrakListRequest extends Fragment {
 
     public void getData(){
         ApiRequest api  = Server.konekRetrofit().create(ApiRequest.class);
-        Call<DataRequestPembayaranPengontrakModel> tampilData = api.ARListRequest("Bearer " + token);
+        Call<DataRequestPembayaranPengontrakModel> tampilData = api.ARListRequest("Bearer " + tokenSP);
         tampilData.enqueue(new Callback<DataRequestPembayaranPengontrakModel>() {
             @Override
             public void onResponse(Call<DataRequestPembayaranPengontrakModel> call, Response<DataRequestPembayaranPengontrakModel> response) {

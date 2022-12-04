@@ -269,7 +269,6 @@ public class PengontrakFragment extends Fragment {
                     Uri tempUri = getImageUri(getActivity(), bitmap);
                     finalFile = new File(getRealPathFromURI(tempUri));
 
-                    Toast.makeText(getActivity(), finalFile.toString(), Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getActivity(), "Cancelled", Toast.LENGTH_SHORT).show();
                 }
@@ -281,7 +280,6 @@ public class PengontrakFragment extends Fragment {
 
                 Uri tempUri = getImageUri(getActivity(), photo);
                 finalFile = new File(getRealPathFromURI(tempUri));
-                Toast.makeText(getActivity(), finalFile.toString(), Toast.LENGTH_SHORT).show();
             }
         }else{
             Toast.makeText(getActivity(), "Cancelled", Toast.LENGTH_SHORT).show();

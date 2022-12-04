@@ -155,7 +155,10 @@ public class PengontrakAddPembayaran extends Fragment {
         SharedPreferences sh = getActivity().getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
         token = sh.getString("token", "");
         int id = sh.getInt("id", 0);
-        getName(id);
+        namaSP = sh.getString("name", "");
+        emailSP = sh.getString("email", "");
+        nama_kontrakanSP = sh.getString("nama_kontrakan", "");
+//        getName(id);
 
 
 //         name = sh.getString("name", "");
@@ -254,31 +257,31 @@ public class PengontrakAddPembayaran extends Fragment {
         finalFile = new File(getRealPathFromURI(tempUri));
     }
 
-    private void getName(int id) {
-        String token = "Bearer "+this.token;
-        ApiRequest api  = Server.konekRetrofit().create(ApiRequest.class);
-        Call<EditLogin> tampilData = api.ARDetailPengontrak(id,token);
-        tampilData.enqueue(new Callback<EditLogin>() {
-            @Override
-            public void onResponse(Call<EditLogin> call, Response<EditLogin> response) {
-                if (response.isSuccessful()){
-                    String name = response.body().getUser().getName();
-                    String email = response.body().getUser().getEmail();
-                    String nama_kontrakan = response.body().getUser().getNama_kontrakan();
-                    namaSP = name;
-                    emailSP = email;
-                    nama_kontrakanSP = nama_kontrakan;
-                }else{
-                    Toast.makeText(getActivity(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<EditLogin> call, Throwable t) {
-                Toast.makeText(getActivity(), "Gagal menghubungi server", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    private void getName(int id) {
+//        String token = "Bearer "+this.token;
+//        ApiRequest api  = Server.konekRetrofit().create(ApiRequest.class);
+//        Call<EditLogin> tampilData = api.ARDetailPengontrak(id,token);
+//        tampilData.enqueue(new Callback<EditLogin>() {
+//            @Override
+//            public void onResponse(Call<EditLogin> call, Response<EditLogin> response) {
+//                if (response.isSuccessful()){
+//                    String name = response.body().getUser().getName();
+//                    String email = response.body().getUser().getEmail();
+//                    String nama_kontrakan = response.body().getUser().getNama_kontrakan();
+//                    namaSP = name;
+//                    emailSP = email;
+//                    nama_kontrakanSP = nama_kontrakan;
+//                }else{
+//                    Toast.makeText(getActivity(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<EditLogin> call, Throwable t) {
+//                Toast.makeText(getActivity(), "Gagal menghubungi server", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
     private void tambahPembayaran() {
         String nama_pengontrak = namaSP;

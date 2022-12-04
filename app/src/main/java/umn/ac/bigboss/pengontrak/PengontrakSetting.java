@@ -55,13 +55,15 @@ public class PengontrakSetting extends Fragment {
         int umur = sh.getInt("umur", 0);
         tokenSP = sh.getString("token", "");
         int id = sh.getInt("id", 0);
+        String email = sh.getString("email", "");
+        String name = sh.getString("name", "");
 
         name_setting_pengontrak = view.findViewById(R.id.name_setting_pengontrak);
         email_setting_pengontrak = view.findViewById(R.id.email_setting_pengontrak);
 
-        getName(id);
-//        name_setting_pengontrak.setText(name);
-//        email_setting_pengontrak.setText(email);
+//        getName(id);
+        name_setting_pengontrak.setText(name);
+        email_setting_pengontrak.setText(email);
 
         my_toolbar = view.findViewById(R.id.my_toolbar_list_requerst_pengontrak);
         my_toolbar_title = my_toolbar.findViewById(R.id.my_toolbar_title);

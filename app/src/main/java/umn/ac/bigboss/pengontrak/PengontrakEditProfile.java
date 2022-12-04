@@ -102,13 +102,18 @@ public class PengontrakEditProfile extends AppCompatActivity {
             @Override
             public void onResponse(Call<EditLogin> call, Response<EditLogin> response) {
                 if(response.isSuccessful()){
+                    SharedPreferences SP = getSharedPreferences("BigbossPreff",MODE_PRIVATE);
+                    SP.edit().remove("name").commit();
+                    SP.edit().remove("email").commit();
+                    SP.edit().remove("umur").commit();
                     DataLoginModel data = response.body().getUser();
                     SharedPreferences sharedPreferences = getSharedPreferences("BigbossPreff",MODE_PRIVATE);
                     SharedPreferences.Editor myEdit = sharedPreferences.edit();
                     myEdit.putString("name",data.getName());
                     myEdit.putString("email",data.getEmail());
                     myEdit.putInt("umur",data.getUmur());
-                    myEdit.apply();
+                    myEdit.commit();
+
                     Toast.makeText(PengontrakEditProfile.this, "Edit Profile Berhasil", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(PengontrakEditProfile.this, PengontrakHomeActivity.class);

@@ -142,4 +142,9 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+    @Override
+    public void onResume(){
+        super.onResume();
+        // And put the SharedPreferences test here
+    }
 }
