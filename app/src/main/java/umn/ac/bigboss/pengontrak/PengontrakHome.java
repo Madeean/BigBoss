@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -54,6 +55,9 @@ public class PengontrakHome extends Fragment {
 
     private String tokenSP;
 
+    public int id;
+    public String name;
+
     EditText search_input;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,12 +65,19 @@ public class PengontrakHome extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_pengontrak_home, container, false);
 
+        final SwipeRefreshLayout pullToRefresh = view.findViewById(R.id.swipe_refresh);
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getSP();
+                getData();// your code
+                pullToRefresh.setRefreshing(false);
+            }
+        });
 
 
-        SharedPreferences sh = getActivity().getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
-        tokenSP = sh.getString("token", "");
-        int id = sh.getInt("id", 0);
-        String name = sh.getString("name", "");
+        getSP();
+
 
 
 
@@ -124,6 +135,12 @@ public class PengontrakHome extends Fragment {
         return view;
     }
 
+    private void getSP() {
+        SharedPreferences sh = getActivity().getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
+        tokenSP = sh.getString("token", "");
+        id = sh.getInt("id", 0);
+        name = sh.getString("name", "");
+    }
 
 
     private void filter(String text) {
