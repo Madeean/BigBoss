@@ -7,9 +7,12 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
@@ -21,12 +24,15 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import umn.ac.bigboss.LoginActivity;
 import umn.ac.bigboss.R;
 import umn.ac.bigboss.RegisterActivity;
+import umn.ac.bigboss.pemilik.PemilikTambahPembayaran;
 
 public class PengontrakHomeActivity extends AppCompatActivity {
 
@@ -62,7 +68,17 @@ public class PengontrakHomeActivity extends AppCompatActivity {
 
 
 //        get intent
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
 
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+            if ("text/plain".equals(type)) {
+                Toast.makeText(PengontrakHomeActivity.this,"hanya bisa menerima gambar",Toast.LENGTH_SHORT).show(); // Handle text being sent
+            } else if (type.startsWith("image/")) {
+                handleSendImage(intent); // Handle single image being sent
+            }
+        }
 
         bottomNavigationView = findViewById(R.id.bottom_nav_pengontrak);
 
@@ -169,5 +185,20 @@ public class PengontrakHomeActivity extends AppCompatActivity {
                 doubleBackToExitPressedOnce=false;
             }
         }, 2000);
+    }
+
+    void handleSendImage(Intent intent) {
+        Uri uri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        if (uri != null) {
+//            move page to pengontrak add pembayaran
+            Bundle bundle = new Bundle();
+            bundle.putString("name", name);
+            bundle.putString("email", email);
+            bundle.putString("nama_kontrakan", nama_kontrakan);
+            bundle.putString("uri", uri.toString());
+            pengontrakAddPembayaran.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().replace(R.id.container_pengontrak, pengontrakAddPembayaran).commit();
+        }
+
     }
 }

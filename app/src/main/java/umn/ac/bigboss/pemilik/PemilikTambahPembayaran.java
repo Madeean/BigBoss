@@ -34,6 +34,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -68,7 +69,7 @@ public class PemilikTambahPembayaran extends AppCompatActivity {
     ArrayList<String> list = new ArrayList<String>();
 
     EditText et_jumlah_bayar_add_pembayaran_pemilik;
-    ImageView image_input_add_pembayaran_pemilik;
+    public ImageView image_input_add_pembayaran_pemilik;
     Button btn_camera_tambah_pembayaran_pemilik, btn_gallery_tambah_pembayaran_pemilik,btn_tambah_pembayaran_pemilik;
 
 
@@ -105,6 +106,29 @@ public class PemilikTambahPembayaran extends AppCompatActivity {
 //        getSupportActionBar().setDisplayShowTitleEnabled(false);
 //
 //        my_toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.list));
+
+        et_jumlah_bayar_add_pembayaran_pemilik = findViewById(R.id.et_jumlah_bayar_add_pembayaran_pemilik);
+        image_input_add_pembayaran_pemilik = findViewById(R.id.image_input_add_pembayaran_pemilik);
+        btn_camera_tambah_pembayaran_pemilik = findViewById(R.id.btn_camera_tambah_pembayaran_pemilik);
+        btn_gallery_tambah_pembayaran_pemilik = findViewById(R.id.btn_gallery_tambah_pembayaran_pemilik);
+        btn_tambah_pembayaran_pemilik = findViewById(R.id.btn_tambah_pembayaran_pemilik);
+
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+            if ("text/plain".equals(type)) {
+                Toast.makeText(PemilikTambahPembayaran.this,"hanya bisa menerima gambar",Toast.LENGTH_SHORT).show(); // Handle text being sent
+            } else if (type.startsWith("image/")) {
+                handleSendImage(intent); // Handle single image being sent
+            }
+        }
+            // Handle other intents, such as being started from the home screen
+
+
+
+
 
         SharedPreferences sh = getSharedPreferences("BigbossPreff", Context.MODE_WORLD_READABLE);
         tokenSP = sh.getString("token", "");
@@ -247,11 +271,7 @@ public class PemilikTambahPembayaran extends AppCompatActivity {
             }
         });
 
-        et_jumlah_bayar_add_pembayaran_pemilik = findViewById(R.id.et_jumlah_bayar_add_pembayaran_pemilik);
-        image_input_add_pembayaran_pemilik = findViewById(R.id.image_input_add_pembayaran_pemilik);
-        btn_camera_tambah_pembayaran_pemilik = findViewById(R.id.btn_camera_tambah_pembayaran_pemilik);
-        btn_gallery_tambah_pembayaran_pemilik = findViewById(R.id.btn_gallery_tambah_pembayaran_pemilik);
-        btn_tambah_pembayaran_pemilik = findViewById(R.id.btn_tambah_pembayaran_pemilik);
+
 
 
 
@@ -436,5 +456,24 @@ public class PemilikTambahPembayaran extends AppCompatActivity {
                 Toast.makeText(PemilikTambahPembayaran.this, "gagal menghubungi server", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    void handleSendImage(Intent intent) {
+        Uri uri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        Toast.makeText(PemilikTambahPembayaran.this, uri.toString(), Toast.LENGTH_SHORT).show();
+        if (uri != null) {
+            // Update UI to reflect image being shared
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(PemilikTambahPembayaran.this.getContentResolver(), uri);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            image_input_add_pembayaran_pemilik.setImageBitmap(bitmap);
+
+            Uri tempUri = getImageUri(PemilikTambahPembayaran.this, bitmap);
+            finalFile = new File(getRealPathFromURI(tempUri));
+        }
+
     }
 }

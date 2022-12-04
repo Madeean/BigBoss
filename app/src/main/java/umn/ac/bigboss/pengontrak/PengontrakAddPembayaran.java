@@ -36,6 +36,7 @@ import android.widget.Toast;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -55,11 +56,12 @@ import umn.ac.bigboss.modelauth.DataRequestPembayaranPengontrakModel;
 import umn.ac.bigboss.modelauth.EditLogin;
 import umn.ac.bigboss.modelauth.LoginModel;
 import umn.ac.bigboss.modelauth.PembayaranModel;
+import umn.ac.bigboss.pemilik.PemilikTambahPembayaran;
 
 public class PengontrakAddPembayaran extends Fragment {
     Toolbar my_toolbar;
     TextView my_toolbar_title,edit_text_jumlah_bayar_add_pembayaran_pengontrak,text_tanggal_pembayaaran_pengontrak;
-    ImageView image_input_add_pembayaran_pengontrak;
+    public ImageView image_input_add_pembayaran_pengontrak;
     Button btn_camera_tambah_pembayaran_pengontrak,btn_gallery_tambah_pembayaran_pengontrak,
             btn_choose_date_add_pembayaran_pengontrak,btn_tambah_pembayaran_pengontrak;
     private Calendar calendar,calendar2;
@@ -97,6 +99,16 @@ public class PengontrakAddPembayaran extends Fragment {
         image_input_add_pembayaran_pengontrak = view.findViewById(R.id.image_input_add_pembayaran_pengontrak);
         btn_gallery_tambah_pembayaran_pengontrak = view.findViewById(R.id.btn_gallery_tambah_pembayaran_pengontrak);
         btn_camera_tambah_pembayaran_pengontrak = view.findViewById(R.id.btn_camera_tambah_pembayaran_pengontrak);
+
+//        get bundle
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            String uri = bundle.getString("uri");
+            if(uri != null){
+                handleSendImage(uri);
+            }
+        }
+
 
         list.clear();
         list.add("Pilih Bulan");
@@ -227,6 +239,19 @@ public class PengontrakAddPembayaran extends Fragment {
 
 
        return view;
+    }
+
+    private void handleSendImage(String uri) {
+        Bitmap bitmap = null;
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), Uri.parse(uri));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        image_input_add_pembayaran_pengontrak.setImageBitmap(bitmap);
+
+        Uri tempUri = getImageUri(getActivity(), bitmap);
+        finalFile = new File(getRealPathFromURI(tempUri));
     }
 
     private void getName(int id) {
