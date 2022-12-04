@@ -45,8 +45,11 @@
             android:exported="false" />
         <activity
             android:name=".pemilik.PemilikTambahPembayaran"
-            android:exported="true" >
+            android:exported="true"
+            android:label="Pemilik"
+            >
             <intent-filter>
+
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="image/*" />
@@ -62,6 +65,7 @@
             android:theme="@style/Theme.BigBoss.NoActionBar" />
         <activity
             android:name=".pengontrak.PengontrakHomeActivity"
+            android:label="Pengontrak"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
