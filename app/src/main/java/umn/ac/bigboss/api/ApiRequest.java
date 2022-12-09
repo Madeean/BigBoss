@@ -3,10 +3,13 @@ package umn.ac.bigboss.api;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import org.json.JSONObject;
+
 import kotlin.jvm.internal.SerializedIr;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -18,6 +21,8 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 import umn.ac.bigboss.modelauth.DataRequestPembayaranPengontrakModel;
 import umn.ac.bigboss.modelauth.EditLogin;
+import umn.ac.bigboss.modelauth.FCMModel;
+import umn.ac.bigboss.modelauth.FCMRequest;
 import umn.ac.bigboss.modelauth.GetJumlahOrangNgontrakModel;
 import umn.ac.bigboss.modelauth.GetUserKontrakanModel;
 import umn.ac.bigboss.modelauth.LoginModel;
@@ -42,7 +47,8 @@ public interface ApiRequest {
             @Field("password") String password,
             @Field("rooms") int rooms,
             @Field("role") String role,
-            @Field("nama_kontrakan") String nama_kontrakan
+            @Field("nama_kontrakan") String nama_kontrakan,
+            @Field("tokenFCM") String tokenFCM
     );
 
     @FormUrlEncoded
@@ -69,7 +75,8 @@ public interface ApiRequest {
             @Part ("alamat_sesuai_ktp") RequestBody alamat_sesuai_ktp,
             @Part ("alamat_kontrakan_sekarang") RequestBody alamat_kontrakan_sekarang,
             @Part ("harga_perbulan") RequestBody harga_perbulan,
-            @Part ("nama_kontrakan") RequestBody nama_kontrakan
+            @Part ("nama_kontrakan") RequestBody nama_kontrakan,
+            @Part ("tokenFCM") RequestBody tokenFCM
 
             );
 
@@ -170,5 +177,20 @@ public interface ApiRequest {
             @Path("id") int id,
             @Header("Authorization") String token
     );
+
+    @GET("get-pemilik/{nama_kontrakan}")
+    Call<EditLogin> ARGetPemilik(
+            @Path("nama_kontrakan") String nama_kontrakan,
+            @Header("Authorization") String token
+    );
+
+
+//    @POST("send")
+//    Call<FCMModel> ARFCM(
+//            @Header("Content-Type") String content_type,
+//            @Header("Authorization") String key,
+//            @Body JSONObject body
+//            );
+
 
 }

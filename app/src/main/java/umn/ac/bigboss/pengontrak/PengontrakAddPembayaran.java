@@ -35,6 +35,9 @@ import android.widget.Toast;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -47,13 +50,16 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
+import umn.ac.bigboss.FCMSend;
 import umn.ac.bigboss.LoginActivity;
 import umn.ac.bigboss.R;
 import umn.ac.bigboss.RegisterActivity;
 import umn.ac.bigboss.api.ApiRequest;
 import umn.ac.bigboss.api.Server;
+import umn.ac.bigboss.modelauth.DataLoginModel;
 import umn.ac.bigboss.modelauth.DataRequestPembayaranPengontrakModel;
 import umn.ac.bigboss.modelauth.EditLogin;
+import umn.ac.bigboss.modelauth.FCMModel;
 import umn.ac.bigboss.modelauth.LoginModel;
 import umn.ac.bigboss.modelauth.PembayaranModel;
 import umn.ac.bigboss.pemilik.PemilikTambahPembayaran;
@@ -83,12 +89,15 @@ public class PengontrakAddPembayaran extends Fragment {
     public String role;
     public int pilih_bulan;
 
-    public String namaSP,emailSP,nama_kontrakanSP;
+    public String namaSP,emailSP,nama_kontrakanSP,tokenFCM;
 
 
     String token;
 
     ArrayList<String> list = new ArrayList<String>();
+
+    public String tokenPemilik;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -158,6 +167,11 @@ public class PengontrakAddPembayaran extends Fragment {
         namaSP = sh.getString("name", "");
         emailSP = sh.getString("email", "");
         nama_kontrakanSP = sh.getString("nama_kontrakan", "");
+        tokenFCM = sh.getString("tokenFCM", "");
+
+
+        getPemilikKontrakan(nama_kontrakanSP);
+
 //        getName(id);
 
 
@@ -244,6 +258,29 @@ public class PengontrakAddPembayaran extends Fragment {
        return view;
     }
 
+    private void getPemilikKontrakan(String nama_kontrakanSP) {
+        String nama_kontrakan = nama_kontrakanSP;
+        String tokenB = "Bearer "+token;
+        ApiRequest api = Server.konekRetrofit().create(ApiRequest.class);
+        Call<EditLogin> simpanData = api.ARGetPemilik(nama_kontrakan, tokenB);
+        simpanData.enqueue(new Callback<EditLogin>() {
+            @Override
+            public void onResponse(Call<EditLogin> call, Response<EditLogin> response) {
+                if(response.isSuccessful()){
+                    DataLoginModel editLogin = response.body().getUser();
+                    tokenPemilik = editLogin.getTokenFCM();
+                }else{
+                    Toast.makeText(getActivity(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<EditLogin> call, Throwable t) {
+                Toast.makeText(getActivity(), "Gagal Menghubungi Server", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void handleSendImage(String uri) {
         Bitmap bitmap = null;
         try {
@@ -310,6 +347,7 @@ public class PengontrakAddPembayaran extends Fragment {
                 if(response.isSuccessful()){
                     String pesan = response.body().getMessage();
                     Toast.makeText(getActivity(), pesan, Toast.LENGTH_SHORT).show();
+                    kirimNotif();
                     Intent intent = new Intent(getActivity(), PengontrakHomeActivity.class);
                     startActivity(intent);
 
@@ -325,6 +363,16 @@ public class PengontrakAddPembayaran extends Fragment {
         });
 
 
+
+
+    }
+
+    private void kirimNotif() {
+        String tokenP = tokenPemilik;
+        String title = "Pembayaran";
+        String message = "Pembayaran baru dari "+namaSP;
+
+        FCMSend.pushNotification(getActivity(),tokenP,title,message);
 
 
     }

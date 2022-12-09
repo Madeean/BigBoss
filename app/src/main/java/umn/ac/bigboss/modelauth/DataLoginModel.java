@@ -14,6 +14,15 @@ public class DataLoginModel {
     private int umur;
     private String created;
     private String updated;
+    private String tokenFCM;
+
+    public String getTokenFCM() {
+        return tokenFCM;
+    }
+
+    public void setTokenFCM(String tokenFCM) {
+        this.tokenFCM = tokenFCM;
+    }
 
     public int getId() {
         return id;

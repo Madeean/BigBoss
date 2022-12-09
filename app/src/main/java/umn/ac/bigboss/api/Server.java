@@ -17,4 +17,19 @@ public class Server {
         }
         return retro;
     }
+
+    private static final String FCMURL = "https://fcm.googleapis.com/fcm/";
+    private static Retrofit retrofit;
+
+    public static Retrofit konekFCM(){
+
+        if (retrofit == null){
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(FCMURL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return retrofit;
+    }
+
 }

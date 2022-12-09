@@ -32,6 +32,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -71,12 +74,34 @@ public class PengontrakFragment extends Fragment {
     EditText edit_text_nama_pengontrak,edit_text_email_pengontrak,edit_text_umur_pengontrak,edit_text_alamat_sesuai_ktp_pengontrak
             ,edit_text_alamat_kontrakan_sekarang_pengontrak,edit_text_harga_perbulan_pengontrak,edit_text_password_pengontrak;
 
+    public String tokenFCM;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_pengontrak, container, false);
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+                        System.out.println("token fcm : "+token);
+
+                        // Log and toast
+                        tokenFCM = token;
+                    }
+                });
+
+
+
         edit_text_nama_pengontrak = view.findViewById(R.id.edit_text_nama_pengontrak);
         edit_text_email_pengontrak = view.findViewById(R.id.edit_text_email_pengontrak);
         edit_text_umur_pengontrak = view.findViewById(R.id.edit_text_umur_pengontrak);
@@ -169,6 +194,7 @@ public class PengontrakFragment extends Fragment {
     }
 
     private void registerPengontrak() {
+        String token = tokenFCM;
         String nama = edit_text_nama_pengontrak.getText().toString();
         String email = edit_text_email_pengontrak.getText().toString();
         String password = edit_text_password_pengontrak.getText().toString();
@@ -192,10 +218,11 @@ public class PengontrakFragment extends Fragment {
         RequestBody harga_perbulanBody = RequestBody.create(MediaType.parse("multipart/form-data"), String.valueOf(harga_perbulan));
         RequestBody nama_kontrakanBody = RequestBody.create(MediaType.parse("multipart/form-data"), nama_kontrakan);
         RequestBody roleBody = RequestBody.create(MediaType.parse("multipart/form-data"), role);
+        RequestBody tokenBody = RequestBody.create(MediaType.parse("multipart/form-data"), token);
 
         ApiRequest api = Server.konekRetrofit().create(ApiRequest.class);
         Call<LoginModel> simpanData = api.ARRegisterPengontrak(body, namaBody, emailBody, passwordBody,umurBody,roleBody
-        ,alamat_sesuai_ktpBody,alamat_kontrakan_sekarangBody,harga_perbulanBody,nama_kontrakanBody);
+        ,alamat_sesuai_ktpBody,alamat_kontrakan_sekarangBody,harga_perbulanBody,nama_kontrakanBody,tokenBody);
 
         simpanData.enqueue(new Callback<LoginModel>() {
             @Override
@@ -212,6 +239,7 @@ public class PengontrakFragment extends Fragment {
                     myEdit.putString("email", data.getEmail());
                     myEdit.putInt("umur", data.getUmur());
                     myEdit.putString("nama_kontrakan", data.getNama_kontrakan());
+                    myEdit.putString("tokenFCM", data.getTokenFCM());
 
                     myEdit.apply();
 

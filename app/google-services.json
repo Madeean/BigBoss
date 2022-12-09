@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "240044617600",
+    "project_id": "pushnotif-map-cross",
+    "storage_bucket": "pushnotif-map-cross.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240044617600:android:b86c53a1c8df657d06db65",
+        "android_client_info": {
+          "package_name": "umn.ac.bigboss"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "240044617600-7n3om44c9aegn9bfpifth1bid65rcvts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4UETJeOhq6jr3LSaeeBJhsFVTOBu97w8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "240044617600-7n3om44c9aegn9bfpifth1bid65rcvts.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
